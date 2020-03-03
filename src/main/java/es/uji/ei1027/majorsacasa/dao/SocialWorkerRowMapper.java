@@ -12,11 +12,11 @@ public final class SocialWorkerRowMapper implements RowMapper<SocialWorker>{
 	@Override
 	public SocialWorker mapRow(ResultSet rs, int rowNum) throws SQLException {
 		SocialWorker socialWorker = new SocialWorker();
-		socialWorker.setName(rs.getString("socialWorker_name"));
-		socialWorker.setUserCAS(rs.getString("socialWorker_userCAS"));
-		socialWorker.setPwd(rs.getString("socialWorker_pwd"));
-		socialWorker.setPhoneNumber(rs.getInt("socialWorker_phoneNumber"));
-		socialWorker.setEmail(rs.getString("socialWorker_email"));
+		socialWorker.setName(rs.getString("name"));
+		socialWorker.setUserCAS(rs.getString("userCAS"));
+		socialWorker.setPwd(rs.getString("pwd"));
+		socialWorker.setPhoneNumber(rs.getInt("phoneNumber"));
+		socialWorker.setEmail(rs.getString("email"));
 		return socialWorker;
 	}
 

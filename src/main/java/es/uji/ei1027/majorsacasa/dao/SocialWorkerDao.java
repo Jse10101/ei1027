@@ -29,25 +29,25 @@ public class SocialWorkerDao {
 	
 	/* Esborra al SocialWorker de la base de dades */
 	public void deleteSocialWorker(String userCAS) {
-		jdbcTemplate.update("DELETE from SocialWorker where socialWorker_userCAS=?", userCAS);
+		jdbcTemplate.update("DELETE from SocialWorker where userCAS=?", userCAS);
 	}
 	
 	public void deleteSocialWorker(SocialWorker socialWorker) {
-		jdbcTemplate.update("DELETE from SocialWorker where socialWorker_userCAS=?", socialWorker.getUserCAS());
+		jdbcTemplate.update("DELETE from SocialWorker where userCAS=?", socialWorker.getUserCAS());
 	}
 	
 	/*
 	 * Actualitza els atributs del SocialWorker (excepte la clau primària)
 	 */
 	public void updateSocialWorker(SocialWorker socialWorker) {
-		jdbcTemplate.update("UPDATE SocialWorker SET name=?, pwd=?, phoneNumber=? where socialWorker_userCAS=?",
+		jdbcTemplate.update("UPDATE SocialWorker SET name=?, pwd=?, phoneNumber=? where userCAS=?",
 				socialWorker.getName(), socialWorker.getPwd(), socialWorker.getPhoneNumber(),
 				socialWorker.getUserCAS());
 	}
 	
-	public SocialWorker getSocialWorker(String socialWorker_userCAS) {
+	public SocialWorker getSocialWorker(String userCAS) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from SocialWorker WHERE socialWorker_userCAS=?", new SocialWorkerRowMapper(), socialWorker_userCAS);
+			return jdbcTemplate.queryForObject("SELECT * from SocialWorker WHERE userCAS=?", new SocialWorkerRowMapper(), userCAS);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

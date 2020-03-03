@@ -46,9 +46,9 @@ public class SocialWorkerController {
 	        return "redirect:list.html";
 	    }
 	   
-	   @RequestMapping(value="/update/{socialWorker_userCAS}", method = RequestMethod.GET)
-	   public String editaSocialWorker(Model model, @PathVariable String socialWorker_userCAS) {
-	       model.addAttribute("socialworker", socialWorkerDao.getSocialWorker(socialWorker_userCAS));
+	   @RequestMapping(value="/update/{userCAS}", method = RequestMethod.GET)
+	   public String editaSocialWorker(Model model, @PathVariable String userCAS) {
+	       model.addAttribute("socialworker", socialWorkerDao.getSocialWorker(userCAS));
 	       return "socialworker/update"; 
 	   }
 
@@ -62,9 +62,9 @@ public class SocialWorkerController {
 	        return "redirect:list"; 
 	   }
 
-	   @RequestMapping(value="/delete/{socialWorker_userCAS}")
-	   public String processDelete(@PathVariable String socialWorker_userCAS) {
-	          socialWorkerDao.deleteSocialWorker(socialWorker_userCAS);
+	   @RequestMapping(value="/delete/{userCAS}")
+	   public String processDelete(@PathVariable String userCAS) {
+	          socialWorkerDao.deleteSocialWorker(userCAS);
 	          return "redirect:../list"; 
 	   }
 
