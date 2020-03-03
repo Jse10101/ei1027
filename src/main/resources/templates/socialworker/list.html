@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Gestionar SocialWorkers</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" 
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+   <h1>Llista de SocialWorkers</h1>
+   <table class="table table-striped">
+       <thead>
+       <tr>
+           <th>Nom</th>
+           <th>User CAS</th>
+           <th>Contrasenya</th>
+           <th>Teléfon</th>
+           <th>Email</th>
+           <th></th>
+           <th></th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="socialworker: ${socialworkers}"> 
+           <td th:text="${socialworker.nomNadador}"></td>
+           <td th:text="${socialworker.nomProva}"></td>
+           <td th:text="${socialworker.posicio}"></td>
+           <td th:text="${{socialworker.temps}}"></td>
+           <td> <a th:href="@{/socialworker/update/{userCAS}(userCAS=${socialworker.userCAS}}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/socialworker/delete/{userCAS}(userCAS=${socialworker.userCAS}}" class="btn btn-danger" role="button">Esborra</a></td>
+       </tr>
+       </tbody>
+   </table>
+   <a href="add" class="btn btn-success" role="button">Afegeix SocialWorker</a>
+</div>
+</body>
+</html>

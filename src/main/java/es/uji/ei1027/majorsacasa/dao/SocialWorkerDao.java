@@ -1,0 +1,64 @@
+package es.uji.ei1027.majorsacasa.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import es.uji.ei1027.majorsacasa.model.SocialWorker;
+
+@Repository
+public class SocialWorkerDao {
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	public void setDateSource(DataSource dataSource) {
+		jdbcTemplate=new JdbcTemplate(dataSource);
+	}
+	
+	/* Afegeix al SocialWorker a la base de dades */
+	public void addSocialWorker(SocialWorker socialWorker) {
+		jdbcTemplate.update("INSERT INTO SocialWorker VALUES(?, ?, ?, ?, ?)", socialWorker.getName(),
+				socialWorker.getUserCAS(), socialWorker.getPwd(), socialWorker.getPhoneNumber(), socialWorker.getEmail());
+	}
+	
+	/* Esborra al SocialWorker de la base de dades */
+	public void deleteSocialWorker(String userCAS) {
+		jdbcTemplate.update("DELETE from SocialWorker where socialWorker_userCAS=?", userCAS);
+	}
+	
+	public void deleteSocialWorker(SocialWorker socialWorker) {
+		jdbcTemplate.update("DELETE from SocialWorker where socialWorker_userCAS=?", socialWorker.getUserCAS());
+	}
+	
+	/*
+	 * Actualitza els atributs del SocialWorker (excepte la clau primària)
+	 */
+	public void updateSocialWorker(SocialWorker socialWorker) {
+		jdbcTemplate.update("UPDATE SocialWorker SET name=?, pwd=?, phoneNumber=? where socialWorker_userCAS=?",
+				socialWorker.getName(), socialWorker.getPwd(), socialWorker.getPhoneNumber(),
+				socialWorker.getUserCAS());
+	}
+	
+	public SocialWorker getSocialWorker(String socialWorker_userCAS) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT * from SocialWorker WHERE socialWorker_userCAS=?", new SocialWorkerRowMapper(), socialWorker_userCAS);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public List<SocialWorker> getSocialWorkers() {
+		try {
+			return jdbcTemplate.query("Select * from SocialWorker", new SocialWorkerRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<SocialWorker>();
+		}
+
+	}
+}
