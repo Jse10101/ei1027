@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Edita Persona Major</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Edita Persona Major</h2>
+    <form action="#" th:action="@{/elderly/update}"
+                     th:object="${elderly}" method="post">
+      <table>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+        </tr>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>Cognom</label></td>
+            <td><input type="text" th:field="*{surname}" /></td>
+        </tr>
+        <tr>
+            <td><label>Adreça</label></td>
+            <td><input type="text" th:field="*{address}" /></td>
+        </tr>
+        <tr>
+            <td><label>Compte corrent</label></td>
+            <td><input type="text" th:field="*{bankAccountNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Contrasenya</label></td>
+            <td><input type="text" th:field="*{userpwd}" /></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td><label>Número de telèfon</label></td>
+            <td><input type="number" th:field="*{bankAccountNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de naixement</label></td>
+            <td><input type="date" th:field="*{birthDate}" /></td>
+        </tr> 
+        <tr>
+            <td><label>Data de creació</label></td>
+            <td><input type="date" th:field="*{dateCreation}" /></td>
+        </tr>
+        <tr>
+            <td><label>Alérgies</label></td>
+            <td><input type="text" th:field="*{alergies}" /></td>
+        </tr> 
+        <tr>
+            <td><label>Malalties</label></td>
+            <td><input type="text" th:field="*{diseases}" /></td>
+        </tr>       
+        <tr>
+            <td><label>Treballador social associat</label></td>
+            <td><input type="text" th:field="*{userCAS_socialWorker}" /></td>
+        </tr>     
+        <tr>
+            <td colspan="2"><input type="submit" value="Edita Persona Major" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

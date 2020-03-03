@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Gestionar Persona Major</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" 
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+   <h1>Llista de Persones Majors</h1>
+   <table class="table table-striped">
+       <thead>
+       <tr>
+           <th>DNI</th>
+           <th>Nom</th>
+           <th>Cognom</th>
+           <th>Adreça</th>
+           <th>Compte corrent</th>
+           <th>Contrasenya</th>
+           <th>Email</th>
+           <th>Número de telèfon</th>
+           <th>Data de naixement</th>
+           <th>Data de creació</th>
+           <th>Alérgies</th>
+           <th>Malalties</th>
+           <th>Treballador social associat</th>
+           
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="elderly: ${elderlys}"> 
+           <td th:text="${elderly.dni}"></td>
+           <td th:text="${elderly.name}"></td>
+           <td th:text="${elderly.surname}"></td>
+           <td th:text="${{elderly.address}}"></td>
+           <td th:text="${{elderly.bankAccountNumber}}"></td>
+           <td th:text="${{elderly.userpwd}}"></td>
+           <td th:text="${{elderly.email}}"></td>
+           <td th:text="${{elderly.phoneNumber}}"></td>
+           <td th:text="${{elderly.birthDate}}"></td>
+           <td th:text="${{elderly.dateCreation}}"></td>
+           <td th:text="${{elderly.alergies}}"></td>
+           <td th:text="${{elderly.diseases}}"></td>
+           <td th:text="${{elderly.userCAS_socialWorker}}"></td>
+           <td> <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni}}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/elderly/delete/{dni}(dni=${elderly.dni}}" class="btn btn-danger" role="button">Esborra</a></td>
+       </tr>
+       </tbody>
+   </table>
+   <a href="add" class="btn btn-success" role="button">Afegeix Persona Major</a>
+</div>
+</body>
+</html>
