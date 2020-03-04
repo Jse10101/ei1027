@@ -14,11 +14,11 @@ public class RequestRowMapper implements RowMapper<Request> {
         Request request = new Request();
         request.setIdNumber(rs.getInt("idNumber"));
         request.setServiceType(rs.getString("serviceType"));
-        request.setCreationDate(rs.getDate("creationDate"));
+        request.setCreationDate(rs.getDate("creationDate").toLocalDate());
         request.setState(rs.getBoolean("state"));
-        request.setAprovedDate(rs.getDate("aprovedDate"));
-        request.setRejectedDate(rs.getDate("rejectedDate"));
-        request.setFinishDate(rs.getDate("finishDate"));
+        request.setAprovedDate(rs.getDate("aprovedDate").toLocalDate());
+        request.setRejectedDate(rs.getDate("rejectedDate").toLocalDate());
+        request.setFinishDate(rs.getDate("finishDate").toLocalDate());
         request.setDni_elderly(rs.getString("dni_elderly"));
         request.setIdNumber_contract(rs.getInt("idNumber_contract"));
         return request;

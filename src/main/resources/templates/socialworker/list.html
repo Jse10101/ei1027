@@ -26,9 +26,9 @@
            <td th:text="${socialworker.nomNadador}"></td>
            <td th:text="${socialworker.nomProva}"></td>
            <td th:text="${socialworker.posicio}"></td>
-           <td th:text="${{socialworker.temps}}"></td>
-           <td> <a th:href="@{/socialworker/update/{userCAS}(userCAS=${socialworker.userCAS}}" class="btn btn-warning" role="button">Edita</a></td>
-           <td><a th:href="@{/socialworker/delete/{userCAS}(userCAS=${socialworker.userCAS}}" class="btn btn-danger" role="button">Esborra</a></td>
+           <td th:text="${socialworker.temps}"></td>
+           <td> <a th:href="@{/socialworker/update/{userCAS}(userCAS=${socialworker.userCAS})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/socialworker/delete/{userCAS}(userCAS=${socialworker.userCAS})}" class="btn btn-danger" role="button">Esborra</a></td>
        </tr>
        </tbody>
    </table>

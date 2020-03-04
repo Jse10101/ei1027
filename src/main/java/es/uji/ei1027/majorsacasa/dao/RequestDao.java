@@ -25,7 +25,7 @@ public class RequestDao {
     /* Afegeix la Request a la base de dades */
     public void addRequest(Request request) {
         jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", request.getIdNumber(),
-                request.getServiceType(), request.getCreationDate(), request.getState(), request.getAprovedDate(), request.getRejectedDate(), request.getFinishDate(), request.getDni_elderly(), request.getIdNumber_contract);
+                request.getServiceType(), request.getCreationDate(), request.getState(), request.getAprovedDate(), request.getRejectedDate(), request.getFinishDate(), request.getDni_elderly(), request.getIdNumber_contract());
     }
 
     /* Esborra la Request de la base de dades */
@@ -33,13 +33,13 @@ public class RequestDao {
         jdbcTemplate.update("DELETE from Request where idNumber=?", idNumber);
     }
 
-    public void deleteElderly(Request request) {
+    public void deleteRequest(Request request) {
         jdbcTemplate.update("DELETE from Request where idNumber=?", request.getIdNumber());
     }
 
     /* Actualitza els atributs de la Request
    (excepte la clau primària) */
-    public void updateElderly(Elderly elderly) {
+    public void updateRequest(Request request) {
         jdbcTemplate.update("UPDATE Request SET serviceType=?, creationDate=?, state=?, aprovedDate=?, rejectedDate=?, finishDate=?, dni_elderly=?, idNumber_contract=? WHERE idNumber=?",
                 request.getServiceType(), request.getCreationDate(), request.getState(), request.getAprovedDate(), request.getRejectedDate(), request.getFinishDate(), request.getDni_elderly(), request.getIdNumber_contract(), request.getIdNumber());
     }

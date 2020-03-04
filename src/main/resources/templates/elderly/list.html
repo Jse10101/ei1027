@@ -33,18 +33,18 @@
            <td th:text="${elderly.dni}"></td>
            <td th:text="${elderly.name}"></td>
            <td th:text="${elderly.surname}"></td>
-           <td th:text="${{elderly.address}}"></td>
-           <td th:text="${{elderly.bankAccountNumber}}"></td>
-           <td th:text="${{elderly.userpwd}}"></td>
-           <td th:text="${{elderly.email}}"></td>
-           <td th:text="${{elderly.phoneNumber}}"></td>
-           <td th:text="${{elderly.birthDate}}"></td>
-           <td th:text="${{elderly.dateCreation}}"></td>
-           <td th:text="${{elderly.alergies}}"></td>
-           <td th:text="${{elderly.diseases}}"></td>
-           <td th:text="${{elderly.userCAS_socialWorker}}"></td>
-           <td> <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni}}" class="btn btn-warning" role="button">Edita</a></td>
-           <td><a th:href="@{/elderly/delete/{dni}(dni=${elderly.dni}}" class="btn btn-danger" role="button">Esborra</a></td>
+           <td th:text="${elderly.address}"></td>
+           <td th:text="${elderly.bankAccountNumber}"></td>
+           <td th:text="${elderly.userpwd}"></td>
+           <td th:text="${elderly.email}"></td>
+           <td th:text="${elderly.phoneNumber}"></td>
+           <td th:text="${elderly.birthDate}"></td>
+           <td th:text="${elderly.dateCreation}"></td>
+           <td th:text="${elderly.alergies}"></td>
+           <td th:text="${elderly.diseases}"></td>
+           <td th:text="${elderly.userCAS_socialWorker}"></td>
+           <td> <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})}" class="btn btn-danger" role="button">Esborra</a></td>
        </tr>
        </tbody>
    </table>

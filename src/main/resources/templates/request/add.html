@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Nou Request</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nou Request</h2>
+    <form action="#" th:action="@{/request/add}"
+                     th:object="${request}" method="post">
+      <table>
+        <tr>
+            <td><label>Id</label></td>
+            <td><input type="number" th:field="*{idNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Tipus de servici</label></td>
+            <td><input type="text" th:field="*{serviceType}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de creació</label></td>
+            <td><input type="date" th:field="*{creationDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Estat</label></td>
+            <td><input type="checkbox" th:field="*{state}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data d'aprovació</label></td>
+            <td><input type="date" th:field="*{aprovedDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de rebuig</label></td>
+            <td><input type="date" th:field="*{rejectedDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de finalització</label></td>
+            <td><input type="date" th:field="*{finishDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI persona major</label></td>
+            <td><input type="text" th:field="*{dni_elderly}" /></td>
+        </tr>
+        <tr>
+            <td><label>Id del contracte</label></td>
+            <td><input type="number" th:field="*{idNumber_contract}" /></td>
+        </tr> 
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix Request" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

@@ -27,7 +27,7 @@ public class RequestController {
     // ...
     @RequestMapping("/list")
     public String listRequest(Model model) {
-        model.addAttribute("requests", ReqeustDao.getRequests());
+        model.addAttribute("requests", requestDao.getRequests());
         return "request/list";
     }
 
