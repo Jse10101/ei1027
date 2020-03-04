@@ -28,16 +28,16 @@ public class VolunteerDao {
                 volunteer.getPwd(), volunteer.getHobbies(), volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getFinishDate(), volunteer.getAccepted(), volunteer.getBirthDate());
     }
 
-    /* Esborra al Elderly de la base de dades */
+    /* Esborra al Volunteer de la base de dades */
     public void deleteVolunteer(String dni) {
         jdbcTemplate.update("DELETE from Volunteer where dni=?", dni);
     }
 
-    public void delteVolunteer(Volunteer volunteer) {
+    public void deleteVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("DELETE from Volunteer where dni=?", volunteer.getDni());
     }
 
-    /* Actualitza els atributs del Elderly
+    /* Actualitza els atributs del Volunteer
    (excepte la clau primària) */
     public void updateVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("UPDATE Volunteer SET name=?, phoneNumber=?, email=?, pwd=?, hobbies=?, applicationDate=?, acceptationDate=?, finishDate=?, accepted=?, birthbDate=? WHERE dni=?",
@@ -45,7 +45,7 @@ public class VolunteerDao {
                 volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getFinishDate(), volunteer.getAccepted(), volunteer.getBirthDate(), volunteer.getDni());
     }
 
-    /* Obté el Elderly amb el nom donat. Torna null si no existeix. */
+    /* Obté el Volunteer amb el nom donat. Torna null si no existeix. */
     public Volunteer getVolunteer(String user) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE user=?",
@@ -56,7 +56,7 @@ public class VolunteerDao {
         }
     }
 
-    /* Obté tots els elderlys. Torna una llista buida si no n'hi ha cap. */
+    /* Obté tots els volunteers. Torna una llista buida si no n'hi ha cap. */
     public List<Volunteer> getVolunteers() {
         try {
             return jdbcTemplate.query("SELECT * FROM Volunteer",
