@@ -21,7 +21,7 @@ public class AvailabilityDao {
 
     /* Afegeix al Availability a la base de dades */
     public void addAvailability(Availability availability) {
-        jdbcTemplate.update("INSERT INTO Availability VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", availability.getFecha(), availability.getBeginingHour(), availability.getEndingHour(), availability.getStateAvailability(),
+        jdbcTemplate.update("INSERT INTO Availability VALUES(?, ?, ?, ?, ?, ?)", availability.getFecha(), availability.getBeginingHour(), availability.getEndingHour(), availability.getStateAvailability(),
                 availability.getDni_volunteer(), availability.getDni_elderly());
     }
 

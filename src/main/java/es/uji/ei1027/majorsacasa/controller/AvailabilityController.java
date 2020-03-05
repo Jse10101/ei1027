@@ -46,7 +46,7 @@ public class AvailabilityController {
     }
 
     @RequestMapping(value="/update/{fecha}/{dni_volunteer}/{beginingHour}", method = RequestMethod.GET)
-    public String editaVolunteer(Model model, @PathVariable LocalDate fecha,
+    public String editaAvailability(Model model, @PathVariable LocalDate fecha,
                                  @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
         model.addAttribute("availability", availabilityDao.getAvailability(fecha, dni_volunteer, beginingHour));
         return "availability/update";
