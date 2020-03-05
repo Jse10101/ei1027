@@ -26,17 +26,17 @@ public class CompanyDao {
 
     /* Esborra el Company de la base de dades */
     public void deleteCompany(String CIF) {
-        jdbcTemplate.update("DELETE from Company where CIF=?", CIF);
+        jdbcTemplate.update("DELETE from Company where cif=?", CIF);
     }
 
     public void deleteCompany(Company company) {
-        jdbcTemplate.update("DELETE from Company where CIF=?", company.getCIF());
+        jdbcTemplate.update("DELETE from Company where cif=?", company.getCIF());
     }
 
     /* Actualitza els atributs del Company
    (excepte la clau primària) */
     public void updateCompany(Company company) {
-        jdbcTemplate.update("UPDATE Company SET name=?, pwd=?, address=?, contactName=?, contactPhoneNumber=?, contactEmail=?, serviceType=? WHERE CIF=?",
+        jdbcTemplate.update("UPDATE Company SET name=?, pwd=?, address=?, contactName=?, contactPhoneNumber=?, contactEmail=?, serviceType=? WHERE cif=?",
                 company.getName(), company.getPwd(), company.getAddress(), company.getContactName(), company.getContactPhoneNumber(), company.getContactPhoneNumber(),
                 company.getContactEmail(), company.getCIF());
     }
@@ -44,7 +44,7 @@ public class CompanyDao {
     /* Obté el Company per el seu CIF. Torna null si no existeix. */
     public Company getCompany(String CIF) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE CIF=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE cif=?",
                     new CompanyRowMapper(),
                     CIF);
         } catch (EmptyResultDataAccessException e) {

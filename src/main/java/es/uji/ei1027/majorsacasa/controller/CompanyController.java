@@ -45,7 +45,7 @@ public class CompanyController {
         return "redirect:list.html";
     }
 
-    @RequestMapping(value="/update/{CIF}", method = RequestMethod.GET)
+    @RequestMapping(value="/update/{cif}", method = RequestMethod.GET)
     public String editaCompany(Model model, @PathVariable String CIF) {
         model.addAttribute("company", companyDao.getCompany(CIF));
         return "company/update";
@@ -61,7 +61,7 @@ public class CompanyController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{CIF}")
+    @RequestMapping(value="/delete/{cif}")
     public String processDelete( @PathVariable String CIF) {
         companyDao.deleteCompany(CIF);
         return "redirect:../list";

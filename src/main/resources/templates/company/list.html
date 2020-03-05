@@ -24,15 +24,15 @@
        <tbody>
        <tr th:each="company: ${companies}">
            <td th:text="${company.nom}"></td>
-           <td th:text="${company.CIF}"></td>
+           <td th:text="${company.cif}"></td>
            <td th:text="${company.address}"></td>
            <td th:text="${company.contactName}"></td>
            <td th:text="${company.contactPhoneNumber}"></td>
            <td th:text="${company.contactEmail}"></td>
            <td th:text="${company.serviceType}"></td>
 
-           <td> <a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" class="btn btn-warning" role="button">Edita</a></td>
-           <td> <a th:href="@{/company/delete/{CIF}(CIF=${company.CIF})}" class="btn btn-danger" role="button">Esborra</a></td>
+           <td> <a th:href="@{/company/update/{cif}(cif=${company.cif})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td> <a th:href="@{/company/delete/{cif}(cif=${company.cif})}" class="btn btn-danger" role="button">Esborra</a></td>
        </tr>
        </tbody>
    </table>
