@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edita Companyies</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Edita Companyies</h2>
+<form action="#" th:action="@{/company/update}"
+      th:object="${company}" method="post">
+    <table>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{nom}" /></td>
+        </tr>
+        <tr>
+            <td><label>CIF</label></td>
+            <td><input type="text" style="background-color:#D3D3D3" readonly="readonly" th:field="*{CIF}" /></td>
+        </tr>
+        <tr>
+            <td><label>Contrasenya</label></td>
+            <td><input type="text" th:field="*{pwd}" /></td>
+        </tr>
+        <tr>
+            <td><label>Direcció</label></td>
+            <td><input type="text" th:field="*{address}" /></td>
+        </tr>
+        <tr>
+            <td><label>Nom de Contacte</label></td>
+            <td><input type="text" th:field="*{contactName}" /></td>
+        </tr>
+        <tr>
+            <td><label>Teléfon de Contacte</label></td>
+            <td><input type="number" th:field="*{contactPhoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Email de Contacte</label></td>
+            <td><input type="text" th:field="*{contactEmail}" /></td>
+        </tr>
+        <tr>
+            <td><label>Tipus de Servici</label></td>
+            <td><input type="text" th:field="*{serviceTypus}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Edita Companyies" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
