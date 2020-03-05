@@ -1,6 +1,5 @@
 package es.uji.ei1027.majorsacasa.controller;
 
-import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ public class VolunteerController {
     private VolunteerDao volunteerDao;
 
     @Autowired
-    public void ElderlyDao(ElderlyDao elderlyDao) {
+    public void VolunteerlyDao(VolunteerDao volunteerDao) {
         this.volunteerDao = volunteerDao;
     }
 

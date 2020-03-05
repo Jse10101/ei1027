@@ -80,10 +80,4 @@ public class InvoiceDao {
              return new ArrayList<Invoice>();
          }
      }
-
-
-
-
-
-
 }

@@ -19,7 +19,7 @@ public class RequestController {
     private RequestDao requestDao;
 
     @Autowired
-    public void RequestDao(RequestDao resquestDao) {
+    public void RequestDao(RequestDao requestDao) {
         this.requestDao=requestDao;
     }
 

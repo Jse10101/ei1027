@@ -1,11 +1,9 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Contract;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,49 +39,27 @@ public class ContractDao {
         		contract.getIdNumber(), contract.getDateBegining(), contract.getDateEnding(), contract.getServiceType(), contract.getPrice(), contract.getCif_company());
     }
 
-    /* try
-    *       Get selected contract
-    *        @return NULL if not exist */
-    public Contract getContract(String idNumber) {
+
+    /* Obté el Elderly amb el nom donat. Torna null si no existeix. */
+    public Contract getContract(int idNumber) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idNumber=?",
-                    new ContractRowMapper(),
-                    idNumber);
+      		        new ContractRowMapper(),
+      		      idNumber);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
         }
     }
 
-    /* get all contract form db
-    * @return empty list if there is not any contract  */
-    public List<Contract> getContract() {
+    /* Obté tots els elderlys. Torna una llista buida si no n'hi ha cap. */
+    public List<Contract> getContracts() {
         try {
             return jdbcTemplate.query("SELECT * FROM Contract",
-                    new ContractRowMapper());
+           	     new ContractRowMapper());
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Contract>();
         }
-
     }
-
-    /* get all invoice from a contract */
-    /* @return
-    */
-     public List<Contract> getContracts(int idNumber){
-         try {
-             return jdbcTemplate.query("SELECT * FROM Contract WHERE idNumber=?",
-                     new ContractRowMapper(), idNumber);
-         }
-         catch(EmptyResultDataAccessException e) {
-             return new ArrayList<Contract>();
-         }
-     }
-
-
-
-
-
-
-}
+   }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Crear nou Contracte</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nou Contracte</h2>
+    <form action="#" th:action="@{/contracte/add}"
+                     th:object="${contracte}" method="post">
+      <table>
+        <tr>
+            <td><label>Id</label></td>
+            <td><input type="text" th:field="*{idNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de començament</label></td>
+            <td><input type="date" th:field="*{dateBegining}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de finalització</label></td>
+            <td><input type="date" th:field="*{dateEnding}" /></td>
+        </tr>
+        <tr>
+            <td><label>Tipus de servei</label></td>
+            <td><input type="text" th:field="*{serviceType}" /></td>
+        </tr>
+        <tr>
+            <td><label>Preu</label></td>
+            <td><input type="text" th:field="*{price}" /></td>
+        </tr>
+        <tr>
+            <td><label>CIF de l'empresa</label></td>
+            <td><input type="text" th:field="*{cif_company}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix Contracte" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Gestionar Factura</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" 
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+   <h1>Llista de Gestionar Factures</h1>
+   <table class="table table-striped">
+       <thead>
+       <tr>
+           <th>Data</th>
+           <th>Id</th>
+           <th>Cantitat</th>
+           <th>Concepte</th>
+           <th>DNI persona major</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="invoice: ${invoices}"> 
+           <td th:text="${invoice.fecha}"></td>
+           <td th:text="${invoice.idNumber}"></td>
+           <td th:text="${invoice.amount}"></td>
+           <td th:text="${invoice.concept}"></td>
+           <td th:text="${invoice.elderlyDNI}"></td>
+           <td> <a th:href="@{/invoice/update/{idNumber}(idNumber=${invoice.idNumber})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/invoice/delete/{idNumber}(idNumber=${invoice.idNumber})}" class="btn btn-danger" role="button">Esborra</a></td>
+       </tr>
+       </tbody>
+   </table>
+   <a href="add" class="btn btn-success" role="button">Afegeix Contracte</a>
+</div>
+</body>
+</html>

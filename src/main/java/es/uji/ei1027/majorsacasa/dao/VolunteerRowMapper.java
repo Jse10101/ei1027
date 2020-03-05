@@ -1,6 +1,5 @@
 package es.uji.ei1027.majorsacasa.dao;
 
-import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.jdbc.core.RowMapper;
 

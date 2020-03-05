@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Crear nova Factura</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nova Factura</h2>
+    <form action="#" th:action="@{/invoice/add}"
+                     th:object="${invoice}" method="post">
+      <table>
+        <tr>
+            <td><label>Data</label></td>
+            <td><input type="date" th:field="*{fecha}" /></td>
+        </tr>
+        <tr>
+            <td><label>Id</label></td>
+            <td><input type="text" th:field="*{idNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Cantitat</label></td>
+            <td><input type="text" th:field="*{amount}" /></td>
+        </tr>
+        <tr>
+            <td><label>Concepte</label></td>
+            <td><input type="text" th:field="*{concept}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI persona major</label></td>
+            <td><input type="text" th:field="*{elderlyDNI}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix Factura" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

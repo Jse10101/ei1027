@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Gestionar Contractes</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" 
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+   <h1>Llista de Contractes</h1>
+   <table class="table table-striped">
+       <thead>
+       <tr>
+           <th>Id</th>
+           <th>Data de començament</th>
+           <th>Data de finalització</th>
+           <th>Tipus de servei</th>
+           <th>Preu</th>
+           <th>CIF de l'empresa</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="contract: ${contracts}"> 
+           <td th:text="${contract.idNumber}"></td>
+           <td th:text="${contract.dateBegining}"></td>
+           <td th:text="${contract.dateEnding}"></td>
+           <td th:text="${contract.serviceType}"></td>
+           <td th:text="${contract.price}"></td>
+           <td th:text="${contract.cif_company}"></td>
+           <td th:text="${contract.userCAS_socialWorker}"></td>
+           <td> <a th:href="@{/contract/update/{idNumber}(dni=${contract.idNumber})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/contract/delete/{idNumber}(dni=${contract.idNumber})}" class="btn btn-danger" role="button">Esborra</a></td>
+       </tr>
+       </tbody>
+   </table>
+   <a href="add" class="btn btn-success" role="button">Afegeix Contracte</a>
+</div>
+</body>
+</html>
