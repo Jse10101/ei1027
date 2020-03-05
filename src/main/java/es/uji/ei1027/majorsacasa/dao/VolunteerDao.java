@@ -46,11 +46,11 @@ public class VolunteerDao {
     }
 
     /* Obté el Volunteer amb el nom donat. Torna null si no existeix. */
-    public Volunteer getVolunteer(String user) {
+    public Volunteer getVolunteer(String dni) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE user=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni=?",
                     new VolunteerRowMapper(),
-                    user);
+                    dni);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

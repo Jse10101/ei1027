@@ -14,7 +14,7 @@ public class Request {
     private String dni_elderly;
     private int idNumber_contract;
 
-    @java.lang.Override
+    @Override
     public java.lang.String toString() {
         return "Request{" +
                 "idNumber=" + idNumber +

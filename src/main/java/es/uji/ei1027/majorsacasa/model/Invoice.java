@@ -10,13 +10,13 @@ public class Invoice {
     private String concept;
     private int elderlyDNI;
 
-    public Invoice(LocalDate fecha, int idNumber, int amount, String concept, int elderlyDNI) {
-        this.fecha = fecha;
-        this.idNumber = idNumber;
-        this.amount = amount;
-        this.concept = concept;
-        this.elderlyDNI = elderlyDNI;
-    }
+//    public Invoice(LocalDate fecha, int idNumber, int amount, String concept, int elderlyDNI) {
+//        this.fecha = fecha;
+//        this.idNumber = idNumber;
+//        this.amount = amount;
+//        this.concept = concept;
+//        this.elderlyDNI = elderlyDNI;
+//    }
 
     public Invoice(){
 
