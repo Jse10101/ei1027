@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edita Dsiponibilitat</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Edita Disponibilitat</h2>
+<form action="#" th:action="@{/availability/update}"
+      th:object="${availability}" method="post">
+    <table>
+        <tr>
+            <td><label>Data</label></td>
+            <td><input type="date" th:field="*{fecha}" /></td>
+        </tr>
+        <tr>
+            <td><label>Hora d'inici</label></td>
+            <td><input type="text" th:field="*{beginingHour}" /></td>
+        </tr>
+        <tr>
+            <td><label>Hora de fi</label></td>
+            <td><input type="text" th:field="*{endingHour}" /></td>
+        </tr>
+        <tr>
+            <td><label>En Actiu</label></td>
+            <td><input type="checkbox" th:field="*{stateAvailability}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI del voluntari</label></td>
+            <td><input type="text" th:field="*{dni_volunteer}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI de la persona major</label></td>
+            <td><input type="text" th:field="*{dni_elderly}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Edita Dsiponibilitat" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

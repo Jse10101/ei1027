@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear nova disponibilitat</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h2>Nova Disponibilitat</h2>
+    <form action="#" th:action="@{/volunteer/add}"
+          th:object="${volunteer}" method="post">
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="fecha">Data:</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="fecha" th:field="*{fecha}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="beginingHour">Hora d'inici:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="beginingHour" th:field="*{beginingHour}"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="endingHour">Hora de fi:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="endingHour" th:field="*{endingHour}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="stateAvailabilility">En Actiu:</label>
+            <div class="col-sm-4">
+                <input type="checkbox" class="form-control" id="stateAvailabilility" th:field="*{stateAvailabilility}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="dni_volunteer">DNI del Voluntari:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="dni_volunteer" th:field="*{dni_volunteer}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-2" for="dni_elderly">DNI de la Pesona Major:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="dni_elderly" th:field="*{dni_elderly}"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-4">
+                <a href="list">
+                    <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>
+                </a>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
