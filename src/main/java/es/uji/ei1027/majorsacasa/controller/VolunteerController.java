@@ -15,7 +15,7 @@ public class VolunteerController {
     private VolunteerDao volunteerDao;
 
     @Autowired
-    public void VolunteerlyDao(VolunteerDao volunteerDao) {
+    public void VolunteerDao(VolunteerDao volunteerDao) {
         this.volunteerDao = volunteerDao;
     }
 
