@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nou Request-Invoice</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Nou Request-Invoice</h2>
+<form action="#" th:action="@{/request_invoice/add}"
+      th:object="${request_invoice}" method="post">
+    <table>
+        <tr>
+            <td><label>Id de la Petición</label></td>
+            <td><input type="text" th:field="*{idNumber_request}" /></td>
+        </tr>
+        <tr>
+            <td><label>Id de la Factura</label></td>
+            <td><input type="text" th:field="*{idNumber_invoice}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix Request-Invoice" /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
