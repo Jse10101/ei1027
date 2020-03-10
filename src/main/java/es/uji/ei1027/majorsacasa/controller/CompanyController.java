@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.LocalDate;
 
+@Controller
+@RequestMapping("/company")
 public class CompanyController {
 
     private CompanyDao companyDao;
