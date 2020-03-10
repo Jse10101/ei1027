@@ -23,10 +23,10 @@
        </thead>
        <tbody>
        <tr th:each="socialworker: ${socialworkers}"> 
-           <td th:text="${socialworker.nomNadador}"></td>
-           <td th:text="${socialworker.nomProva}"></td>
-           <td th:text="${socialworker.posicio}"></td>
-           <td th:text="${socialworker.temps}"></td>
+           <td th:text="${socialworker.name}"></td>
+           <td th:text="${socialworker.userCAS}"></td>
+           <td th:text="${socialworker.phoneNumber}"></td>
+           <td th:text="${socialworker.email}"></td>
            <td> <a th:href="@{/socialworker/update/{userCAS}(userCAS=${socialworker.userCAS})}" class="btn btn-warning" role="button">Edita</a></td>
            <td><a th:href="@{/socialworker/delete/{userCAS}(userCAS=${socialworker.userCAS})}" class="btn btn-danger" role="button">Esborra</a></td>
        </tr>
