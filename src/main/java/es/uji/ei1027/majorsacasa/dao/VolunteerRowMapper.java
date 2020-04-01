@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 public class VolunteerRowMapper implements RowMapper<Volunteer> {
 
-    @Override
     public Volunteer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Volunteer volunteer = new Volunteer();
         volunteer.setName(rs.getString("name"));

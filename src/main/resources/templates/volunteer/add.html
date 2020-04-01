@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crear nov voluntari</title>
+    <title>Crear nou voluntari</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h2>Nou Voluntari</h2>
-    <form action="#" th:action="@{/volunteer/add}"
+    <form class="form-horizontal" action="#" th:action="@{/volunteer/add}"
           th:object="${volunteer}" method="post">
         <div class="form-group row">
             <label class="control-label col-sm-2" for="name">Nom:</label>

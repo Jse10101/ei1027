@@ -43,7 +43,7 @@ public class SocialWorkerController {
 	        if (bindingResult.hasErrors())
 	               return "socialworker/add";
 	        socialWorkerDao.addSocialWorker(socialWorker);
-	        return "redirect:list.html";
+	        return "redirect:list";
 	    }
 	   
 	   @RequestMapping(value="/update/{userCAS}", method = RequestMethod.GET)

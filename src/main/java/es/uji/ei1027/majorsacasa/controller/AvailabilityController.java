@@ -45,7 +45,7 @@ public class AvailabilityController {
         if (bindingResult.hasErrors())
             return "availability/add";
         availabilityDao.addAvailability(availability);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
     @RequestMapping(value="/update/{fecha}/{dni_volunteer}/{beginingHour}", method = RequestMethod.GET)
