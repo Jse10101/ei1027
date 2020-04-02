@@ -14,7 +14,7 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setDni(rs.getString("dni"));
         volunteer.setPwd(rs.getString("pwd"));
         volunteer.setEmail(rs.getString("email"));
-        volunteer.setPhoneNumber(rs.getInt("phoneNumber"));
+        volunteer.setPhoneNumber(rs.getString("phoneNumber"));
         volunteer.setHobbies(rs.getString("hobbies"));
         volunteer.setApplicationDate(rs.getDate("applicationDate").toLocalDate());
         volunteer.setAcceptationDate(rs.getDate("acceptationDate").toLocalDate());

@@ -40,6 +40,8 @@ public class ElderlyController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST)
 	   public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
 	                                   BindingResult bindingResult) {
+		   ElderlyValidator elderlyValidador = new ElderlyValidator();
+		   elderlyValidador.validate(elderly, bindingResult);
 	        if (bindingResult.hasErrors())
 	               return "elderly/add";
 	        elderlyDao.addElderly(elderly);
@@ -56,6 +58,8 @@ public class ElderlyController {
 	   public String processUpdateSubmit(
 	                           @ModelAttribute("elderly") Elderly elderly, 
 	                           BindingResult bindingResult) {
+		   ElderlyValidator elderlyValidador = new ElderlyValidator();
+		   elderlyValidador.validate(elderly, bindingResult);
 	        if (bindingResult.hasErrors()) 
 	            return "elderly/update";
 	        elderlyDao.updateElderly(elderly);

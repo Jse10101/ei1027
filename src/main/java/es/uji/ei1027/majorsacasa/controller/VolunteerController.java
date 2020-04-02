@@ -39,6 +39,8 @@ public class VolunteerController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
+        VolunteerValidator voluntarioValidador = new VolunteerValidator();
+        voluntarioValidador.validate(volunteer, bindingResult);
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
@@ -55,6 +57,8 @@ public class VolunteerController {
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer volunteer,
             BindingResult bindingResult) {
+        VolunteerValidator voluntarioValidador = new VolunteerValidator();
+        voluntarioValidador.validate(volunteer, bindingResult);
         if (bindingResult.hasErrors())
             return "volunteer/update";
         volunteerDao.updateVolunteer(volunteer);

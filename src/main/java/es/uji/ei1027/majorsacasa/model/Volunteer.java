@@ -1,19 +1,23 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 
 public class Volunteer {
     private String name;
     private String dni;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String pwd;
     private String hobbies;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate applicationDate;
     private LocalDate acceptationDate;
     private LocalDate finishDate;
     private boolean accepted;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     public Volunteer() {
@@ -31,7 +35,7 @@ public class Volunteer {
         this.name = name;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -67,7 +71,7 @@ public class Volunteer {
         this.birthDate = birthDate;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
