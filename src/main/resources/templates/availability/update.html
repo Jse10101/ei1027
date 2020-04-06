@@ -14,14 +14,17 @@
         <tr>
             <td><label>Data</label></td>
             <td><input type="date" style="background-color:#D3D3D3" readonly="readonly" th:field="*{fecha}" /></td>
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></td>
         </tr>
         <tr>
             <td><label>Hora d'inici</label></td>
             <td><input type="text" style="background-color:#D3D3D3" readonly="readonly" th:field="*{beginingHour}" /></td>
+            <td th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></td>
         </tr>
         <tr>
             <td><label>Hora de fi</label></td>
             <td><input type="text" th:field="*{endingHour}" /></td>
+            <td th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></td>
         </tr>
         <tr>
             <td><label>En Actiu</label></td>
@@ -30,10 +33,12 @@
         <tr>
             <td><label>DNI del voluntari</label></td>
             <td><input type="text" style="background-color:#D3D3D3" readonly="readonly" th:field="*{dni_volunteer}" /></td>
+            <td th:if="${#fields.hasErrors('dni_volunteer')}" th:errors="*{dni_volunteer}"></td>
         </tr>
         <tr>
             <td><label>DNI de la persona major</label></td>
             <td><input type="text" th:field="*{dni_elderly}" /></td>
+            <td th:if="${#fields.hasErrors('dni_elderly')}" th:errors="*{dni_elderly}"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Edita Dsiponibilitat" /></td>

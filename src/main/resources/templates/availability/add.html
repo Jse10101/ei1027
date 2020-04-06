@@ -9,43 +9,48 @@
 <body>
 <div class="container">
     <h2>Nova Disponibilitat</h2>
-    <form action="#" th:action="@{/volunteer/add}"
-          th:object="${volunteer}" method="post">
+    <form class="form-horizontal" action="#" th:action="@{/availability/add}"
+          th:object="${availability}" method="post">
         <div class="form-group row">
             <label class="control-label col-sm-2" for="fecha">Data:</label>
             <div class="col-sm-4">
-                <input type="date" class="form-control" id="fecha" th:field="*{fecha}"/>
+                <input type="date" required class="form-control" id="fecha" th:field="*{fecha}"/>
+                <div th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
             </div>
         </div>
         <div class="form-group row">
             <label class="control-label col-sm-2" for="beginingHour">Hora d'inici:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="beginingHour" th:field="*{beginingHour}"/>
+                <input type="time" required class="form-control" id="beginingHour" th:field="*{beginingHour}"/>
+                <div th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>
             </div>
         </div>
 
         <div class="form-group row">
             <label class="control-label col-sm-2" for="endingHour">Hora de fi:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="endingHour" th:field="*{endingHour}"/>
+                <input type="time" required class="form-control" id="endingHour" th:field="*{endingHour}"/>
+                <div th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>
             </div>
         </div>
         <div class="form-group row">
-            <label class="control-label col-sm-2" for="stateAvailabilility">En Actiu:</label>
+            <label class="control-label col-sm-2" for="stateAvailability">En Actiu:</label>
             <div class="col-sm-4">
-                <input type="checkbox" class="form-control" id="stateAvailabilility" th:field="*{stateAvailabilility}"/>
+                <input type="checkbox" class="form-control" id="stateAvailability" th:field="*{stateAvailability}"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="control-label col-sm-2" for="dni_volunteer">DNI del Voluntari:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="dni_volunteer" th:field="*{dni_volunteer}"/>
+                <input type="text" maxlength="9" required class="form-control" id="dni_volunteer" th:field="*{dni_volunteer}"/>
+                <div th:if="${#fields.hasErrors('dni_volunteer')}" th:errors="*{dni_volunteer}"></div>
             </div>
         </div>
         <div class="form-group row">
             <label class="control-label col-sm-2" for="dni_elderly">DNI de la Pesona Major:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="dni_elderly" th:field="*{dni_elderly}"/>
+                <input type="text" maxlength="9" required class="form-control" id="dni_elderly" th:field="*{dni_elderly}"/>
+                <div th:if="${#fields.hasErrors('dni_elderly')}" th:errors="*{dni_elderly}"></div>
             </div>
         </div>
 

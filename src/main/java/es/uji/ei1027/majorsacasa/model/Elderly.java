@@ -1,5 +1,7 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Elderly {
@@ -11,7 +13,9 @@ public class Elderly {
     private String userpwd;
     private String email;
     private String phoneNumber;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateCreation;
     private String alergies;
     private String diseases;

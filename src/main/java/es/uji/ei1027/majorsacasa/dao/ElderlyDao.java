@@ -24,7 +24,7 @@ public class ElderlyDao {
 	
 	/* Afegeix al Elderly a la base de dades */
 	public void addElderly(Elderly elderly) {
-		jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
+		jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
 				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getUserCAS_socialWorker());
 	}
 	
@@ -40,7 +40,7 @@ public class ElderlyDao {
 	 /* Actualitza els atributs del Elderly
     (excepte la clau primària) */
  public void updateElderly(Elderly elderly) {
-     jdbcTemplate.update("UPDATE Elderly SET name=?, surname=?, address=?, bankAccountNumber=?, userpsw=?, email=?, phoneNumber=?, birthDate=?, dateCreation=?, alergies=?, diseases=?, userCAS_socialWorker=? WHERE dni=?",
+     jdbcTemplate.update("UPDATE Elderly SET name=?, surname=?, address=?, bankAccountNumber=?, userpwd=?, email=?, phoneNumber=?, birthDate=?, dateCreation=?, alergies=?, diseases=?, userCAS_socialWorker=? WHERE dni=?",
     		 elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getUserCAS_socialWorker(), elderly.getDni());
  }
 	

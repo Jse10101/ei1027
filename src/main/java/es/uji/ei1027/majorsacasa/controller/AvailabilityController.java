@@ -33,41 +33,45 @@ public class AvailabilityController {
         return "availability/list";
     }
 
-    @RequestMapping(value="/add")
+    @RequestMapping(value = "/add")
     public String addAvailability(Model model) {
         model.addAttribute("availability", new Availability());
         return "availability/add";
     }
 
-    @RequestMapping(value="/add", method= RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("availability") Availability availability,
                                    BindingResult bindingResult) {
+       AvailabilityValidator availabilityValidador = new AvailabilityValidator();
+        availabilityValidador.validate(availability, bindingResult);
         if (bindingResult.hasErrors())
             return "availability/add";
         availabilityDao.addAvailability(availability);
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{fecha}/{dni_volunteer}/{beginingHour}", method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{fecha}/{dni_volunteer}/{beginingHour}", method = RequestMethod.GET)
     public String editaAvailability(Model model, @PathVariable LocalDate fecha,
-                                 @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
+                                    @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
         model.addAttribute("availability", availabilityDao.getAvailability(fecha, dni_volunteer, beginingHour));
         return "availability/update";
     }
 
-    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("availability") Availability availability,
             BindingResult bindingResult) {
+       AvailabilityValidator availabilityValidador = new AvailabilityValidator();
+        availabilityValidador.validate(availability, bindingResult);
         if (bindingResult.hasErrors())
             return "availability/update";
         availabilityDao.updateAvailability(availability);
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{fecha}/{dni_volunteer}/{beginingHour}")
-    public String processDelete( @PathVariable LocalDate fecha,
-                                 @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
+    @RequestMapping(value = "/delete/{fecha}/{dni_volunteer}/{beginingHour}")
+    public String processDelete(@PathVariable LocalDate fecha,
+                                @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
         availabilityDao.deleteAvailability(fecha, dni_volunteer, beginingHour);
         return "redirect:../list";
     }

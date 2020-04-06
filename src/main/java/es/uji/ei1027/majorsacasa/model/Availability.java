@@ -3,14 +3,15 @@ package es.uji.ei1027.majorsacasa.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Availability {
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha;
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalDate beginingHour;
+    private LocalTime beginingHour;
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalDate endingHour;
+    private LocalTime endingHour;
     private boolean stateAvailability;
     private String dni_volunteer;
     private String dni_elderly;
@@ -52,31 +53,27 @@ public class Availability {
         return fecha;
     }
 
-    public void setFecha(LocalDate date) {
-        this.fecha = date;
+    public void setFecha(LocalDate date) { this.fecha = date; }
+
+    public LocalTime getBeginingHour() { return beginingHour;    }
+
+    public void setBeginingHour(LocalTime beginingHour) {
+        this.beginingHour = beginingHour;
     }
 
-    public LocalDate getBeginingHour() {
-        return beginingHour;
-    }
-
-    public void setBeginingHour(LocalDate beginningHour) {
-        this.beginingHour = beginningHour;
-    }
-
-    public LocalDate getEndingHour() {
+    public LocalTime getEndingHour() {
         return endingHour;
     }
 
-    public void setEndingHour(LocalDate endinggHour) {
-        this.endingHour = endinggHour;
+    public void setEndingHour(LocalTime endingHour) {
+        this.endingHour = endingHour;
     }
 
     public boolean getStateAvailability() {
         return stateAvailability;
     }
 
-    public void setStateAvailability(boolean stateAvailable) {
-        this.stateAvailability = stateAvailable;
+    public void setStateAvailability(boolean stateAvailability) {
+        this.stateAvailability = stateAvailability;
     }
 }

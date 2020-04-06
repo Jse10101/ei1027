@@ -35,7 +35,7 @@ public class ElderlyValidator implements Validator {
                     "Cal introduir un DNI vàlid");
 
         if (elderly.getUserpwd().equals("") || elderly.getUserpwd().length() < 8)
-            errors.rejectValue("pwd", "obligatori",
+            errors.rejectValue("userpwd", "obligatori",
                     "Cal introduir un valor de al menys 8 caracters");
 
         if (elderly.getBankAccountNumber().equals("") || elderly.getBankAccountNumber().length() < 19)
@@ -57,7 +57,7 @@ public class ElderlyValidator implements Validator {
             errors.rejectValue("birthDate", "obligatori",
                     "Cal introduir un valor");
 
-        // Afegeix ací la validació per a Edat >= 18 anys
+        // Afegeix ací la validació per a Edat >= 65 anys
         Period periodo = Period.between(elderly.getBirthDate(), LocalDate.now());
         if (periodo.getYears() < 65) {
             errors.rejectValue("birthDate", "menor", "Tens que estar en l'edat de jubilació");

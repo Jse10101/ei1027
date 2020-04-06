@@ -14,22 +14,27 @@
             <tr>
                 <td><label>Nom</label></td>
                 <td><input type="text" th:field="*{nom}" /></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
             </tr>
             <tr>
                 <td><label>DNI</label></td>
                 <td><input type="text" style="background-color:#D3D3D3" readonly="readonly" th:field="*{dni}" /></td>
+
             </tr>
             <tr>
                 <td><label>Contrasenya</label></td>
                 <td><input type="password" th:field="*{pwd}" /></td>
+                <td th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></td>
             </tr>
             <tr>
                 <td><label>Numero de telefon</label></td>
                 <td><input type="text" th:field="*{phoneNumber}" /></td>
+                <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
             </tr>
             <tr>
                 <td><label>Email</label></td>
                 <td><input type="email" th:field="*{email}" /></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
             </tr>
             <tr>
                 <td><label>Hobbies</label></td>
@@ -54,6 +59,7 @@
             <tr>
                 <td><label>Fecha de nacimiento</label></td>
                 <td><input type="date" th:field="*{birthDate}"  /></td>
+                <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Edita Voluntari" /></td>

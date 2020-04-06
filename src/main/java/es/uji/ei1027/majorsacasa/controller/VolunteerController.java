@@ -44,7 +44,7 @@ public class VolunteerController {
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)

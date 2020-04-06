@@ -45,7 +45,7 @@ public class ElderlyController {
 	        if (bindingResult.hasErrors())
 	               return "elderly/add";
 	        elderlyDao.addElderly(elderly);
-	        return "redirect:list.html";
+	        return "redirect:list";
 	    }
 	   
 	   @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)

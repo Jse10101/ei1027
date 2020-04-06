@@ -13,57 +13,66 @@
       <table>
         <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td>
+            <td><input type="text" readonly th:field="*{dni}" /></td>
         </tr>
         <tr>
             <td><label>Nom</label></td>
             <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
         </tr>
         <tr>
             <td><label>Cognom</label></td>
             <td><input type="text" th:field="*{surname}" /></td>
+            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
         </tr>
         <tr>
             <td><label>Adreça</label></td>
             <td><input type="text" th:field="*{address}" /></td>
+            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></td>
         </tr>
         <tr>
             <td><label>Compte corrent</label></td>
             <td><input type="text" th:field="*{bankAccountNumber}" /></td>
+            <td th:if="${#fields.hasErrors('bankAccountNumber')}" th:errors="*{bankAccountNumber}"></td>
         </tr>
         <tr>
             <td><label>Contrasenya</label></td>
             <td><input type="password" th:field="*{userpwd}" /></td>
+            <td th:if="${#fields.hasErrors('userpwd')}" th:errors="*{userpwd}"></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
             <td><input type="text" th:field="*{email}" /></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
         </tr>
         <tr>
             <td><label>Número de telèfon</label></td>
             <td><input type="number" th:field="*{bankAccountNumber}" /></td>
+            <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
         </tr>
-        <tr>
-            <td><label>Data de naixement</label></td>
-            <td><input type="date" th:field="*{birthDate}" /></td>
-        </tr> 
-        <tr>
-            <td><label>Data de creació</label></td>
-            <td><input type="date" th:field="*{dateCreation}" /></td>
-        </tr>
-        <tr>
-            <td><label>Alérgies</label></td>
-            <td><input type="text" th:field="*{alergies}" /></td>
-        </tr> 
-        <tr>
-            <td><label>Malalties</label></td>
-            <td><input type="text" th:field="*{diseases}" /></td>
-        </tr>       
-        <tr>
-            <td><label>Treballador social associat</label></td>
-            <td><input type="text" th:field="*{userCAS_socialWorker}" /></td>
-        </tr>     
-        <tr>
+          <tr>
+              <td><label>Data de naixement</label></td>
+              <td><input type="date" required th:field="*{birthDate}" /></td>
+              <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></td>
+          </tr>
+          <tr>
+              <td><label>Data de creació</label></td>
+              <td><input type="date" required th:field="*{dateCreation}" /></td>
+              <td th:if="${#fields.hasErrors('dateCreation')}" th:errors="*{dateCreation}"></td>
+          </tr>
+          <tr>
+              <td><label>Alérgies</label></td>
+              <td><input type="text" maxlength="200" th:field="*{alergies}" /></td>
+          </tr>
+          <tr>
+              <td><label>Malalties</label></td>
+              <td><input type="text" maxlength="200" th:field="*{diseases}" /></td>
+          </tr>
+          <tr>
+              <td><label>Treballador social associat</label></td>
+              <td><input type="text" maxlength="12" th:field="*{userCAS_socialWorker}" /></td>
+          </tr>
+          <tr>
             <td colspan="2"><input type="submit" value="Edita Persona Major" /></td>
         </tr>
       </table>
