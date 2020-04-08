@@ -1,20 +1,24 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Contract {
-	int idNumber;
+	String idNumber;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate dateBegining;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate dateEnding;
 	String serviceType;
 	int price;
 	String cif_company;
 	
-	public int getIdNumber() {
+	public String getIdNumber() {
 		return idNumber;
 	}
 
-	public void setIdNumber(int idNumber) {
+	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
 

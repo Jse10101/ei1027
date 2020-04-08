@@ -16,7 +16,7 @@ public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
         company.setPwd(rs.getString("pwd"));
         company.setAddress(rs.getString("address"));
         company.setContactName(rs.getString("contactName"));
-        company.setContactPhoneNumber(rs.getInt("contactPhoneNumber"));
+        company.setContactPhoneNumber(rs.getString("contactPhoneNumber"));
         company.setContactEmail(rs.getString("contactEmail"));
         company.setServiceType(rs.getString("serviceType"));
         return company;

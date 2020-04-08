@@ -33,39 +33,43 @@ public class CompanyController {
         return "company/list";
     }
 
-    @RequestMapping(value="/add")
+    @RequestMapping(value = "/add")
     public String addCompany(Model model) {
         model.addAttribute("company", new Company());
         return "company/add";
     }
 
-    @RequestMapping(value="/add", method= RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult) {
+        CompanyValidator companyValidador = new CompanyValidator();
+        companyValidador.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/add";
         companyDao.addCompany(company);
         return "redirect:list.html";
     }
 
-    @RequestMapping(value="/update/{cif}", method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{cif}", method = RequestMethod.GET)
     public String editaCompany(Model model, @PathVariable String CIF) {
         model.addAttribute("company", companyDao.getCompany(CIF));
         return "company/update";
     }
 
-    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("company") Company company,
             BindingResult bindingResult) {
+        CompanyValidator companyValidador = new CompanyValidator();
+        companyValidador.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompany(company);
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{cif}")
-    public String processDelete( @PathVariable String CIF) {
+    @RequestMapping(value = "/delete/{cif}")
+    public String processDelete(@PathVariable String CIF) {
         companyDao.deleteCompany(CIF);
         return "redirect:../list";
     }

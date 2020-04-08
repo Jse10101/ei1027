@@ -11,7 +11,7 @@ public class ContractRowMapper implements RowMapper<Contract>{
 	@Override
 	public Contract mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Contract contract = new Contract();
-		contract.setIdNumber(rs.getInt("idNumber"));
+		contract.setIdNumber(rs.getString("idNumber"));
 		contract.setDateBegining(rs.getDate("dateBegining").toLocalDate());
 		contract.setDateEnding(rs.getDate("dateEnding").toLocalDate());
 		contract.setServiceType(rs.getString("serviceType"));

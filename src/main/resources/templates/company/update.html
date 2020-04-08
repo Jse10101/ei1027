@@ -13,35 +13,43 @@
     <table>
         <tr>
             <td><label>Nom</label></td>
-            <td><input type="text" th:field="*{nom}" /></td>
+            <td><input type="text" required maxlength="20" th:field="*{nom}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></td>
         </tr>
         <tr>
             <td><label>CIF</label></td>
-            <td><input type="text" style="background-color:#D3D3D3" readonly="readonly" th:field="*{cif}" /></td>
+            <td><input type="text" style="background-color:#D3D3D3" readonly th:field="*{cif}" /></td>
+            <td th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}" ></td>
         </tr>
         <tr>
             <td><label>Contrasenya</label></td>
-            <td><input type="password" th:field="*{pwd}" /></td>
+            <td><input type="password" required maxlength="20" th:field="*{pwd}" /></td>
+            <td th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" ></td>
         </tr>
         <tr>
             <td><label>Direcció</label></td>
-            <td><input type="text" th:field="*{address}" /></td>
+            <td><input type="text" required maxlength="50" th:field="*{address}" /></td>
+            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}" ></td>
         </tr>
         <tr>
             <td><label>Nom de Contacte</label></td>
-            <td><input type="text" th:field="*{contactName}" /></td>
+            <td><input type="text" required maxlength="20" th:field="*{contactName}" /></td>
+            <td th:if="${#fields.hasErrors('contactName')}" th:errors="*{contactName}" ></td>
         </tr>
         <tr>
             <td><label>Teléfon de Contacte</label></td>
-            <td><input type="text" th:field="*{contactPhoneNumber}" /></td>
+            <td><input type="text" required maxlength="9" th:field="*{contactPhoneNumber}" /></td>
+            <td th:if="${#fields.hasErrors('contactPhoneNumber')}" th:errors="*{contactPhoneNumber}" ></td>
         </tr>
         <tr>
             <td><label>Email de Contacte</label></td>
-            <td><input type="email" th:field="*{contactEmail}" /></td>
+            <td><input type="email" required maxlength="20" th:field="*{contactEmail}" /></td>
+            <td th:if="${#fields.hasErrors('contactEmail')}" th:errors="*{contactEmail}" ></td>
         </tr>
         <tr>
             <td><label>Tipus de Servici</label></td>
-            <td><input type="text" th:field="*{serviceTypus}" /></td>
+            <td><input type="text" required maxlength="20" th:field="*{serviceType}" /></td>
+            <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" ></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Edita Companyies" /></td>

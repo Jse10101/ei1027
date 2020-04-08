@@ -7,7 +7,7 @@ public class Company {
     private String pwd;
     private String address;
     private String contactName;
-    private int contactPhoneNumber;
+    private String contactPhoneNumber;
     private String contactEmail;
     private String serviceType;
 
@@ -67,11 +67,11 @@ public class Company {
         this.contactName = contactName;
     }
 
-    public int getContactPhoneNumber() {
+    public String getContactPhoneNumber() {
         return contactPhoneNumber;
     }
 
-    public void setContactPhoneNumber(int contactPhoneNumber) {
+    public void setContactPhoneNumber(String contactPhoneNumber) {
         this.contactPhoneNumber = contactPhoneNumber;
     }
 

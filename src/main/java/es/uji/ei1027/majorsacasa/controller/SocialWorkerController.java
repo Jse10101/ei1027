@@ -40,6 +40,8 @@ public class SocialWorkerController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST)
 	   public String processAddSubmit(@ModelAttribute("socialworker") SocialWorker socialWorker,
 	                                   BindingResult bindingResult) {
+		   SocialWorkerValidator socialworkerValidador = new SocialWorkerValidator();
+		   socialworkerValidador.validate(socialWorker, bindingResult);
 	        if (bindingResult.hasErrors())
 	               return "socialworker/add";
 	        socialWorkerDao.addSocialWorker(socialWorker);
@@ -56,6 +58,8 @@ public class SocialWorkerController {
 	   public String processUpdateSubmit(
 	                           @ModelAttribute("socialworker") SocialWorker socialWorker, 
 	                           BindingResult bindingResult) {
+		   SocialWorkerValidator socialworkerValidador = new SocialWorkerValidator();
+		   socialworkerValidador.validate(socialWorker, bindingResult);
 	        if (bindingResult.hasErrors()) 
 	            return "socialworker/update";
 	        socialWorkerDao.updateSocialWorker(socialWorker);

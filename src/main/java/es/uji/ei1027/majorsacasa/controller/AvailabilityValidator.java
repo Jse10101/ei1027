@@ -12,7 +12,7 @@ public class AvailabilityValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> cls) {
-        return Volunteer.class.equals(cls);
+        return Availability.class.equals(cls);
         // o, si volguérem tractar també les subclasses:
         // return Nadador.class.isAssignableFrom(cls);
     }
