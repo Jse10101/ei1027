@@ -22,7 +22,7 @@ public class Login {
 			return user;
 		}
 
-		public void setUuser(String user) {
+		public void setUser(String user) {
 			this.user = user;
 		}
 
