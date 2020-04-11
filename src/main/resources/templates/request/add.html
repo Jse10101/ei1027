@@ -13,15 +13,18 @@
       <table>
         <tr>
             <td><label>Id</label></td>
-            <td><input type="text" th:field="*{idNumber}" /></td>
+            <td><input type="text" required maxlength="5" th:field="*{idNumber}" /></td>
+            <td th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}"></td>
         </tr>
         <tr>
             <td><label>Tipus de servici</label></td>
-            <td><input type="text" th:field="*{serviceType}" /></td>
+            <td><input type="text" required maxlength="20" th:field="*{serviceType}" /></td>
+            <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{servicetype}"></td>
         </tr>
         <tr>
             <td><label>Data de creació</label></td>
-            <td><input type="date" th:field="*{creationDate}" /></td>
+            <td><input type="date" required th:field="*{creationDate}" /></td>
+            <td th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></td>
         </tr>
         <tr>
             <td><label>Estat</label></td>
@@ -30,22 +33,27 @@
         <tr>
             <td><label>Data d'aprovació</label></td>
             <td><input type="date" th:field="*{aprovedDate}" /></td>
+            <td th:if="${#fields.hasErrors('aprovedDate')}" th:errors="*{aprovedDate}"></td>
         </tr>
         <tr>
             <td><label>Data de rebuig</label></td>
             <td><input type="date" th:field="*{rejectedDate}" /></td>
+            <td th:if="${#fields.hasErrors('rejectedDate')}" th:errors="*{rejectedDate}"></td>
         </tr>
         <tr>
             <td><label>Data de finalització</label></td>
             <td><input type="date" th:field="*{finishDate}" /></td>
+            <td th:if="${#fields.hasErrors('finishDate')}" th:errors="*{finishDate}"></td>
         </tr>
         <tr>
             <td><label>DNI persona major</label></td>
-            <td><input type="text" th:field="*{dni_elderly}" /></td>
+            <td><input type="text" required maxlength="9" th:field="*{dni_elderly}" /></td>
+            <td th:if="${#fields.hasErrors('dni_elderly')}" th:errors="*{dni_elderly}"></td>
         </tr>
         <tr>
             <td><label>Id del contracte</label></td>
-            <td><input type="text" th:field="*{idNumber_contract}" /></td>
+            <td><input type="text" required maxlength="5" th:field="*{idNumber_contract}" /></td>
+            <td th:if="${#fields.hasErrors('idNumber_contract')}" th:errors="*{idNumber_contract}"></td>
         </tr> 
         <tr>
             <td colspan="2"><input type="submit" value="Afegeix Request" /></td>

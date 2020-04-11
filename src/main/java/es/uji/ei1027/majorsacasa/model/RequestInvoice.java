@@ -1,8 +1,8 @@
 package es.uji.ei1027.majorsacasa.model;
 
 public class RequestInvoice {
-    private int idNumber_request;
-    private int idNumber_invoice;
+    private String idNumber_request;
+    private String idNumber_invoice;
 
     public RequestInvoice() {
     }
@@ -15,19 +15,19 @@ public class RequestInvoice {
                 '}';
     }
 
-    public int getIdNumber_request() {
+    public String getIdNumber_request() {
         return idNumber_request;
     }
 
-    public int getIdNumber_invoice() {
+    public String getIdNumber_invoice() {
         return idNumber_invoice;
     }
 
-    public void setIdNumber_request(int idNumber_request) {
+    public void setIdNumber_request(String idNumber_request) {
         this.idNumber_request = idNumber_request;
     }
 
-    public void setIdNumber_invoice(int idNumber_invoice) {
+    public void setIdNumber_invoice(String idNumber_invoice) {
         this.idNumber_invoice = idNumber_invoice;
     }
 }

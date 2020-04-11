@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td><label>User CAS</label></td>
-            <td><input type="text" maxlength="12" required th:field="*{userCAS}" /></td>
+            <td><input type="text" maxlength="12" readonly required th:field="*{userCAS}" /></td>
             <td th:if="${#fields.hasErrors('userCAS')}" th:errors="*{userCAS}"></td>
         </tr>
         <tr>

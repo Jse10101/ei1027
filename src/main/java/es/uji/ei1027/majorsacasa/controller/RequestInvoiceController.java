@@ -39,6 +39,8 @@ public class RequestInvoiceController {
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("request_invoice") RequestInvoice requestInvoice,
                                    BindingResult bindingResult) {
+        RequestInvoiceValidator requestInvoiceValidator = new RequestInvoiceValidator();
+        requestInvoiceValidator.validate(requestInvoice, bindingResult);
         if (bindingResult.hasErrors())
             return "request_invoice/add";
         requestInvoiceDao.addRequestInvoice(requestInvoice);

@@ -72,6 +72,7 @@
         <tr>
             <td><label>Treballador social associat</label></td>
             <td><input type="text" maxlength="12" th:field="*{userCAS_socialWorker}" /></td>
+            <td th:if="${#fields.hasErrors('userCAS_socialWorker')}" th:errors="*{userCAS_socialWorker}"></td>
         </tr>     
         <tr>
             <td colspan="2"><input type="submit" value="Afegeix Persona Major" /></td>

@@ -1,18 +1,24 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Request {
-    private int idNumber;
+    private String idNumber;
     private String serviceType;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate creationDate;
     private boolean state;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate aprovedDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate rejectedDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate finishDate;
     //Claves ajenas
     private String dni_elderly;
-    private int idNumber_contract;
+    private String idNumber_contract;
 
     @Override
     public java.lang.String toString() {
@@ -31,7 +37,7 @@ public class Request {
 
     //GETTERS
 
-    public int getIdNumber() {
+    public String getIdNumber() {
         return idNumber;
     }
 
@@ -63,13 +69,13 @@ public class Request {
         return dni_elderly;
     }
 
-    public int getIdNumber_contract() {
+    public String getIdNumber_contract() {
         return idNumber_contract;
     }
 
     //SETTERS
 
-    public void setIdNumber(int idNumber) {
+    public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
@@ -101,7 +107,7 @@ public class Request {
         this.dni_elderly = dni_elderly;
     }
 
-    public void setIdNumber_contract(int idNumber_contract) {
+    public void setIdNumber_contract(String idNumber_contract) {
         this.idNumber_contract = idNumber_contract;
     }
 }

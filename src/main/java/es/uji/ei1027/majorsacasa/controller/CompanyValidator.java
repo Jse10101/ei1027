@@ -1,7 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.model.Company;
-import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -23,7 +22,7 @@ public class CompanyValidator implements Validator {
             errors.rejectValue("name", "obligatori",
                     "Cal introduir un valor");
 
-        if (company.getCIF().equals("") || company.getCIF().length() != 9)
+        if (company.getCif().equals("") || company.getCif().length() != 9)
             errors.rejectValue("cif", "obligatori",
                     "Cal introduir un CIF vàlid");
 

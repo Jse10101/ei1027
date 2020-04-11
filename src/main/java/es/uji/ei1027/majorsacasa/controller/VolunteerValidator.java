@@ -43,6 +43,10 @@ public class VolunteerValidator implements Validator {
             errors.rejectValue("birthDate", "obligatori",
                     "Cal introduir un valor");
 
+        //if(voluntario.getAcceptationDate()!=null)
+          //  if(!voluntario.getAcceptationDate().isAfter(voluntario.getBirthDate()))
+            //    errors.rejectValue("acceptationDate", "menor", "Tens que ser major de 18 anys");
+
         // Afegeix ací la validació per a Edat >= 18 anys
         Period periodo = Period.between(voluntario.getBirthDate(), LocalDate.now());
         if (periodo.getYears() < 18) {

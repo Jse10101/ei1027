@@ -12,7 +12,7 @@ public class RequestRowMapper implements RowMapper<Request> {
     @Override
     public Request mapRow(ResultSet rs, int rowNum) throws SQLException {
         Request request = new Request();
-        request.setIdNumber(rs.getInt("idNumber"));
+        request.setIdNumber(rs.getString("idNumber"));
         request.setServiceType(rs.getString("serviceType"));
         request.setCreationDate(rs.getDate("creationDate").toLocalDate());
         request.setState(rs.getBoolean("state"));
@@ -20,7 +20,7 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setRejectedDate(rs.getDate("rejectedDate").toLocalDate());
         request.setFinishDate(rs.getDate("finishDate").toLocalDate());
         request.setDni_elderly(rs.getString("dni_elderly"));
-        request.setIdNumber_contract(rs.getInt("idNumber_contract"));
+        request.setIdNumber_contract(rs.getString("idNumber_contract"));
         return request;
     }
 }

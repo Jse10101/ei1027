@@ -3,7 +3,7 @@ package es.uji.ei1027.majorsacasa.model;
 public class Company {
 
     private String name;
-    private String CIF;
+    private String cif;
     private String pwd;
     private String address;
     private String contactName;
@@ -17,7 +17,7 @@ public class Company {
     public String toString() {
         return "Company{" +
                 "name='" + name + '\'' +
-                ", CIF='" + CIF + '\'' +
+                ", CIF='" + cif + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", address='" + address + '\'' +
                 ", contactName='" + contactName + '\'' +
@@ -43,12 +43,12 @@ public class Company {
         this.name = name;
     }
 
-    public String getCIF() {
-        return CIF;
+    public String getCif() {
+        return cif;
     }
 
-    public void setCIF(String CIF) {
-        this.CIF = CIF;
+    public void setCif(String cif) {
+        this.cif = cif;
     }
 
     public String getAddress() {

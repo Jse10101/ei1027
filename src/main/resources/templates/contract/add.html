@@ -8,8 +8,8 @@
 </head>
 <body>
     <h2>Nou Contracte</h2>
-    <form action="#" th:action="@{/contracte/add}"
-                     th:object="${contracte}" method="post">
+    <form action="#" th:action="@{/contract/add}"
+                     th:object="${contract}" method="post">
       <table>
         <tr>
             <td><label>Id</label></td>
@@ -24,7 +24,7 @@
         <tr>
             <td><label>Data de finalització</label></td>
             <td><input type="date" required th:field="*{dateEnding}" /></td>
-            <td th:if="${#fields.hasErrors('detaEnding')}" th:errors="*{dateEnding}"></td>
+            <td th:if="${#fields.hasErrors('dateEnding')}" th:errors="*{dateEnding}"></td>
         </tr>
         <tr>
             <td><label>Tipus de servei</label></td>

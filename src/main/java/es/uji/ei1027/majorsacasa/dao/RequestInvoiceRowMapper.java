@@ -11,8 +11,8 @@ public class RequestInvoiceRowMapper implements RowMapper<RequestInvoice> {
     @Override
     public RequestInvoice mapRow(ResultSet rs, int rowNum) throws SQLException {
         RequestInvoice requestInvoice = new RequestInvoice();
-        requestInvoice.setIdNumber_request(rs.getInt("idNumber_request"));
-        requestInvoice.setIdNumber_invoice(rs.getInt("idNumber_invoice"));
+        requestInvoice.setIdNumber_request(rs.getString("idNumber_request"));
+        requestInvoice.setIdNumber_invoice(rs.getString("idNumber_invoice"));
         return requestInvoice;
     }
 }

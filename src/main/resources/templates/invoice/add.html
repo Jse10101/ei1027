@@ -13,23 +13,28 @@
       <table>
         <tr>
             <td><label>Data</label></td>
-            <td><input type="date" th:field="*{fecha}" /></td>
+            <td><input type="date" required th:field="*{fecha}" /></td>
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></td>
         </tr>
         <tr>
             <td><label>Id</label></td>
-            <td><input type="text" th:field="*{idNumber}" /></td>
+            <td><input type="text" required maxlength="5" th:field="*{idNumber}" /></td>
+            <td th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}"></td>
         </tr>
         <tr>
             <td><label>Cantitat</label></td>
-            <td><input type="text" th:field="*{amount}" /></td>
+            <td><input type="text" required th:field="*{amount}" /></td>
+            <td th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></td>
         </tr>
         <tr>
             <td><label>Concepte</label></td>
             <td><input type="text" th:field="*{concept}" /></td>
+            <td th:if="${#fields.hasErrors('concept')}" th:errors="*{concept}"></td>
         </tr>
         <tr>
             <td><label>DNI persona major</label></td>
-            <td><input type="text" th:field="*{elderlyDNI}" /></td>
+            <td><input type="text" required maxlength="9" th:field="*{elderlyDNI}" /></td>
+            <td th:if="${#fields.hasErrors('elderlyDNI')}" th:errors="*{elderlyDNI}"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Afegeix Factura" /></td>

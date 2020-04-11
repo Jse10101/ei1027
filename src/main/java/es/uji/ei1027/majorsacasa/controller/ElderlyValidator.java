@@ -29,6 +29,10 @@ public class ElderlyValidator implements Validator {
         if (elderly.getAddress().equals(""))
             errors.rejectValue("surname", "obligatori",
                     "Cal introduir un valor");
+        if (elderly.getUserCAS_socialWorker() != null)
+            if (elderly.getUserCAS_socialWorker().length() != 12)
+                errors.rejectValue("userCAS", "obligatori",
+                        "Cal introduir un CAS vàlid");
 
         if (elderly.getDni().equals("") || elderly.getDni().length() != 9)
             errors.rejectValue("dni", "obligatori",

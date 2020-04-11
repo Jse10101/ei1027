@@ -34,7 +34,7 @@ public class ContractController {
 	   @RequestMapping(value="/add") 
 	   public String addContract(Model model) {
 	       model.addAttribute("contract", new Contract());
-	       return "contracty/add";
+	       return "contract/add";
 	   }
 	   
 	   @RequestMapping(value="/add", method=RequestMethod.POST)
@@ -45,7 +45,7 @@ public class ContractController {
 	        if (bindingResult.hasErrors())
 	               return "contract/add";
 	        contractDao.addContract(contract);
-	        return "redirect:list.html";
+	        return "redirect:list";
 	    }
 	   
 	   @RequestMapping(value="/update/{idNumber}", method = RequestMethod.GET)

@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td><label>DNI de la persona major</label></td>
-            <td><input type="text" th:field="*{dni_elderly}" /></td>
+            <td><input type="text"  readonly th:field="*{dni_elderly}" /></td>
             <td th:if="${#fields.hasErrors('dni_elderly')}" th:errors="*{dni_elderly}"></td>
         </tr>
         <tr>

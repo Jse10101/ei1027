@@ -13,11 +13,13 @@
     <table>
         <tr>
             <td><label>Id de la Petición</label></td>
-            <td><input type="text" th:field="*{idNumber_request}" /></td>
+            <td><input type="text" required maxlength="5" th:field="*{idNumber_request}" /></td>
+            <td th:if="${#fields.hasErrors('idNumber_request')}" th:errors="*{idNumber_request}"></td>
         </tr>
         <tr>
             <td><label>Id de la Factura</label></td>
-            <td><input type="text" th:field="*{idNumber_invoice}" /></td>
+            <td><input type="text" required maxlength="5" th:field="*{idNumber_invoice}" /></td>
+            <td th:if="${#fields.hasErrors('idNumber_invoice')}" th:errors="*{idNumber_invoice}"></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Afegeix Request-Invoice" /></td>

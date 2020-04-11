@@ -1,14 +1,16 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Invoice {
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha;
-    private int idNumber;
+    private String idNumber;
     private int amount;
     private String concept;
-    private int elderlyDNI;
+    private String elderlyDNI;
 
 //    public Invoice(LocalDate fecha, int idNumber, int amount, String concept, int elderlyDNI) {
 //        this.fecha = fecha;
@@ -26,7 +28,7 @@ public class Invoice {
         return fecha;
     }
 
-    public int getIdNumber() {
+    public String getIdNumber() {
         return idNumber;
     }
 
@@ -38,7 +40,7 @@ public class Invoice {
         return concept;
     }
 
-    public int getElderlyDNI() {
+    public String getElderlyDNI() {
         return elderlyDNI;
     }
 
@@ -47,7 +49,7 @@ public class Invoice {
         this.fecha = fecha;
     }
 
-    public void setIdNumber(int idNumber) {
+    public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
@@ -59,7 +61,7 @@ public class Invoice {
         this.concept = concept;
     }
 
-    public void setElderlyDNI(int elderlyDNI) {
+    public void setElderlyDNI(String elderlyDNI) {
         this.elderlyDNI = elderlyDNI;
     }
 

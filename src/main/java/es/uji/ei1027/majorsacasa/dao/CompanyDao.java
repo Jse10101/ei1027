@@ -22,7 +22,7 @@ public class CompanyDao {
 
     /* Afegeix al Company a la base de dades */
     public void addCompany(Company company) {
-        jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?, ?, ?, ?, ?)", company.getName(), company.getCIF(), company.getPwd(), company.getAddress(),
+        jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?, ?, ?, ?, ?)", company.getName(), company.getCif(), company.getPwd(), company.getAddress(),
                 company.getContactName(), company.getContactPhoneNumber(), company.getContactEmail(), company.getServiceType());
     }
 
@@ -32,7 +32,7 @@ public class CompanyDao {
     }
 
     public void deleteCompany(Company company) {
-        jdbcTemplate.update("DELETE from Company where cif=?", company.getCIF());
+        jdbcTemplate.update("DELETE from Company where cif=?", company.getCif());
     }
 
     /* Actualitza els atributs del Company
@@ -40,7 +40,7 @@ public class CompanyDao {
     public void updateCompany(Company company) {
         jdbcTemplate.update("UPDATE Company SET name=?, pwd=?, address=?, contactName=?, contactPhoneNumber=?, contactEmail=?, serviceType=? WHERE cif=?",
                 company.getName(), company.getPwd(), company.getAddress(), company.getContactName(), company.getContactPhoneNumber(), company.getContactPhoneNumber(),
-                company.getContactEmail(), company.getCIF());
+                company.getContactEmail(), company.getCif());
     }
 
     /* Obté el Company per el seu CIF. Torna null si no existeix. */

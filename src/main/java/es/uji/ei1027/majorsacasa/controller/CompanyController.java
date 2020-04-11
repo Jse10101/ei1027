@@ -47,7 +47,7 @@ public class CompanyController {
         if (bindingResult.hasErrors())
             return "company/add";
         companyDao.addCompany(company);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
     @RequestMapping(value = "/update/{cif}", method = RequestMethod.GET)

@@ -15,10 +15,10 @@ public class InvoiceRowMapper implements RowMapper<Invoice> {
         Invoice invoice = new Invoice();
 
         invoice.setFecha(resultSet.getDate("fecha").toLocalDate());
-        invoice.setIdNumber(resultSet.getInt("idNumber"));
+        invoice.setIdNumber(resultSet.getString("idNumber"));
         invoice.setAmount(resultSet.getInt("amount"));
         invoice.setConcept(resultSet.getString("concept"));
-        invoice.setElderlyDNI(resultSet.getInt("elderlyDNI"));
+        invoice.setElderlyDNI(resultSet.getString("elderlyDNI"));
 
         return invoice;
     }

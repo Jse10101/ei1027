@@ -1,40 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <title>Editar Factura</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <title>Editar Factura</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-    <h2>Edita Factura</h2>
-    <form action="#" th:action="@{/invoice/add}"
-                     th:object="${invoice}" method="post">
-      <table>
+<h2>Edita Factura</h2>
+<form action="#" th:action="@{/invoice/add}"
+      th:object="${invoice}" method="post">
+    <table>
         <tr>
             <td><label>Data</label></td>
-            <td><input type="date" th:field="*{fecha}" /></td>
+            <td><input type="date" required readonly th:field="*{fecha}"/></td>
+            <td th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></td>
         </tr>
         <tr>
             <td><label>Id</label></td>
-            <td><input type="text" th:field="*{idNumber}" /></td>
+            <td><input type="text" required readonly th:field="*{idNumber}"/></td>
+            <td th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}"></td>
         </tr>
         <tr>
             <td><label>Cantitat</label></td>
-            <td><input type="text" th:field="*{amount}" /></td>
+            <td><input type="text" required th:field="*{amount}"/></td>
+            <td th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></td>
         </tr>
         <tr>
             <td><label>Concepte</label></td>
-            <td><input type="text" th:field="*{concept}" /></td>
+            <td><input type="text" th:field="*{concept}"/></td>
+            <td th:if="${#fields.hasErrors('concept')}" th:errors="*{concept}"></td>
         </tr>
         <tr>
             <td><label>DNI persona major</label></td>
-            <td><input type="text" th:field="*{elderlyDNI}" /></td>
+            <td><input type="text" required readonly th:field="*{elderlyDNI}"/></td>
+            <td th:if="${#fields.hasErrors('elderlyDNI')}" th:errors="*{elderlyDNI}"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Edita Factura" /></td>
+            <td colspan="2"><input type="submit" value="Edita Factura"/></td>
         </tr>
-      </table>
-    </form>
+    </table>
+</form>
 </body>
 </html>

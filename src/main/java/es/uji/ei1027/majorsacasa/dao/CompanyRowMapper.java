@@ -12,7 +12,7 @@ public class CompanyRowMapper implements RowMapper<Company> {
 public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
         Company company = new Company();
         company.setName(rs.getString("name"));
-        company.setCIF(rs.getString("cif"));
+        company.setCif(rs.getString("cif"));
         company.setPwd(rs.getString("pwd"));
         company.setAddress(rs.getString("address"));
         company.setContactName(rs.getString("contactName"));
