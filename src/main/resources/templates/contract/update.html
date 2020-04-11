@@ -11,30 +11,36 @@
     <form action="#" th:action="@{/contracte/update}"
                      th:object="${contracte}" method="post">
       <table>
-        <tr>
-            <td><label>Id</label></td>
-            <td><input type="text" th:field="*{idNumber}" /></td>
-        </tr>
-        <tr>
-            <td><label>Data de començament</label></td>
-            <td><input type="date" th:field="*{dateBegining}" /></td>
-        </tr>
-        <tr>
-            <td><label>Data de finalització</label></td>
-            <td><input type="date" th:field="*{dateEnding}" /></td>
-        </tr>
-        <tr>
-            <td><label>Tipus de servei</label></td>
-            <td><input type="text" th:field="*{serviceType}" /></td>
-        </tr>
-        <tr>
-            <td><label>Preu</label></td>
-            <td><input type="text" th:field="*{price}" /></td>
-        </tr>
-        <tr>
-            <td><label>CIF de l'empresa</label></td>
-            <td><input type="text" th:field="*{cif_company}" /></td>
-        </tr>
+          <tr>
+              <td><label>Id</label></td>
+              <td><input type="text" required maxlength="5" th:field="*{idNumber}" /></td>
+              <td th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}"></td>
+          </tr>
+          <tr>
+              <td><label>Data de començament</label></td>
+              <td><input type="date" required th:field="*{dateBegining}" /></td>
+              <td th:if="${#fields.hasErrors('dateBegining')}" th:errors="*{dateBegining}"></td>
+          </tr>
+          <tr>
+              <td><label>Data de finalització</label></td>
+              <td><input type="date" required th:field="*{dateEnding}" /></td>
+              <td th:if="${#fields.hasErrors('detaEnding')}" th:errors="*{dateEnding}"></td>
+          </tr>
+          <tr>
+              <td><label>Tipus de servei</label></td>
+              <td><input type="text"required maxlength="" th:field="*{serviceType}" /></td>
+              <td th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></td>
+          </tr>
+          <tr>
+              <td><label>Preu</label></td>
+              <td><input type="text" required th:field="*{price}" /></td>
+              <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+          </tr>
+          <tr>
+              <td><label>CIF de l'empresa</label></td>
+              <td><input type="text" required maxlength="9" th:field="*{cif_company}" /></td>
+              <td th:if="${#fields.hasErrors('cif_company')}" th:errors="*{cif_company}"></td>
+          </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Edita Contracte" /></td>
         </tr>

@@ -4,7 +4,7 @@ public class SocialWorker {
 	private String name;
 	private String userCAS;
 	private String pwd;
-	private int phoneNumber;
+	private String phoneNumber;
 	private String email;
 	
 	@Override
@@ -37,11 +37,11 @@ public class SocialWorker {
 		this.pwd = pwd;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
