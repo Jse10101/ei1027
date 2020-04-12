@@ -26,7 +26,7 @@ public class RequestInvoiceDao {
     }
 
     /* Esborra RequestInvoice de la base de dades */
-    public void deleteRequestInvoice(int id_invoice, int id_request) {
+    public void deleteRequestInvoice(String id_invoice, String id_request) {
         jdbcTemplate.update("DELETE from isPayedBy where idNumber_invoice=? and idNumber_request=?", id_invoice, id_request);
     }
 
@@ -38,7 +38,7 @@ public class RequestInvoiceDao {
    (excepte les claus primàries) */
 
     /* Obté el RequestInvoice amb els ids donats. Torna null si no existeix. */
-    public RequestInvoice getRequestInvoice(int id_invoice, int id_request) {
+    public RequestInvoice getRequestInvoice(String id_invoice, String id_request) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM isPayedBy WHERE idNumber_invoice=? and idNumber_request=?",
                     new RequestInvoiceRowMapper(),

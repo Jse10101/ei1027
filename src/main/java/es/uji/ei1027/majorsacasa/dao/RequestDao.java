@@ -29,7 +29,7 @@ public class RequestDao {
     }
 
     /* Esborra la Request de la base de dades */
-    public void deleteRequest(int idNumber) {
+    public void deleteRequest(String idNumber) {
         jdbcTemplate.update("DELETE from Request where idNumber=?", idNumber);
     }
 
@@ -45,7 +45,7 @@ public class RequestDao {
     }
 
     /* Obté la Request amb el id donat. Torna null si no existeix. */
-    public Request getRequest(int idNumber) {
+    public Request getRequest(String idNumber) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE idNumber=?",
                     new RequestRowMapper(),

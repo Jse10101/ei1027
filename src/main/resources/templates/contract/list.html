@@ -28,9 +28,8 @@
            <td th:text="${contract.serviceType}"></td>
            <td th:text="${contract.price}"></td>
            <td th:text="${contract.cif_company}"></td>
-           <td th:text="${contract.userCAS_socialWorker}"></td>
-           <td> <a th:href="@{/contract/update/{idNumber}(dni=${contract.idNumber})}" class="btn btn-warning" role="button">Edita</a></td>
-           <td><a th:href="@{/contract/delete/{idNumber}(dni=${contract.idNumber})}" class="btn btn-danger" role="button">Esborra</a></td>
+           <td> <a th:href="@{/contract/update/{idNumber}(idNumber=${contract.idNumber})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/contract/delete/{idNumber}(idNumber=${contract.idNumber})}" class="btn btn-danger" role="button">Esborra</a></td>
        </tr>
        </tbody>
    </table>

@@ -13,7 +13,7 @@
     <table>
         <tr>
             <td><label>Nom</label></td>
-            <td><input type="text" required maxlength="20" th:field="*{nom}" /></td>
+            <td><input type="text" required maxlength="20" th:field="*{name}" /></td>
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></td>
         </tr>
         <tr>

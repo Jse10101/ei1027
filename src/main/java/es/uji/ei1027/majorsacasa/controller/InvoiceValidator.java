@@ -22,7 +22,7 @@ public class InvoiceValidator implements Validator {
 
         if (invoice.getIdNumber().equals("") || invoice.getIdNumber().length() != 5)
             errors.rejectValue("idNumber", "obligatori",
-                    "Cal introduir un DNI vàlid");
+                    "Cal introduir un ID vàlid");
 
         if (invoice.getAmount()==0)
             errors.rejectValue("amount", "obligatori",

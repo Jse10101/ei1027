@@ -31,7 +31,7 @@ public class ElderlyValidator implements Validator {
                     "Cal introduir un valor");
         if (elderly.getUserCAS_socialWorker() != null)
             if (elderly.getUserCAS_socialWorker().length() != 12)
-                errors.rejectValue("userCAS", "obligatori",
+                errors.rejectValue("userCAS_socialWorker", "obligatori",
                         "Cal introduir un CAS vàlid");
 
         if (elderly.getDni().equals("") || elderly.getDni().length() != 9)
@@ -42,9 +42,9 @@ public class ElderlyValidator implements Validator {
             errors.rejectValue("userpwd", "obligatori",
                     "Cal introduir un valor de al menys 8 caracters");
 
-        if (elderly.getBankAccountNumber().equals("") || elderly.getBankAccountNumber().length() < 19)
+        if (elderly.getBankAccountNumber().equals("") || elderly.getBankAccountNumber().length() !=19)
             errors.rejectValue("bankAccountNumber", "obligatori",
-                    "Cal introduir un valor de al menys 19 caracters");
+                    "Cal introduir un valor de 19 caracters");
 
         if (elderly.getEmail().equals(""))
             errors.rejectValue("email", "obligatori",

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <title>Gestionar Persona Major</title>
+   <title>Gestionar Peticions</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" 
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container">
-   <h1>Llista de Persones Majors</h1>
+   <h1>Llista de Peticions</h1>
    <table class="table table-striped">
        <thead>
        <tr>
@@ -34,8 +34,8 @@
            <td th:text="${request.finishDate}"></td>
            <td th:text="${request.dni_elderly}"></td>
            <td th:text="${request.idNumber_contract}"></td>
-           <td> <a th:href="@{/request/update/{idNumber}(idNumber=${request.idNumber}" class="btn btn-warning" role="button">Edita</a></td>
-           <td><a th:href="@{/request/delete/{idNumber}(idNumber=${request.idNumber}" class="btn btn-danger" role="button">Esborra</a></td>
+           <td> <a th:href="@{/request/update/{idNumber}(idNumber=${request.idNumber})}" class="btn btn-warning" role="button">Edita</a></td>
+           <td><a th:href="@{/request/delete/{idNumber}(idNumber=${request.idNumber})}" class="btn btn-danger" role="button">Esborra</a></td>
        </tr>
        </tbody>
    </table>

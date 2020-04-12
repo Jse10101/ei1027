@@ -17,37 +17,37 @@
         </tr>
         <tr>
             <td><label>Nom</label></td>
-            <td><input type="text" th:field="*{name}" /></td>
+            <td><input type="text" required maxlength="50" th:field="*{name}" /></td>
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
         </tr>
         <tr>
             <td><label>Cognom</label></td>
-            <td><input type="text" th:field="*{surname}" /></td>
+            <td><input type="text" required maxlength="50" th:field="*{surname}" /></td>
             <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
         </tr>
         <tr>
             <td><label>Adreça</label></td>
-            <td><input type="text" th:field="*{address}" /></td>
+            <td><input type="text" required maxlength="50" th:field="*{address}" /></td>
             <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></td>
         </tr>
         <tr>
             <td><label>Compte corrent</label></td>
-            <td><input type="text" th:field="*{bankAccountNumber}" /></td>
+            <td><input type="text" required maxlength="19" th:field="*{bankAccountNumber}" /></td>
             <td th:if="${#fields.hasErrors('bankAccountNumber')}" th:errors="*{bankAccountNumber}"></td>
         </tr>
         <tr>
             <td><label>Contrasenya</label></td>
-            <td><input type="password" th:field="*{userpwd}" /></td>
+            <td><input type="password" required maxlength="20" th:field="*{userpwd}" /></td>
             <td th:if="${#fields.hasErrors('userpwd')}" th:errors="*{userpwd}"></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
+            <td><input type="text" required th:field="*{email}" /></td>
             <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
         </tr>
         <tr>
             <td><label>Número de telèfon</label></td>
-            <td><input type="number" th:field="*{bankAccountNumber}" /></td>
+            <td><input type="number" maxlength="9" th:field="*{phoneNumber}" /></td>
             <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
         </tr>
           <tr>
@@ -71,6 +71,7 @@
           <tr>
               <td><label>Treballador social associat</label></td>
               <td><input type="text" maxlength="12" th:field="*{userCAS_socialWorker}" /></td>
+              <td th:if="${#fields.hasErrors('userCAS_socialWorker')}" th:errors="*{userCAS_socialWorker}"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="submit" value="Edita Persona Major" /></td>

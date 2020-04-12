@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Controller
 @RequestMapping("/availability")
@@ -51,9 +52,11 @@ public class AvailabilityController {
     }
 
     @RequestMapping(value = "/update/{fecha}/{dni_volunteer}/{beginingHour}", method = RequestMethod.GET)
-    public String editaAvailability(Model model, @PathVariable LocalDate fecha,
-                                    @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
-        model.addAttribute("availability", availabilityDao.getAvailability(fecha, dni_volunteer, beginingHour));
+    public String editaAvailability(Model model, @PathVariable String fecha,
+                                    @PathVariable String dni_volunteer, @PathVariable String beginingHour) {
+        LocalDate fecha1 = LocalDate.parse(fecha);
+        LocalTime tiempo = LocalTime.parse(beginingHour);
+        model.addAttribute("availability", availabilityDao.getAvailability(fecha1, dni_volunteer, tiempo));
         return "availability/update";
     }
 
@@ -70,9 +73,11 @@ public class AvailabilityController {
     }
 
     @RequestMapping(value = "/delete/{fecha}/{dni_volunteer}/{beginingHour}")
-    public String processDelete(@PathVariable LocalDate fecha,
-                                @PathVariable String dni_volunteer, @PathVariable LocalDate beginingHour) {
-        availabilityDao.deleteAvailability(fecha, dni_volunteer, beginingHour);
+    public String processDelete(@PathVariable String fecha,
+                                @PathVariable String dni_volunteer, @PathVariable String beginingHour) {
+        LocalDate fecha1 = LocalDate.parse(fecha);
+        LocalTime tiempo = LocalTime.parse(beginingHour);
+        availabilityDao.deleteAvailability(fecha1, dni_volunteer, tiempo);
         return "redirect:../list";
     }
 

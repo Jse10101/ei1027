@@ -18,13 +18,13 @@ public class RequestInvoiceValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         RequestInvoice requestInvoice = (RequestInvoice) obj;
-        if (requestInvoice.getIdNumber_request().equals(""))
+        if (requestInvoice.getIdNumber_request().equals("") || requestInvoice.getIdNumber_invoice().length() !=5)
             errors.rejectValue("idNumber_request", "obligatori",
-                    "Cal introduir un valor");
+                    "Cal introduir un ID valid");
 
-        if (requestInvoice.getIdNumber_invoice().equals(""))
+        if (requestInvoice.getIdNumber_invoice().equals("") || requestInvoice.getIdNumber_invoice().length() !=5)
             errors.rejectValue("idNumber_invoice", "obligatori",
-                    "Cal introduir un valor");
+                    "Cal introduir un ID valid");
 
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class AvailabilityDao {
     }
 
     /* Esborra el Availability de la base de dades */
-    public void deleteAvailability(LocalDate fecha, String dni_volunteer, LocalDate beginingHour) {
+    public void deleteAvailability(LocalDate fecha, String dni_volunteer, LocalTime beginingHour) {
         jdbcTemplate.update("DELETE from Availability where dni_volunteer=? and fecha=? and beginingHour=?", dni_volunteer, fecha, beginingHour);
     }
 
@@ -45,11 +46,11 @@ public class AvailabilityDao {
     }
 
     /* Obté el Availability. Torna null si no existeix. */
-    public Availability getAvailability(LocalDate fecha, String dni_volunteer, LocalDate beginingHour) {
+    public Availability getAvailability(LocalDate fecha, String dni_volunteer, LocalTime beginingHour) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Availability WHERE dni_volunteer=? AND fecha=? AND beginingHour=?",
                     new AvailabilityRowMapper(),
-                    fecha, dni_volunteer, beginingHour);
+                    dni_volunteer, fecha, beginingHour);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

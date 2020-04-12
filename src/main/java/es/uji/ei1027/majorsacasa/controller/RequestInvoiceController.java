@@ -48,14 +48,14 @@ public class RequestInvoiceController {
     }
 
     @RequestMapping(value="/update/{idNumber_invoice}/{idNumber_request}", method = RequestMethod.GET)
-    public String editaRequest(Model model, @PathVariable int idNumber_invoice, @PathVariable int idNumber_request) {
+    public String editaRequest(Model model, @PathVariable String idNumber_invoice, @PathVariable String idNumber_request) {
         model.addAttribute("request_invoice", requestInvoiceDao.getRequestInvoice(idNumber_invoice, idNumber_request));
         return "request_invoice/update";
     }
 
 
     @RequestMapping(value="/delete/{idNumber_invoice}/{idNumber_request}")
-    public String processDelete(@PathVariable int idNumber_invoice, @PathVariable int idNumber_request) {
+    public String processDelete(@PathVariable String idNumber_invoice, @PathVariable String idNumber_request) {
         requestInvoiceDao.deleteRequestInvoice(idNumber_invoice, idNumber_request);
         return "redirect:../list";
     }

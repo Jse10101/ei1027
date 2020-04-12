@@ -28,7 +28,7 @@ public class ContractDao {
     }
 
     /* delete contract from db */
-    public void deleteContract(int idNumber) {
+    public void deleteContract(String idNumber) {
         jdbcTemplate.update("DELETE from Contract where idNumber=?", idNumber);
     }
 
@@ -44,7 +44,7 @@ public class ContractDao {
 
 
     /* Obté el Elderly amb el nom donat. Torna null si no existeix. */
-    public Contract getContract(int idNumber) {
+    public Contract getContract(String idNumber) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idNumber=?",
       		        new ContractRowMapper(),

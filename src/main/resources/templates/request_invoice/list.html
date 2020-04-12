@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Persona Major</title>
+    <title>Gestionar Peticions/Factures</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -17,10 +17,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="request_invoice: ${request_invoices}">
+        <tr th:each="request_invoice: ${requests_invoices}">
             <td th:text="${request_invoice.idNumber_request}"></td>
             <td th:text="${request_invoice.idNumber_invoice}"></td>
-            <td><a th:href="@{/request/delete/{idNumber_invoice}(idNumber_invoice=${request_invoice.idNumber_invoice}/{idNumber_request}(idNumber_request=${request_invoice.idNumber_request})" class="btn btn-danger" role="button">Esborra</a></td>
+            <td><a th:href="@{/request/delete/{idNumber_invoice}(idNumber_invoice=${request_invoice.idNumber_invoice})/{idNumber_request}(idNumber_request=${request_invoice.idNumber_request})}" class="btn btn-danger" role="button">Esborra</a></td>
         </tr>
         </tbody>
     </table>

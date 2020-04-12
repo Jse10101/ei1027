@@ -49,7 +49,7 @@ public class ContractController {
 	    }
 	   
 	   @RequestMapping(value="/update/{idNumber}", method = RequestMethod.GET)
-	   public String editaContract(Model model, @PathVariable int idNumber) {
+	   public String editaContract(Model model, @PathVariable String idNumber) {
 	       model.addAttribute("contract", contractDao.getContract(idNumber));
 	       return "contract/update"; 
 	   }
@@ -67,7 +67,7 @@ public class ContractController {
 	   }
 
 	   @RequestMapping(value="/delete/{idNumber}")
-	   public String processDelete(@PathVariable int idNumber) {
+	   public String processDelete(@PathVariable String idNumber) {
 		   contractDao.deleteContract(idNumber);
 	          return "redirect:../list"; 
 	   }

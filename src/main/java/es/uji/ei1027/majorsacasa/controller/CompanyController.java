@@ -51,8 +51,8 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "/update/{cif}", method = RequestMethod.GET)
-    public String editaCompany(Model model, @PathVariable String CIF) {
-        model.addAttribute("company", companyDao.getCompany(CIF));
+    public String editaCompany(Model model, @PathVariable String cif) {
+        model.addAttribute("company", companyDao.getCompany(cif));
         return "company/update";
     }
 
