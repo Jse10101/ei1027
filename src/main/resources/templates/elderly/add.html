@@ -1,83 +1,139 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <title>Crear Persona Major</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/majoradd.css"
+	th:href="@{/css/majoradd.css}" />
+<title>Majors a casa</title>
 </head>
 <body>
-    <h2>Nova persona major</h2>
-    <form action="#" th:action="@{/elderly/add}"
-                     th:object="${elderly}" method="post">
-      <table>
-        <tr>
-            <td><label>DNI</label></td>
-            <td><input maxlength="9" required type="text" th:field="*{dni}" /></td>
-            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
-        </tr>
-        <tr>
-            <td><label>Nom</label></td>
-            <td><input type="text" required maxlength="50" th:field="*{name}" /></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
-        </tr>
-        <tr>
-            <td><label>Cognom</label></td>
-            <td><input type="text" required  maxlength="50" th:field="*{surname}" /></td>
-            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></td>
-        </tr>
-        <tr>
-            <td><label>Adreça</label></td>
-            <td><input type="text" required maxlength="50" th:field="*{address}" /></td>
-            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></td>
-        </tr>
-        <tr>
-            <td><label>Compte corrent</label></td>
-            <td><input maxlength="19" required type="text" th:field="*{bankAccountNumber}" /></td>
-            <td th:if="${#fields.hasErrors('bankAccountNumber')}" th:errors="*{bankAccountNumber}"></td>
-        </tr>
-        <tr>
-            <td><label>Contrasenya</label></td>
-            <td><input type="password" required maxlength="20" th:field="*{userpwd}" /></td>
-            <td th:if="${#fields.hasErrors('userpwd')}" th:errors="*{userpwd}"></td>
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="email" required th:field="*{email}" /></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-        </tr>
-        <tr>
-            <td><label>Número de telèfon</label></td>
-            <td><input type="text" required maxlength="9" th:field="*{phoneNumber}" /></td>
-            <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
-        </tr>
-        <tr>
-            <td><label>Data de naixement</label></td>
-            <td><input type="date" required th:field="*{birthDate}" /></td>
-            <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></td>
-        </tr> 
-        <tr>
-            <td><label>Data de creació</label></td>
-            <td><input type="date" required th:field="*{dateCreation}" /></td>
-            <td th:if="${#fields.hasErrors('dateCreation')}" th:errors="*{dateCreation}"></td>
-        </tr>
-        <tr>
-            <td><label>Alérgies</label></td>
-            <td><input type="text" maxlength="200" th:field="*{alergies}" /></td>
-        </tr> 
-        <tr>
-            <td><label>Malalties</label></td>
-            <td><input type="text" maxlength="200" th:field="*{diseases}" /></td>
-        </tr>       
-        <tr>
-            <td><label>Treballador social associat</label></td>
-            <td><input type="text" maxlength="12" th:field="*{userCAS_socialWorker}" /></td>
-            <td th:if="${#fields.hasErrors('userCAS_socialWorker')}" th:errors="*{userCAS_socialWorker}"></td>
-        </tr>     
-        <tr>
-            <td colspan="2"><input type="submit" value="Afegeix Persona Major" /></td>
-        </tr>
-      </table>
-    </form>
+	<div class="contenedor">
+		<header>
+			<h1>NOU REGISTRE</h1>
+		</header>
+		<main class="main_major_add">
+			<form action="#" th:action="@{/elderly/add} " th:object="${elderly}"
+				method="post">
+				<div class="pack_camp_form">
+					<div class="nom_dades">DNI:</div>
+					<div>
+						<input class="form-control" maxlength="9" required type="text"
+							th:field="*{dni}" />
+						<div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">NOM:</div>
+					<div>
+						<input class="form-control" type="text" required maxlength="50"
+							th:field="*{name}" />
+						<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">COGNOM:</div>
+					<div>
+						<input class="form-control" type="text" required maxlength="50"
+							th:field="*{surname}" />
+						<div th:if="${#fields.hasErrors('surname')}"
+							th:errors="*{surname}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">ADREÇA:</div>
+					<div>
+						<input class="form-control" type="text" required maxlength="50"
+							th:field="*{address}" />
+						<div th:if="${#fields.hasErrors('address')}"
+							th:errors="*{address}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">COMPTE CORRENT:</div>
+					<div>
+						<input class="form-control" maxlength="19" required type="text"
+							th:field="*{bankAccountNumber}" />
+						<div th:if="${#fields.hasErrors('bankAccountNumber')}"
+							th:errors="*{bankAccountNumber}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">CONTRASENYA:</div>
+					<div>
+						<input class="form-control" type="password" required
+							maxlength="20" th:field="*{userpwd}" />
+						<div th:if="${#fields.hasErrors('userpwd')}"
+							th:errors="*{userpwd}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">E-MAIL:</div>
+					<div>
+						<input class="form-control" type="email" required
+							th:field="*{email}" />
+						<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">TELÉFON:</div>
+					<div>
+						<input class="form-control" type="text" required maxlength="9"
+							th:field="*{phoneNumber}" />
+						<div th:if="${#fields.hasErrors('phoneNumber')}"
+							th:errors="*{phoneNumber}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">DATA DE NAIXEMENT:</div>
+					<div>
+						<input class="form-control" type="date" required
+							th:field="*{birthDate}" />
+						<div th:if="${#fields.hasErrors('birthDate')}"
+							th:errors="*{birthDate}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">ALÉRGIES:</div>
+					<div>
+						<input class="form-control" type="text" maxlength="200"
+							th:field="*{alergies}" />
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">MALALTIES:</div>
+					<div>
+						<input class="form-control" type="text" maxlength="200"
+							th:field="*{diseases}" />
+					</div>
+				</div>
+
+				<div class="boton">
+					<input type="submit" class="btn btn-primary" value="REGISTRAR-ME" />
+				</div>
+			</form>
+		</main>
+
+		<aside class="text">
+			<div class="text_majors">
+				Si necessites ajuda per a registrar-te pots cridar al teléfon:<br>
+				96XXXXXXX<br>
+				<br> També pots posar-te en contacte amb nosaltres al seguent
+				correu:<br> ei1027@majorsacasa.es
+			</div>
+		</aside>
+		<footer> Majors a Casa - 2020 </footer>
+	</div>
 </body>
 </html>
