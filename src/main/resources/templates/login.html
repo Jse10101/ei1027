@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset="UTF8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/login.css"th:href="@{/css/login.css}" />
+	<title>Majors a casa</title>
+</head>
+
+<body>
+  <div class="contenedor">
+    <header>
+      <h1>MAJORS A CASA</h1>
+    </header>
+    <main class="main">
+        Qué oferim? <br>
+		Menjar a domicili, Servei sanitari, Servei de netetja i Acompanyament.
+      <div class="imagenes">
+		<div class="imagen"><img src="https://www.65ymas.com/uploads/s1/21/59/8/co-mo-pedir-comida-a-domicilio-con-tu-movil.jpeg" alt="Menjar preparat" /></div>
+        <div class="imagen"><img src="https://img.freepik.com/foto-gratis/retrato-enfermera-sonriente-hospital_53419-1056.jpg" alt="Servei sanitari" /></div>
+        <div class="imagen"><img src="https://www.grupms.es/wp-content/archivos/2018/09/servicio-de-limpieza-a-domicilio-consejos.jpg" alt="Neteja a domicili" /></div>
+        <div class="imagen"><img src="https://babumagazine.com/wp-content/uploads/2018/06/mayores-portada.jpg" alt="Acompanyament" /></div>
+      </div>
+    </main>
+    <aside class="log">
+
+      <form action="#" th:action="@{/index}" th:object="${user}" method="post" class="log_compl">
+        <div class="pack_camp_form">
+          <div class="nom_dades">DNI:</div>
+          <input class="form-control" type="text" th:field="*{user}" />
+          <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div></div>
+              <div class="pack_camp_form"><br>
+			<div class="nom_dades">CONTRASENYA:</div>
+              <input class="form-control" type="password" th:field="*{password}"/>
+                
+              <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></div>
+			  
+			  
+            <div class="boton"><input type="submit" value="ACCEDIR" class="btn btn-primary" /></div>
+              <div class="pack_camp_form">
+				No estàs registrat?<a href="/elderly/add">Registra't</a>
+              </div>
+	</form>
+        
+        
+        
+      </aside>
+      <footer>
+		Majors a Casa - 2020
+		</footer>
+    </div>
+      </body>
+</html>
