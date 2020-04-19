@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -88,6 +89,13 @@ public class LoginController {
 		// Si no, torna a la principal
 		return "redirect:/";
 	}
+	
+	   @RequestMapping(value="/update/{user}", method = RequestMethod.GET)
+	   public String editaElderly(HttpSession session, Model model, @PathVariable String user) {
+		   
+	       model.addAttribute("login", loginDao.getLogin(user));
+	       return "elderly/update"; 
+	   }
 	
 	@RequestMapping("/logout") 
 	public String logout(HttpSession session) {
