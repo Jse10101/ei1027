@@ -1,37 +1,37 @@
 package es.uji.ei1027.majorsacasa.model;
 
 public class Login {
-		private String user;
-		private String password;
+		private String usuario;
+		private String pwd;
 		private String role;
 		
 		public Login() {}
 		
-		public Login(String user, String password, String role) {
-			this.user = user;
-			this.password = password;
+		public Login(String usuario, String pwd, String role) {
+			this.usuario = usuario;
+			this.pwd = pwd;
 			this.role = role;
 		}
 
 		@Override
 		public String toString() {
-			return "Login [usuario=" + user + ", password=" + password + ", role=" + role + "]";
+			return "Login [usuario=" + usuario + ", password=" + pwd + ", role=" + role + "]";
 		}
 
-		public String getUser() {
-			return user;
+		public String getUsuario() {
+			return usuario;
 		}
 
-		public void setUser(String user) {
-			this.user = user;
+		public void setUsuario(String usuario) {
+			this.usuario = usuario;
 		}
 
-		public String getPassword() {
-			return password;
+		public String getPwd() {
+			return pwd;
 		}
 
-		public void setPassword(String password) {
-			this.password = password;
+		public void setPwd(String pwd) {
+			this.pwd = pwd;
 		}
 
 		public String getRole() {

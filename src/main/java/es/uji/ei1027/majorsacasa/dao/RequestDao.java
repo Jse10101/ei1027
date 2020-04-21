@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +44,8 @@ public class RequestDao {
         jdbcTemplate.update("UPDATE Request SET serviceType=?, creationDate=?, state=?, aprovedDate=?, rejectedDate=?, finishDate=?, dni_elderly=?, idNumber_contract=? WHERE idNumber=?",
                 request.getServiceType(), request.getCreationDate(), request.getState(), request.getAprovedDate(), request.getRejectedDate(), request.getFinishDate(), request.getDni_elderly(), request.getIdNumber_contract(), request.getIdNumber());
     }
-
-    /* Obté la Request amb el id donat. Torna null si no existeix. */
+    
+    // Obté la Request amb el id donat. Torna null si no existeix. 
     public Request getRequest(String idNumber) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE idNumber=?",
@@ -55,6 +56,7 @@ public class RequestDao {
             return null;
         }
     }
+        
 
     /* Obté totes les request. Torna una llista buida si no n'hi ha cap. */
     public List<Request> getRequests() {
@@ -65,5 +67,17 @@ public class RequestDao {
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }
+    }
+    
+    
+    
+    //NOVA REQUEST BAIXA
+    
+    /* Actualitza els atributs de la Request
+   (excepte la clau primària) */
+    public void donaDeBaixaRequest(String idNumber) {
+    	LocalDate today = LocalDate.now();
+        jdbcTemplate.update("UPDATE Request SET state=?, finishDate=? WHERE idNumber=?",
+                false, today, idNumber);
     }
 }

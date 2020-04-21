@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +27,11 @@ class LoginValidator implements Validator {
 	@Override 
 	public void validate(Object obj, Errors errors) {
 		Login user = (Login) obj;
-		if(user.getPassword() == null || user.getUser() == null) {
-			ValidationUtils.rejectIfEmpty(errors, "user", "user.empty");
-			ValidationUtils.rejectIfEmpty(errors, "password", "password.empty");
+		if (user.getUsuario().equals("")) {
+			errors.rejectValue("usuario", "obligatori", "Cal introduir un DNI/CIF vàlid");
+		}
+		if (user.getPwd().equals("") || user.getPwd().length() < 8) {
+			errors.rejectValue("pwd", "obligatori", "Cal introduir una contrasenya vàlida");
 		}
 	}
 }
@@ -43,38 +44,32 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
-		model.addAttribute("user", new Login());
+		model.addAttribute("login", new Login());
 		return "login";
 	}
+	
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String checkLogin(@ModelAttribute("user") Login user,  		
-				BindingResult bindingResult, HttpSession session) {
+	public String checkLogin(@ModelAttribute("login") Login login, BindingResult bindingResult, HttpSession session) {
 		LoginValidator loginValidator = new LoginValidator(); 
-		loginValidator.validate(user, bindingResult); 
+		loginValidator.validate(login, bindingResult); 
 		if (bindingResult.hasErrors()) {
-			return "login";
-		}
-
-		//Comprova que les dades siguen correctes
-		user = loginDao.getLogin(user.getUser(),user.getPassword()); 
-		if (user == null) {
-			bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta"); 
-			return "login";
+			return "redirect:/login";
 		}
 		
-		//Tot ok i guardem les dades de l'usuari a la sesio
-		session.setAttribute("user", user); 
-		Object url = session.getAttribute("nextUrl");
-		if(url!=null) {
-			session.removeAttribute("nextUrl");
-			return "redirect:"+url;
-			
+		//Comprova que les dades siguen correctes
+		login = loginDao.getLogin(login.getUsuario(),login.getPwd()); 
+		if (login == null) {
+			bindingResult.rejectValue("pwd", "badpw", "Contraseña incorrecta"); 
+			return "redirect:/login";
 		}
+		
+		
+		session.setAttribute("login", login);
 		
 		
 		//Switch per a saber qui entra en la web
-		switch (user.getRole()) {
+		switch (login.getRole()) {
 			case "elderly":
 				return "redirect:/elderly/home";
 			case "volunteer":
@@ -82,18 +77,17 @@ public class LoginController {
 			case "company":
 				return "redirect:/company/home";
 			//Si es ADMIN entra desde index - REFER -
-			case "instructor":
-				return "redirect:/index";
 		}
 			
 		// Si no, torna a la principal
-		return "redirect:/";
+		return "redirect:/index";
 	}
 	
-	   @RequestMapping(value="/update/{user}", method = RequestMethod.GET)
-	   public String editaElderly(HttpSession session, Model model, @PathVariable String user) {
+	
+	   @RequestMapping(value="/update/{usuario}", method = RequestMethod.GET)
+	   public String editaElderly(HttpSession session, Model model, @PathVariable String usuario) {
 		   
-	       model.addAttribute("login", loginDao.getLogin(user));
+	       model.addAttribute("login", loginDao.getLogin(usuario));
 	       return "elderly/update"; 
 	   }
 	

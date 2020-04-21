@@ -19,15 +19,16 @@ public class LoginDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	public void addLogin(Login login) {
-		jdbcTemplate.update("INSERT INTO Login VALUES(?, ?, ?)", login.getUser(), login.getPassword(),
+
+		jdbcTemplate.update("INSERT INTO Login VALUES(?, ?, ?)", login.getUsuario(), login.getPwd(),
 				login.getRole());
 		
 	}
 	
-	public Login getLogin(String user, String password) {
+	public Login getLogin(String usuario, String pwd) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * from Login WHERE user=? AND password=?",
-					new LoginRowMapper(), user, password);
+			return jdbcTemplate.queryForObject("SELECT * from Login WHERE usuario=? AND pwd=?",
+					new LoginRowMapper(), usuario, pwd);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -36,16 +37,16 @@ public class LoginDao {
 	 /* Actualitza els atributs del Elderly
     (excepte la clau primària) */
 	public void updateLogin(Login login) {
-		jdbcTemplate.update("UPDATE Login SET password=? WHERE user=?",
-				login.getPassword());
+		jdbcTemplate.update("UPDATE Login SET pwd=? WHERE usuario=?",
+				login.getPwd());
  }
 	
 	 /* Obté el Elderly amb el nom donat. Torna null si no existeix. */
-	 public Elderly getLogin(String user) {
+	 public Elderly getLogin(String usuario) {
 	     try {
-	         return jdbcTemplate.queryForObject("SELECT * FROM Login WHERE user=?",
+	         return jdbcTemplate.queryForObject("SELECT * FROM Login WHERE usuario=?",
 	   		        new ElderlyRowMapper(),
-	    				user);
+	    				usuario);
 	     }
 	     catch(EmptyResultDataAccessException e) {
 	         return null;

@@ -20,7 +20,26 @@ public class Elderly {
     private String alergies;
     private String diseases;
     private String userCAS_socialWorker;
-
+    
+    public Elderly() {
+    	
+    }
+    
+    public Elderly(Elderly elderly) {
+        this.dni = elderly.dni;
+        this.name = elderly.name;
+        this.surname = elderly.surname;
+        this.address = elderly.address; 
+        this.bankAccountNumber = elderly.bankAccountNumber;
+        this.userpwd = elderly.userpwd;
+        this.email = elderly.email;
+        this.phoneNumber = elderly.phoneNumber;
+        this.birthDate = elderly.birthDate;
+        this.dateCreation = elderly.dateCreation;
+        this.alergies = elderly.alergies;
+        this.diseases = elderly.diseases;
+        this.userCAS_socialWorker = elderly.userCAS_socialWorker;
+    }
 
     @Override
     public String toString() {

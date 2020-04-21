@@ -33,7 +33,7 @@ public class ElderlyDao {
 		public void addElderly(Elderly elderly) {
 			LocalDate today = LocalDate.now();
 			jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
-				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), today, elderly.getAlergies(), elderly.getDiseases(), "worker000001");
+				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), today, elderly.getAlergies(), elderly.getDiseases(), "worker001");
 		}
 	
 	/* Esborra al Elderly de la base de dades */
@@ -46,16 +46,24 @@ public class ElderlyDao {
 	}
 	
 	 /* Actualitza els atributs del Elderly
-    (excepte la clau primària) */
+    (excepte la clau primària)  ADMIN*/
  public void updateElderly(Elderly elderly) {
      jdbcTemplate.update("UPDATE Elderly SET name=?, surname=?, address=?, bankAccountNumber=?, userpwd=?, email=?, phoneNumber=?, birthDate=?, dateCreation=?, alergies=?, diseases=?, userCAS_socialWorker=? WHERE dni=?",
     		 elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getUserCAS_socialWorker(), elderly.getDni());
  }
+ 
+ /* Actualitza els atributs del Elderly
+ (excepte la clau primària) */
+public void updateParaElderly(Elderly elderly) {
+  jdbcTemplate.update("UPDATE Elderly SET name=?, surname=?, address=?, bankAccountNumber=?, userpwd=?, email=?, phoneNumber=?, birthDate=?, alergies=?, diseases=? WHERE dni=?",
+ 		 elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), elderly.getAlergies(), elderly.getDiseases(), elderly.getDni());
+}
+	
 	
  /* Obté el Elderly amb el nom donat. Torna null si no existeix. */
  public Elderly getElderly(String dni) {
      try {
-         return jdbcTemplate.queryForObject("SELECT * FROM Elderly WHERE dni=?",
+         return jdbcTemplate.queryForObject("SELECT * from Elderly WHERE dni=?",
    		        new ElderlyRowMapper(),
     				dni);
      }

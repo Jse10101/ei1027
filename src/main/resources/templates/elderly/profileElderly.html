@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/profileElderly.css"
+	th:href="@{/css/profileElderly.css}"/>
+	<title>Majors a casa</title>
+</head>
+
+<body>
+	<div class="contenedor">
+	    <header>
+	    	<div class="loggeduser" th:object="${session}">
+				<p th:if="*{elderly.name == null}">
+					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
+				</p>
+				<p th:unless="*{elderly.name == null}">
+					Accedeixes com a&nbsp;<span th:text="*{elderly.name}"></span> &nbsp;
+					<a href="/logout" th:href="@{/logout}">IXIR</a>
+				</p>
+			</div>
+			<div class="bienvenida" th:object="${session}"><h1>Hola &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span> </h1></div>
+	    </header>
+		   <main class="main_perfil" th:object="${session}">
+				   <div class="text">DADES PERSONALS:</div>
+				   <div class="pack_camp_form">
+				   		<div class="nom_dades">DNI:</div>
+				   		<div class="dada" th:text="*{elderly.dni}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+				   		<div class="nom_dades">NOM:</div>
+				   		<div class="dada" th:text="*{elderly.name}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+				   		<div class="nom_dades">COGNOM:</div>
+				   		<div class="dada" th:text="*{elderly.surname}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+				   		<div class="nom_dades">ADREÇA:</div>
+				   		<div class="dada" th:text="*{elderly.address}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+				   		<div class="nom_dades">COMPTE CORRENT:</div>
+				   		<div class="dada" th:text="*{elderly.bankAccountNumber}">
+				   </div></div>
+				   <div class="pack_camp_form">
+					   <div class="nom_dades">CONTRASENYA:</div>
+					   <div class="dada" th:text="*{elderly.userpwd}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+					   <div class="nom_dades">E-MAIL:</div>
+					   <div class="dada" th:text="*{elderly.email}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+					   <div class="nom_dades">TELÉFON:</div>
+					   <div class="dada" th:text="*{elderly.phoneNumber}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+					   <div class="nom_dades">DATA DE NAIXEMENT:</div>
+					   <div class="dada" th:text="*{elderly.birthDate}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+					   <div class="nom_dades">DATA DE CREACIÓ:</div>
+					   <div class="dada" th:text="*{elderly.dateCreation}"></div>
+				   </div>
+					   <div class="pack_camp_form"><div class="nom_dades">ALÉRGIES:</div>
+					   <div class="dada" th:text="*{elderly.alergies}"></div>
+				   </div>
+				   <div class="pack_camp_form">
+					   <div class="nom_dades">MALALTIES:</div>
+					   <div class="dada" th:text="*{elderly.diseases}"></div>
+				   </div>
+
+				   <form action="#" th:action="@{/elderly/updateElderly}">
+	        			  <div class="boto"><input type="submit" value="EDITAR" class="btn btn-primary" /></div>
+	        	   </form>
+
+		 </main>
+		 <aside class="serveis" th:object="${session}">
+			<div>SERVEIS QUE REBS:</div>
+			<div class="bucle" th:each="request : ${requests}">
+				     <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
+						 <div class="segonIf" th:if="${request.state}">
+							<div th:text="${request.serviceType}"></div><div class="boto_enviar"><a th:href="@{/request/donaDeBaixaRequest/{idNumber}(idNumber=${request.idNumber})}" class="btn btn-primary" role="button">Cancelar</a></div>
+						</div>
+				 	</div>
+			</div>
+		 </aside>
+		<footer>
+			Majors a Casa - 2020
+		</footer>
+	</div>
+</body>
+
+</html>

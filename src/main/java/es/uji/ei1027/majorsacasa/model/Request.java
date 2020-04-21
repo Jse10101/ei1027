@@ -35,7 +35,25 @@ public class Request {
                 '}';
     }
 
-    //GETTERS
+    public Request() {
+    	
+    }
+    
+
+    
+    public Request(Request request) {
+		this.idNumber = request.idNumber;
+		this.serviceType = request.serviceType;
+		this.creationDate = request.creationDate;
+		this.state = request.state;
+		this.aprovedDate = request.aprovedDate;
+		this.rejectedDate = request.rejectedDate;
+		this.finishDate = request.finishDate;
+		this.dni_elderly = request.dni_elderly;
+		this.idNumber_contract = request.idNumber_contract;
+	}
+
+	//GETTERS
 
     public String getIdNumber() {
         return idNumber;

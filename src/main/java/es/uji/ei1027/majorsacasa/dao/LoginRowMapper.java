@@ -12,8 +12,8 @@ import es.uji.ei1027.majorsacasa.model.Login;
 public final class LoginRowMapper implements RowMapper<Login> {
     public Login mapRow(ResultSet rs, int rowNum) throws SQLException {
         Login login = new Login();
-        login.setUser(rs.getString("user"));
-        login.setPassword(rs.getString("password"));
+        login.setUsuario(rs.getString("usuario"));
+        login.setPwd(rs.getString("pwd"));
         login.setRole(rs.getString("role"));
         return login;
     }

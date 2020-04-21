@@ -23,19 +23,19 @@
     </main>
     <aside class="log">
 
-      <form action="#" th:action="@{/index}" th:object="${user}" method="post" class="log_compl">
+      <form action="#" th:action="@{/login}" th:object="${login}" method="post" class="log_compl">
         <div class="pack_camp_form">
           <div class="nom_dades">DNI:</div>
-          <input class="form-control" type="text" th:field="*{user}" />
-          <div class="error" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div></div>
+          <input class="form-control" type="text" th:field="*{usuario}" />
+          <div class="error" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div></div>
               <div class="pack_camp_form"><br>
 			<div class="nom_dades">CONTRASENYA:</div>
-              <input class="form-control" type="password" th:field="*{password}"/>
+              <input class="form-control" type="password" th:field="*{pwd}"/>
                 
-              <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></div>
+              <div class="error" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div></div>
 			  
 			  
-            <div class="boton"><input type="submit" value="ACCEDIR" class="btn btn-primary" /></div>
+            <div class="boto"><input type="submit" value="ACCEDIR" class="btn btn-primary" /></div>
               <div class="pack_camp_form">
 				No estàs registrat?<a href="/elderly/add">Registra't</a>
               </div>

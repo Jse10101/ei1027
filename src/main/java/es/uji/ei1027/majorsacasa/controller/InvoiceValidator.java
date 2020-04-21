@@ -5,9 +5,6 @@ import es.uji.ei1027.majorsacasa.model.Invoice;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 public class InvoiceValidator implements Validator {
     @Override
     public boolean supports(Class<?> cls) {

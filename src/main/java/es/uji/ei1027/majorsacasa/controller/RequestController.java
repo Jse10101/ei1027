@@ -53,6 +53,13 @@ public class RequestController {
         model.addAttribute("request", requestDao.getRequest(idNumber));
         return "request/update";
     }
+    
+    /////////nou validator
+    @RequestMapping(value="/donaDeBaixaRequest/{idNumber}", method = RequestMethod.GET)
+    public String donaDeBaixaRequest(Model model, @PathVariable String idNumber) {
+        requestDao.donaDeBaixaRequest(idNumber);
+        return "elderly/home";
+    }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
