@@ -35,6 +35,7 @@ h1{
 .main {
   background: #dcdcdc;
   width:100%;
+  	font-weight:bold;
   /* Flexbox */
   display: flex;
   flex-direction: column;
@@ -45,7 +46,6 @@ body {
   font-size: x-large;
   font-family: serif;
   color: #4d4d4d;
-  font-weight:bold;
   text-align:center;
 }
 .imagenes {
@@ -72,6 +72,7 @@ body {
 
 .log {
   width: 100%;
+  font-weight:bold;
   /* Flexbox */
   display: flex;
   flex: 1 1 50%;
@@ -120,7 +121,6 @@ footer {
   color: white;
   width: 100%;
   font-size: 12px;
-
   align-self: flex-end;
   text-align: center;
 }
