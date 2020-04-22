@@ -59,7 +59,7 @@ public class AvailabilityDao {
     /* Obté tots els availabilities. Torna una llista buida si no n'hi ha cap. */
     public List<Availability> getAvailabilities() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Availability",
+            return jdbcTemplate.query("SELECT * FROM Availability ORDER BY fecha, dni_volunteer",
                     new AvailabilityRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Availability>();

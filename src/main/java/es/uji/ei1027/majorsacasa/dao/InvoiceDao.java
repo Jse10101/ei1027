@@ -61,7 +61,7 @@ public class InvoiceDao {
     * @return empty list if there is not any Invoice  */
     public List<Invoice> getInvoices() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Invoice",
+            return jdbcTemplate.query("SELECT * FROM Invoice ORDER BY idNumber",
                     new InvoiceRowMapper());
         }
         catch(EmptyResultDataAccessException e) {
@@ -75,7 +75,7 @@ public class InvoiceDao {
     */
      public List<Invoice> getInvoicesByElderly(String elderlyDNI){
          try {
-             return jdbcTemplate.query("SELECT * FROM Invoice WHERE dni_elderly=?",
+             return jdbcTemplate.query("SELECT * FROM Invoice WHERE dni_elderly=? ORDER BY idNumber",
                      new InvoiceRowMapper(), elderlyDNI);
          }
          catch(EmptyResultDataAccessException e) {

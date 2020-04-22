@@ -59,7 +59,7 @@ public class VolunteerDao {
     /* Obté tots els volunteers. Torna una llista buida si no n'hi ha cap. */
     public List<Volunteer> getVolunteers() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Volunteer",
+            return jdbcTemplate.query("SELECT * FROM Volunteer ORDER BY dni",
                     new VolunteerRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Volunteer>();

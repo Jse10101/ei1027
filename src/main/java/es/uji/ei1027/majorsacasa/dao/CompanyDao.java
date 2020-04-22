@@ -57,7 +57,7 @@ public class CompanyDao {
     /* Obté tots els companies. Torna una llista buida si no n'hi ha cap. */
     public List<Company> getCompnanies() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Company",
+            return jdbcTemplate.query("SELECT * FROM Company ORDER BY cif",
                     new CompanyRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Company>();

@@ -58,7 +58,7 @@ public class ContractDao {
     /* Obté tots els elderlys. Torna una llista buida si no n'hi ha cap. */
     public List<Contract> getContracts() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Contract",
+            return jdbcTemplate.query("SELECT * FROM Contract ORDER BY idNumber",
            	     new ContractRowMapper());
         }
         catch(EmptyResultDataAccessException e) {

@@ -61,7 +61,7 @@ public class RequestDao {
     /* Obté totes les request. Torna una llista buida si no n'hi ha cap. */
     public List<Request> getRequests() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Request",
+            return jdbcTemplate.query("SELECT * FROM Request ORDER BY idNumber",
                     new RequestRowMapper());
         }
         catch(EmptyResultDataAccessException e) {

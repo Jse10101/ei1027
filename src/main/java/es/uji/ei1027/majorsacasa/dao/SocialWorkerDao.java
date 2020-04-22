@@ -55,7 +55,7 @@ public class SocialWorkerDao {
 	
 	public List<SocialWorker> getSocialWorkers() {
 		try {
-			return jdbcTemplate.query("Select * from SocialWorker", new SocialWorkerRowMapper());
+			return jdbcTemplate.query("Select * from SocialWorker ORDER BY userCAS", new SocialWorkerRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<SocialWorker>();
 		}

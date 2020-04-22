@@ -75,7 +75,7 @@ public void updateParaElderly(Elderly elderly) {
  /* Obté tots els elderlys. Torna una llista buida si no n'hi ha cap. */
  public List<Elderly> getElderlys() {
      try {
-         return jdbcTemplate.query("SELECT * FROM Elderly",
+         return jdbcTemplate.query("SELECT * FROM Elderly ORDER BY dni",
         	     new ElderlyRowMapper());
      }
      catch(EmptyResultDataAccessException e) {
