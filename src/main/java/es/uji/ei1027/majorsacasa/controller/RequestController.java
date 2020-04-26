@@ -1,5 +1,8 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
+import es.uji.ei1027.majorsacasa.model.Login;
 import es.uji.ei1027.majorsacasa.model.Request;
 
 @Controller
@@ -54,13 +58,33 @@ public class RequestController {
         return "request/update";
     }
     
-    /////////nou validator
+    /////////nou delete
     @RequestMapping(value="/donaDeBaixaRequest/{idNumber}", method = RequestMethod.GET)
     public String donaDeBaixaRequest(Model model, @PathVariable String idNumber) {
         requestDao.donaDeBaixaRequest(idNumber);
         return "elderly/home";
     }
-
+    
+    /////////////////nou add
+    @RequestMapping(value="/addRequestElderly", method=RequestMethod.POST)
+    public String addRequestElderly(@ModelAttribute("requestt") Request requestt, HttpSession session) {
+    	Login login = (Login) session.getAttribute("login");
+    	
+    	//si el idnumber ya existia te devuelve a elderly/home sin hacer nada
+    	if(requestDao.getRequest(requestt.getIdNumber()) == null) {
+    		return "elderly/home";
+    	}
+    	
+		if(login.getRole().equals("elderly")) {
+			requestt.setDni_elderly(login.getUsuario());
+			requestDao.donaDeAltaRequest(requestt);
+			return "elderly/home";
+		}
+		
+        return "elderly/home";
+    }
+    
+    //////////////
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("request") Request request,

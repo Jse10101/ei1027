@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.validation.Errors;
@@ -7,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 public class RequestValidator implements Validator {
     @Override
@@ -30,7 +32,7 @@ public class RequestValidator implements Validator {
         if (request.getIdNumber_contract().equals("") || request.getIdNumber_contract().length()!=5)
             errors.rejectValue("idNumber_contract", "obligatori",
                     "Cal introduir un valor de 5 caracters");
-
+        
         if (request.getServiceType().equals(""))
             errors.rejectValue("serviceType", "obligatori",
                     "Cal introduir un valor");
@@ -54,12 +56,12 @@ public class RequestValidator implements Validator {
 
         if (request.getAprovedDate() != null && request.getRejectedDate() != null){
             errors.rejectValue("rejectedDate", "posterior",
-                    "No por haver-hi fecha de rebuig si hi ha d'aprobació");
+                    "No pot haver-hi fecha de rebuig si hi ha d'aprobació");
         }
 
         if (request.getFinishDate() != null && request.getRejectedDate() != null){
             errors.rejectValue("finishDate", "posterior",
-                    "No por haver-hi fecha de finalització si hi ha de rebuig");
+                    "No pot haver-hi fecha de finalització si hi ha de rebuig");
         }
     }
 }

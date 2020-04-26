@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
+import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 
@@ -91,7 +92,30 @@ public class ElderlyController {
 			return "login";
 		}
 	   
+	   @RequestMapping("/serveis")
+		public String serveisElderly(HttpSession session, Model model) {
+		   Login login = (Login) session.getAttribute("login");
+		   
+			if (login == null) {
+				model.addAttribute("login", new Login());
+				session.setAttribute("nextUrl", "/login");
+				return "login";
+			}
 
+		   
+			if(login.getRole().equals("elderly")) {
+				model.addAttribute("requests", requestDao.getRequests());
+				Request requestt = new Request();
+				model.addAttribute("requestt", requestt);
+				return "elderly/serveis";
+			}
+			
+			session.invalidate();
+			model.addAttribute("login", new Login());
+			session.setAttribute("nextUrl", "elderly/serveis");
+			return "login";
+		}
+	   
 	   @RequestMapping("/profileElderly")
 		public String profileElderly(HttpSession session, Model model) {
 		   Login login = (Login) session.getAttribute("login");
@@ -112,8 +136,7 @@ public class ElderlyController {
 			session.setAttribute("nextUrl", "elderly/profileElderly");
 			return "login";
 		}
-
-	   
+   
 	   @RequestMapping(value="/add") 
 	   public String addElderly(Model model) {
 	       model.addAttribute("elderly", new Elderly());

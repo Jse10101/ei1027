@@ -80,4 +80,16 @@ public class RequestDao {
         jdbcTemplate.update("UPDATE Request SET state=?, finishDate=? WHERE idNumber=?",
                 false, today, idNumber);
     }
+    
+    
+    
+    //NOVA REQUEST ADD
+    
+    /* Actualitza els atributs de la Request
+   (excepte la clau primària) */
+    public void donaDeAltaRequest(Request request) {
+    	LocalDate today = LocalDate.now();
+        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", "00006",
+                request.getServiceType(), today, false, null, null, null, request.getDni_elderly(), null);
+    }
 }

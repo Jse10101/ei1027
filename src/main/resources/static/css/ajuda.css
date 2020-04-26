@@ -27,8 +27,20 @@ header {
 	font-size: 15px;
 	  /* Flexbox */
 	display: flex;
-	justify-content:flex-end;
-	align-items:flex-end;
+	justify-content:space-between;
+	align-content:center;
+}
+
+
+
+
+.pack_header{
+	width: 100%;
+	font-size: 15px;
+		  /* Flexbox */
+	display: flex;
+	 flex-direction: row;
+	 justify-content:space-between;
 }
 
 h1{

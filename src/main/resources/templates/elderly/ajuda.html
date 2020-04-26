@@ -10,15 +10,17 @@
 <body>
   <div class="contenedor">
     <header>
-    	<div class="loggeduser" th:object="${session}">
-			<p th:if="*{elderly.name == null}">
-				No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
-			</p>
-			<p th:unless="*{elderly.name == null}">
-				Accedeixes com a&nbsp;<span th:text="*{elderly.name}"></span> &nbsp;
-				<a href="/logout" th:href="@{/logout}">IXIR</a>
-			</p>
-		</div>
+	    	
+	    	<div class="loggeduser" th:object="${session}">
+	    		<div class="boton_atras"><a th:href="@{/elderly/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
+				<p th:if="*{elderly.name == null}">
+					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
+				</p>
+				<p th:unless="*{elderly.name == null}">
+					Accedeixes com a&nbsp;<span th:text="*{elderly.name}"></span> &nbsp;
+					<a href="/logout" th:href="@{/logout}">IXIR</a>
+				</p>
+			</div>
 		<div class="bienvenida" th:object="${session}"><h1>Hola &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span>, necessites ajuda? </h1></div>
     </header>
     <main class="main_ajuda">

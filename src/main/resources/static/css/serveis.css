@@ -31,7 +31,6 @@ header {
 	align-content:center;
 }
 
-
 .pack_header{
 	width: 100%;
 	font-size: 15px;
@@ -54,27 +53,84 @@ h1{
 	align-items:center;
 }
 
-.main_perfil{
+.main_serveis{
 	width: 100%;
 	font-weight:bold;
 	/* Flexbox */
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
-	justify-content: center;
   	flex: 1 1 50%;
 }
 
-.pack_camp_form{
-	display: flex;
-	flex-direction: row;
+.form_serveis{
+	width: 100%;
+     /* Flexbox */
+     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sel{
+	     /* Flexbox */
+     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boto{
+	  padding:15px;
+}
+
+.nom{
+	text-decoration: underline #EB6864;
+}
+
+.serveis{
+  width: 100%;
+  font-weight:bold;
+	 /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  flex: 1 1 50%;
+}
+
+.bucle{
+  width: 100%;
+     /* Flexbox */
+  display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.primerIf{
+	  width: 100%;
+          /* Flexbox */
+  display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.pack_serveis{
+	width: 100%;
+	     /* Flexbox */
+  	display: flex;
+    flex-direction: row;
+    justify-content: center;
+  	align-content: center;
 	padding: 10px;
 }
+
 
 .nom_dades{
 	position:relative;
 	border-radius: 25px 0px 0px 25px;
-	width: 350px;
+	width: 250px;
 	height: 38px;
 	background: #fff;
 	text-align:center;
@@ -86,45 +142,6 @@ h1{
 		text-align:center;
 }
 
-.nom{
-	text-decoration: underline #EB6864;
-}
-
-.boto{
-	  padding:15px;
-}
-
-.serveis{
-  width: 100%;
-  font-weight:bold;
-	 /* Flexbox */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 1 1 50%;
-}
-
-.bucle{
-  width: 100%;
-     /* Flexbox */
-  display: flex;
-}
-
-.primerIf{
-	  width: 100%;
-     /* Flexbox */
-  display: flex;
-}
-
-.segonIf{
-	  width: 100%;
-     /* Flexbox */
-  display: flex;
-  justify-content:space-around;
-}
-
-
 body {
   font-size: x-large;
   font-family: serif;
@@ -134,6 +151,11 @@ body {
 
 .btn {
     font-family: serif;
+}
+
+.text{
+	font-weight:bold;
+	text-align:center;
 }
 
 footer {
