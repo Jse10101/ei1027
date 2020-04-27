@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.validation.Errors;
@@ -7,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 public class ContractValidator implements Validator {
     @Override
@@ -19,10 +21,18 @@ public class ContractValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Contract contract = (Contract) obj;
+        ContractDao contractDao = new ContractDao();
+        List<Contract> listaContratos = contractDao.getContracts();
+
+        for(Contract contrato : listaContratos){
+            if(contrato.getIdNumber().equals(contract.getIdNumber()))
+                errors.rejectValue("idNumber", "obligatori",
+                        "Aquesta ID ja existeix");
+        }
 
         if (contract.getIdNumber().equals("") || contract.getIdNumber().length() != 5)
             errors.rejectValue("idNumber", "obligatori",
-                    "Cal introduir un DNI vàlid");
+                    "Cal introduir un ID vàlid");
 
         if (contract.getCif_company().equals("") || contract.getCif_company().length() != 9)
             errors.rejectValue("cif_company", "obligatori",

@@ -8,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.LinkedList;
 import java.util.List;
 
 public class RequestValidator implements Validator {
@@ -21,9 +22,23 @@ public class RequestValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Request request = (Request) obj;
-        if (request.getIdNumber().equals("") || request.getIdNumber().length()!=5)
+        RequestDao requestDao = new RequestDao();
+        System.out.println(requestDao.getRequests());
+        //List<Request> listaRequests = requestDao.getRequests();
+
+        if (request.getIdNumber().equals("") || request.getIdNumber().length()>9)
             errors.rejectValue("idNumber", "obligatori",
-                    "Cal introduir un valor de 5 caracters");
+                    "Cal introduir un valor correcte");
+
+        /*for(Request peticion : listaRequests){
+            if(peticion.getDni_elderly().equals(request.getDni_elderly()) && peticion.getServiceType().equals(request.getServiceType()))
+                errors.rejectValue("serviceType", "obligatori",
+                        "No es por tindre dos serveis iguals");
+            if(peticion.getIdNumber().equals(request.getIdNumber()))
+                errors.rejectValue("idNumber", "obligatori",
+                        "Aquesta ID ja existeix");
+
+        }*/
 
         if (request.getDni_elderly().equals("") || request.getDni_elderly().length() != 9)
             errors.rejectValue("dni_elderly", "obligatori",

@@ -1,11 +1,13 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 
 public class VolunteerValidator implements Validator {
@@ -19,6 +21,15 @@ public class VolunteerValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Volunteer voluntario = (Volunteer) obj;
+        VolunteerDao volunteerDao = new VolunteerDao();
+        List<Volunteer> listaVolunteer = volunteerDao.getVolunteers();
+
+        for(Volunteer voluntario1 : listaVolunteer){
+            if(voluntario1.getDni().equals(voluntario.getDni()))
+                errors.rejectValue("dni", "obligatori",
+                        "Aquest DNI ja existeix");
+        }
+
         if (voluntario.getName().equals(""))
             errors.rejectValue("name", "obligatori",
                     "Cal introduir un valor");

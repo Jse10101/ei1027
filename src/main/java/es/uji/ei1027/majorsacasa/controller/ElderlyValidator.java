@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.validation.Errors;
@@ -7,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 public class ElderlyValidator implements Validator {
     @Override
@@ -19,6 +21,15 @@ public class ElderlyValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Elderly elderly = (Elderly) obj;
+        ElderlyDao elderlyDao = new ElderlyDao();
+        List<Elderly> listaSeñores = elderlyDao.getElderlys();
+
+        for (Elderly señor : listaSeñores) {
+            if (señor.getDni().equals(señor.getDni()))
+                errors.rejectValue("dni", "obligatori",
+                        "Aquest DNI ja existeix");
+
+        }
         if (elderly.getName().equals(""))
             errors.rejectValue("name", "obligatori",
                     "Cal introduir un valor");
@@ -42,7 +53,7 @@ public class ElderlyValidator implements Validator {
             errors.rejectValue("userpwd", "obligatori",
                     "Cal introduir un valor de al menys 8 caracters");
 
-        if (elderly.getBankAccountNumber().equals("") || elderly.getBankAccountNumber().length() !=19)
+        if (elderly.getBankAccountNumber().equals("") || elderly.getBankAccountNumber().length() != 19)
             errors.rejectValue("bankAccountNumber", "obligatori",
                     "Cal introduir un valor de 19 caracters");
 

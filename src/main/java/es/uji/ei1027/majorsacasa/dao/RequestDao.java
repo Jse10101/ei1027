@@ -17,6 +17,7 @@ import es.uji.ei1027.majorsacasa.model.Request;
 public class RequestDao {
 
     private JdbcTemplate jdbcTemplate;
+    private int id=1;
 
     @Autowired
     public void setDateSource(DataSource dataSource) {
@@ -89,7 +90,7 @@ public class RequestDao {
    (excepte la clau primària) */
     public void donaDeAltaRequest(Request request) {
     	LocalDate today = LocalDate.now();
-        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", "00006",
+        jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Integer.toString(id++),
                 request.getServiceType(), today, false, null, null, null, request.getDni_elderly(), null);
     }
 }

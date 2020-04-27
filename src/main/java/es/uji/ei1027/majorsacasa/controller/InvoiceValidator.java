@@ -1,9 +1,12 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.InvoiceDao;
 import es.uji.ei1027.majorsacasa.model.Invoice;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import java.util.List;
 
 public class InvoiceValidator implements Validator {
     @Override
@@ -16,6 +19,14 @@ public class InvoiceValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Invoice invoice = (Invoice) obj;
+        InvoiceDao invoiceDao = new InvoiceDao();
+        List<Invoice> listaInvoices = invoiceDao.getInvoices();
+
+        for(Invoice factura : listaInvoices){
+            if(factura.getIdNumber().equals(invoice.getIdNumber()))
+                errors.rejectValue("idNumber", "obligatori",
+                        "Aquesta ID ja existeix");
+        }
 
         if (invoice.getIdNumber().equals("") || invoice.getIdNumber().length() != 5)
             errors.rejectValue("idNumber", "obligatori",
