@@ -52,7 +52,7 @@
         </tr>
         <tr>
             <td><label>Id del contracte</label></td>
-            <td><input type="text" required maxlength="5" th:field="*{idNumber_contract}" /></td>
+            <td><input type="text" maxlength="5" th:field="*{idNumber_contract}" /></td>
             <td th:if="${#fields.hasErrors('idNumber_contract')}" th:errors="*{idNumber_contract}"></td>
         </tr> 
         <tr>

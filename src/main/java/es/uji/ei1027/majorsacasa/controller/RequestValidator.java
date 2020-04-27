@@ -23,7 +23,7 @@ public class RequestValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         Request request = (Request) obj;
         RequestDao requestDao = new RequestDao();
-        System.out.println(requestDao.getRequests());
+        //System.out.println(requestDao.getRequests());
         //List<Request> listaRequests = requestDao.getRequests();
 
         if (request.getIdNumber().equals("") || request.getIdNumber().length()>9)
@@ -44,7 +44,7 @@ public class RequestValidator implements Validator {
             errors.rejectValue("dni_elderly", "obligatori",
                     "Cal introduir un DNI vàlid");
 
-        if (request.getIdNumber_contract().equals("") || request.getIdNumber_contract().length()!=5)
+        if (request.getIdNumber_contract().length()>9)
             errors.rejectValue("idNumber_contract", "obligatori",
                     "Cal introduir un valor de 5 caracters");
         

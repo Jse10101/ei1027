@@ -70,11 +70,6 @@ public class RequestController {
     public String addRequestElderly(@ModelAttribute("requestt") Request requestt, HttpSession session) {
     	Login login = (Login) session.getAttribute("login");
     	
-    	//si el idnumber ya existia te devuelve a elderly/home sin hacer nada
-    	if(requestDao.getRequest(requestt.getIdNumber()) == null) {
-    		return "elderly/home";
-    	}
-    	
 		if(login.getRole().equals("elderly")) {
 			requestt.setDni_elderly(login.getUsuario());
 			requestDao.donaDeAltaRequest(requestt);
@@ -86,13 +81,7 @@ public class RequestController {
     
     //////////////
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("request") Request request,
-            BindingResult bindingResult) {
-        RequestValidator requestValidador = new RequestValidator();
-        requestValidador.validate(request, bindingResult);
-        if (bindingResult.hasErrors())
-            return "request/update";
+    public String processUpdateSubmit(@ModelAttribute("request") Request request) {
         requestDao.updateRequest(request);
         return "redirect:list";
     }

@@ -19,6 +19,8 @@ public class RequestDao {
     private JdbcTemplate jdbcTemplate;
     private int id=1;
 
+    
+    
     @Autowired
     public void setDateSource(DataSource dataSource) {
         jdbcTemplate=new JdbcTemplate(dataSource);
@@ -62,6 +64,7 @@ public class RequestDao {
     /* Obté totes les request. Torna una llista buida si no n'hi ha cap. */
     public List<Request> getRequests() {
         try {
+        	System.out.println("HOLA EN TRY");
             return jdbcTemplate.query("SELECT * FROM Request ORDER BY idNumber",
                     new RequestRowMapper());
         }
@@ -90,7 +93,19 @@ public class RequestDao {
    (excepte la clau primària) */
     public void donaDeAltaRequest(Request request) {
     	LocalDate today = LocalDate.now();
+    	
+    	//Creamos un requestDao, hacemos una lista de Requests y la recorremos para comprobar el valor de id
+    	RequestDao requestDao = new RequestDao();
+    	List<Request> listaRequest = requestDao.getRequests();
+
+    	
+    	for(Request req : listaRequest) {
+    		if(Integer.valueOf(req.getIdNumber()) > id) {
+    			id= Integer.valueOf(req.getIdNumber())+1;
+    		}
+    	}
+    	
         jdbcTemplate.update("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", Integer.toString(id++),
-                request.getServiceType(), today, false, null, null, null, request.getDni_elderly(), null);
+                request.getServiceType(), today, false, null, null, null, request.getDni_elderly(), "10400"); // CAMBIAR "10400" por null
     }
 }
