@@ -33,7 +33,7 @@ public class ElderlyDao {
 		public void addElderly(Elderly elderly) {
 			LocalDate today = LocalDate.now();
 			jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
-				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), today, elderly.getAlergies(), elderly.getDiseases(), "worker001");
+				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), today, elderly.getAlergies(), elderly.getDiseases(), null);
 		}
 	
 	/* Esborra al Elderly de la base de dades */

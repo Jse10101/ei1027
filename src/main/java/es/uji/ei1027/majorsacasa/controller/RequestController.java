@@ -1,6 +1,8 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class RequestController {
     private RequestDao requestDao;
 
     @Autowired
-    public void RequestDao(RequestDao requestDao) {
+    public void setRequestDao(RequestDao requestDao) {
         this.requestDao=requestDao;
     }
 
@@ -69,9 +71,19 @@ public class RequestController {
     @RequestMapping(value="/addRequestElderly", method=RequestMethod.POST)
     public String addRequestElderly(@ModelAttribute("requestt") Request requestt, HttpSession session) {
     	Login login = (Login) session.getAttribute("login");
-    	
 		if(login.getRole().equals("elderly")) {
 			requestt.setDni_elderly(login.getUsuario());
+			
+			//Comprobamos que la persona no tiene ese servicio ya elegido y está en activo o a la espera
+			List<Request> listaRequests = requestDao.getRequests();
+	    	
+	    	for(Request req : listaRequests) {
+	            if(( req.getDni_elderly().equals(requestt.getDni_elderly()) ) && ( req.getServiceType().equals(requestt.getServiceType()) ) && ( req.getState() || req.getAprovedDate()==null && req.getRejectedDate()==null)){
+	            	return "elderly/home";
+	            }
+	        }
+			
+			
 			requestDao.donaDeAltaRequest(requestt);
 			return "elderly/home";
 		}

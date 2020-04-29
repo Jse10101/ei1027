@@ -1,5 +1,8 @@
 package es.uji.ei1027.majorsacasa.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ public class LoginDao {
 	public void setDataSource(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	
+	
 	public void addLogin(Login login) {
 
 		jdbcTemplate.update("INSERT INTO Login VALUES(?, ?, ?)", login.getUsuario(), login.getPwd(),
@@ -50,6 +55,23 @@ public class LoginDao {
 	     }
 	     catch(EmptyResultDataAccessException e) {
 	         return null;
+	     }
+	 }
+	 
+		/* Esborra al Elderly de la base de dades */
+		public void deleteLogin(String username) {
+			jdbcTemplate.update("DELETE from Login where usuario=?", username);
+		}
+	 
+	 
+	 /* Obté tots els elderlys. Torna una llista buida si no n'hi ha cap. */
+	 public List<Login> getLogins() {
+	     try {
+	         return jdbcTemplate.query("SELECT * FROM Login ORDER BY usuario",
+	        	     new LoginRowMapper());
+	     }
+	     catch(EmptyResultDataAccessException e) {
+	         return new ArrayList<Login>();
 	     }
 	 }
 	

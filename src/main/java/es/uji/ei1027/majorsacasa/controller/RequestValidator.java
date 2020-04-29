@@ -3,6 +3,9 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -11,7 +14,9 @@ import java.time.Period;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public class RequestValidator implements Validator {
+	
     @Override
     public boolean supports(Class<?> cls) {
         return Request.class.equals(cls);
@@ -22,23 +27,7 @@ public class RequestValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Request request = (Request) obj;
-        RequestDao requestDao = new RequestDao();
-        //System.out.println(requestDao.getRequests());
-        //List<Request> listaRequests = requestDao.getRequests();
-
-        if (request.getIdNumber().equals("") || request.getIdNumber().length()>9)
-            errors.rejectValue("idNumber", "obligatori",
-                    "Cal introduir un valor correcte");
-
-        /*for(Request peticion : listaRequests){
-            if(peticion.getDni_elderly().equals(request.getDni_elderly()) && peticion.getServiceType().equals(request.getServiceType()))
-                errors.rejectValue("serviceType", "obligatori",
-                        "No es por tindre dos serveis iguals");
-            if(peticion.getIdNumber().equals(request.getIdNumber()))
-                errors.rejectValue("idNumber", "obligatori",
-                        "Aquesta ID ja existeix");
-
-        }*/
+        
 
         if (request.getDni_elderly().equals("") || request.getDni_elderly().length() != 9)
             errors.rejectValue("dni_elderly", "obligatori",

@@ -18,7 +18,7 @@
 				</p>
 				<p th:unless="*{elderly.name == null}">
 					Accedeixes com a&nbsp;<span th:text="*{elderly.name}"></span> &nbsp;
-					<a href="/logout" th:href="@{/logout}">IXIR</a>
+					<a href="/logout" th:href="@{/logout}">EIXIR</a>
 				</p>
 			</div>
 			<div class="bienvenida" th:object="${session}"><h1>Serveis de &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span> </h1></div>
@@ -31,7 +31,7 @@
 						<option value="Acompanyament">ACOMPANYAMENT</option>
 						<option value="Neteja">NETEJA</option>
 						<option value="Menjar a domicili">MENJAR A DOMICILI</option>
-						<option value="Servei Sanitari">SERVEI SANITARI</option>
+						<option value="Servei sanitari">SERVEI SANITARI</option>
 					</select>
 				  </div>
 		        		<div class="boto"><input type="submit" value="CONTRACTAR" class="btn btn-primary" /></div>

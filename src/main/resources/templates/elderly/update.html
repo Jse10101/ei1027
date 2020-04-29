@@ -18,10 +18,10 @@
 				</p>
 				<p th:unless="*{elderly.name == null}">
 					Accedeixes com a&nbsp;<span th:text="*{elderly.name}"></span> &nbsp;
-					<a href="/logout" th:href="@{/logout}">IXIR</a>
+					<a href="/logout" th:href="@{/logout}">EIXIR</a>
 				</p>
 			</div>
-			<div class="bienvenida" th:object="${session}"><h1><span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}">, estàs editant les teues dades</span></h1></div>
+			<div class="bienvenida" th:object="${session}"><h1>Editant perfil de&nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}">, estàs editant les teues dades</span></h1></div>
 	    </header>
 		<main class="main_major_add">
 			<form action="#" th:action="@{/elderly/updateElderly} " th:object="${elderly}" method="post">

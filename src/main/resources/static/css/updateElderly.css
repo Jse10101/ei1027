@@ -39,6 +39,10 @@ header {
 	 justify-content:space-between;
 }
 
+.nom{
+	text-decoration: underline #EB6864;
+}
+
 h1{
 	width: 100%;
 	font-weight:bold;

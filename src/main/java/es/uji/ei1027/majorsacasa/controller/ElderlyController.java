@@ -1,5 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ElderlyController {
 	private RequestDao requestDao;
 	
 	   @Autowired
-	   public void ElderlyDao(ElderlyDao elderlyDao) {
+	   public void setElderlyDao(ElderlyDao elderlyDao) {
 	       this.elderlyDao=elderlyDao;
 	   }
 	   
@@ -35,10 +37,10 @@ public class ElderlyController {
 			this.loginDao = loginDao;
 		}
 		
-		   @Autowired
-		   public void RequestDao(RequestDao requestDao) {
-		       this.requestDao=requestDao;
-		   }
+	    @Autowired
+	    public void setRequestDao(RequestDao requestDao) {
+	        this.requestDao=requestDao;
+	    }
 	   
 	   // Operacions: Crear, llistar, actualitzar, esborrar
 	   // ...
@@ -149,6 +151,12 @@ public class ElderlyController {
 	               return "elderly/add";
 	        }
 
+	        List<Login> listaLogins = loginDao.getLogins();
+	        for(Login log : listaLogins) {
+	        	if(log.getUsuario().equals(elderly.getDni())) {
+	        		return "elderly/add";
+	        	}
+	        }
 	        Login login = new Login(elderly.getDni(), elderly.getUserpwd(), "elderly");
 			loginDao.addLogin(login);
 	        elderlyDao.addElderly(elderly);
@@ -216,7 +224,6 @@ public class ElderlyController {
 				model.addAttribute("usuario", new Login());
 				return "login";
 			}
-			
 		   elderlyDao.deleteElderly(dni);
 	          return "redirect:../list"; 
 	   }
