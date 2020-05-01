@@ -26,15 +26,18 @@
 		   <main class="main_serveis">
 		   <div class ="text">CONTRACTA UN NOU SERVEI:</div>
 		   		<form class="form_serveis" action="#" th:action="@{/request/addRequestElderly}" th:object="${requestt}" method="post">
-					<div class="sel">
-					<select class="form-control" th:field="*{serviceType}">
-						<option value="Acompanyament">ACOMPANYAMENT</option>
-						<option value="Neteja">NETEJA</option>
-						<option value="Menjar a domicili">MENJAR A DOMICILI</option>
-						<option value="Servei sanitari">SERVEI SANITARI</option>
-					</select>
-				  </div>
-		        		<div class="boto"><input type="submit" value="CONTRACTAR" class="btn btn-primary" /></div>
+					<div class="serveis_pack">
+						<div class="sel">
+						<select class="form-control" th:field="*{serviceType}">
+							<option value="Acompanyament">ACOMPANYAMENT</option>
+							<option value="Neteja">NETEJA</option>
+							<option value="Menjar a domicili">MENJAR A DOMICILI</option>
+							<option value="Servei sanitari">SERVEI SANITARI</option>
+						</select>
+					  </div>
+			          <div class="boto"><input type="submit" value="CONTRACTAR" class="btn btn-primary" /></div>
+			      </div>
+		          <div>Comentaris: <textarea class="form-control" type="text" maxlength="200" th:field="*{comentario}"/></div>
 	          </form>
 				 <div>Recorda que si ja tens un servei actiu no podràs demanar un del mateix tipus.</div>
 		 	</main>
