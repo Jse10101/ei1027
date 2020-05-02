@@ -60,16 +60,11 @@ public class ElderlyController {
 				return "login";
 			}
 
-			if(login.getRole().equals("elderly")) {
-				Elderly elderly = new Elderly(elderlyDao.getElderly(login.getUsuario()));
-				session.setAttribute("elderly", elderly);
-				session.setAttribute("login", login);
-				return "elderly/home";
-			}
-			session.invalidate();
-			model.addAttribute("login", new Login());
-			session.setAttribute("nextUrl", "elderly/home");
-			return "login";
+			Elderly elderly = new Elderly(elderlyDao.getElderly(login.getUsuario()));
+			session.setAttribute("elderly", elderly);
+			//session.setAttribute("login", login);
+			return "elderly/home";
+
 		}
 	   
 

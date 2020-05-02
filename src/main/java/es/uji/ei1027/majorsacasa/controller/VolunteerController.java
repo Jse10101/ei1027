@@ -1,6 +1,8 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Elderly;
+import es.uji.ei1027.majorsacasa.model.Login;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -69,6 +73,36 @@ public class VolunteerController {
     public String processDelete(@PathVariable String dni) {
         volunteerDao.deleteVolunteer(dni);
         return "redirect:../list";
+    }
+
+    @RequestMapping("/home")
+    public String homeVolunteer(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/volunteer/home");
+            return "login";
+        }
+
+        Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
+        session.setAttribute("volunteer", volunteer);
+        //session.setAttribute("login", login);
+        return "volunteer/home";
+
+    }
+
+    @RequestMapping("/profileVolunteer")
+    public String profileVolunteer(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        return "volunteer/profileVolunteer";
     }
 
 }

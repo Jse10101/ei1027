@@ -23,6 +23,20 @@ public class Volunteer {
     public Volunteer() {
     }
 
+    public Volunteer(Volunteer volunteer) {
+        this.name = volunteer.name;
+        this.dni = volunteer.dni;
+        this.phoneNumber = volunteer.phoneNumber;
+        this.email = volunteer.email;
+        this.pwd = volunteer.pwd;
+        this.hobbies = volunteer.hobbies;
+        this.applicationDate = volunteer.applicationDate;
+        this.acceptationDate = volunteer.acceptationDate;
+        this.finishDate = volunteer.finishDate;
+        this.accepted = volunteer.accepted;
+        this.birthDate = volunteer.birthDate;
+    }
+
     public String getDni() {
         return dni;
     }

@@ -1,0 +1,147 @@
+* { margin: 0; padding: 0; }
+
+.contenedor {
+  background: #dcdcdc;
+  min-height: 100vh;
+  width: 100%;
+  margin:auto;
+
+  /* Flexbox */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+header {
+  background: #dcdcdc;
+  width: 100%;
+  
+    /* Flexbox */
+  display: flex;
+  flex-direction: column;
+
+}
+
+.loggeduser{
+	width: 100%;
+	font-size: 15px;
+	  /* Flexbox */
+	display: flex;
+	justify-content:space-between;
+	align-content:center;
+}
+
+
+.pack_header{
+	width: 100%;
+	font-size: 15px;
+		  /* Flexbox */
+	display: flex;
+	 flex-direction: row;
+	 justify-content:space-between;
+}
+
+h1{
+	width: 100%;
+	font-weight:bold;
+	font-size: 60px;
+	font-family: serif;
+	height:150px;
+	
+	/* Flexbox */
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.main_perfil{
+	width: 100%;
+	font-weight:bold;
+	/* Flexbox */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  	flex: 1 1 50%;
+}
+
+.pack_camp_form{
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+}
+
+.nom_dades{
+	position:relative;
+	border-radius: 25px 0px 0px 25px;
+	width: 350px;
+	height: 38px;
+	background: #fff;
+	text-align:center;
+}
+.dada{
+		border-radius: 0 25px 25px 0;
+		background: #fff;
+		width: 250px;
+		text-align:center;
+}
+
+.nom{
+	text-decoration: underline #EB6864;
+}
+
+.boto{
+	  padding:15px;
+}
+
+.serveis{
+  width: 100%;
+  font-weight:bold;
+	 /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 50%;
+}
+
+.bucle{
+  width: 100%;
+     /* Flexbox */
+  display: flex;
+}
+
+.primerIf{
+	  width: 100%;
+     /* Flexbox */
+  display: flex;
+}
+
+.segonIf{
+	  width: 100%;
+     /* Flexbox */
+  display: flex;
+  justify-content:space-around;
+}
+
+
+body {
+  font-size: x-large;
+  font-family: serif;
+  color: #4d4d4d;
+}
+
+
+.btn {
+    font-family: serif;
+}
+
+footer {
+  background: #c0c0c0;
+  color: white;
+  width: 100%;
+  font-size: 12px;
+
+  align-self: flex-end;
+  text-align: center;
+}
