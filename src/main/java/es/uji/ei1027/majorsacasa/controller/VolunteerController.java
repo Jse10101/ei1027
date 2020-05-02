@@ -105,4 +105,25 @@ public class VolunteerController {
         return "volunteer/profileVolunteer";
     }
 
+    ///////////CREADO NUEVO para que el VOLUNTEER edite sus cosas:
+    @RequestMapping(value="/updateVolunteer")
+    public String updateElderly(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        return "elderly/update";
+    }
+
+    @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
+    public String processUpdateSubmitElderly(@ModelAttribute("volunteer") Volunteer volunteer) {
+        volunteerDao.updateParaVolunteer(volunteer);
+        return "redirect:/elderly/home";
+    }
+    //////////////////////////
+
 }

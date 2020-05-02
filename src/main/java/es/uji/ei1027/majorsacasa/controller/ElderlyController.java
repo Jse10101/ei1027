@@ -191,16 +191,7 @@ public class ElderlyController {
 				return "login";
 			}
 
-		   
-			if(login.getRole().equals("elderly")) {
-				model.addAttribute("elderly", elderlyDao.getElderly(login.getUsuario()));
-				return "elderly/update";
-			}
-			
-			session.invalidate();
-			model.addAttribute("login", new Login());
-			session.setAttribute("nextUrl", "elderly/update");
-			return "login";
+			return "elderly/update";
 		}
 
 	   @RequestMapping(value="/updateElderly", method = RequestMethod.POST) 

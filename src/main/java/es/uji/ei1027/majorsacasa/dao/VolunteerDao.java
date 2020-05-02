@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import es.uji.ei1027.majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -64,5 +65,12 @@ public class VolunteerDao {
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Volunteer>();
         }
+    }
+
+    /* Actualitza els atributs del Volunteer
+(excepte la clau primària) */
+    public void updateParaVolunteer(Volunteer volunteer) {
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, dni=?, pwd=?, email=?, phoneNumber=?, hobbies=?, birthDate=? WHERE dni=?",
+                volunteer.getName(), volunteer.getDni(), volunteer.getPwd(), volunteer.getEmail(), volunteer.getPhoneNumber(), volunteer.getHobbies(), volunteer.getBirthDate(),volunteer.getDni());
     }
 }

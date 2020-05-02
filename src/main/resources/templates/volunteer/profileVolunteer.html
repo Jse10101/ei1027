@@ -27,67 +27,38 @@
 				   <div class="text">DADES PERSONALS:</div>
 				   <div class="pack_camp_form">
 				   		<div class="nom_dades">DNI:</div>
-				   		<div class="dada" th:text="*{elderly.dni}"></div>
+				   		<div class="dada" th:text="*{volunteer.dni}"></div>
 				   </div>
 				   <div class="pack_camp_form">
 				   		<div class="nom_dades">NOM:</div>
-				   		<div class="dada" th:text="*{elderly.name}"></div>
+				   		<div class="dada" th:text="*{volunteer.name}"></div>
 				   </div>
-				   <div class="pack_camp_form">
-				   		<div class="nom_dades">COGNOM:</div>
-				   		<div class="dada" th:text="*{elderly.surname}"></div>
-				   </div>
-				   <div class="pack_camp_form">
-				   		<div class="nom_dades">ADREÇA:</div>
-				   		<div class="dada" th:text="*{elderly.address}"></div>
-				   </div>
-				   <div class="pack_camp_form">
-				   		<div class="nom_dades">COMPTE CORRENT:</div>
-				   		<div class="dada" th:text="*{elderly.bankAccountNumber}">
-				   </div></div>
 				   <div class="pack_camp_form">
 					   <div class="nom_dades">CONTRASENYA:</div>
-					   <div class="dada" th:text="*{elderly.userpwd}"></div>
+					   <div class="dada" th:text="*{volunteer.pwd}"></div>
 				   </div>
 				   <div class="pack_camp_form">
 					   <div class="nom_dades">E-MAIL:</div>
-					   <div class="dada" th:text="*{elderly.email}"></div>
+					   <div class="dada" th:text="*{volunteer.email}"></div>
 				   </div>
 				   <div class="pack_camp_form">
 					   <div class="nom_dades">TELÉFON:</div>
-					   <div class="dada" th:text="*{elderly.phoneNumber}"></div>
+					   <div class="dada" th:text="*{volunteer.phoneNumber}"></div>
 				   </div>
 				   <div class="pack_camp_form">
 					   <div class="nom_dades">DATA DE NAIXEMENT:</div>
-					   <div class="dada" th:text="*{elderly.birthDate}"></div>
+					   <div class="dada" th:text="*{volunteer.birthDate}"></div>
 				   </div>
-				   <div class="pack_camp_form">
-					   <div class="nom_dades">DATA DE CREACIÓ:</div>
-					   <div class="dada" th:text="*{elderly.dateCreation}"></div>
-				   </div>
-					   <div class="pack_camp_form"><div class="nom_dades">ALÉRGIES:</div>
-					   <div class="dada" th:text="*{elderly.alergies}"></div>
-				   </div>
-				   <div class="pack_camp_form">
-					   <div class="nom_dades">MALALTIES:</div>
-					   <div class="dada" th:text="*{elderly.diseases}"></div>
+					   <div class="pack_camp_form"><div class="nom_dades">HOBBIES:</div>
+					   <div class="dada" th:text="*{volunteer.hobbies}"></div>
 				   </div>
 
-				   <form action="#" th:action="@{/elderly/updateElderly}">
+				   <form action="#" th:action="@{/volunteer/updateVolunteer}">
 	        			  <div class="boto"><input type="submit" value="EDITAR" class="btn btn-primary" /></div>
 	        	   </form>
 
 		 </main>
-		 <aside class="serveis" th:object="${session}">
-			<div>SERVEIS QUE REBS:</div>
-			<div class="bucle" th:each="request : ${requests}">
-				     <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
-						 <div class="segonIf" th:if="${request.state}">
-							<div th:text="${request.serviceType}"></div><div class="boto_enviar"><a th:href="@{/request/donaDeBaixaRequest/{idNumber}(idNumber=${request.idNumber})}" class="btn btn-primary" role="button">Cancelar</a></div>
-						</div>
-				 	</div>
-			</div>
-		 </aside>
+
 		<footer>
 			Majors a Casa - 2020
 		</footer>
