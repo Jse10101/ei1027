@@ -1,70 +1,101 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <title>Edita Voluntari</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet"
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/updateUsuarios.css"
+	th:href="@{/css/updateUsuarios.css}" />
+<title>Majors a casa</title>
 </head>
 <body>
-    <h2>Edita Voluntari</h2>
-    <form action="#" th:action="@{/volunteer/update}"
-                     th:object="${volunteer}" method="post">
-        <table class="table table-striped">
-            <tr>
-                <td><label>Nom</label></td>
-                <td><input type="text" th:field="*{name}" /></td>
-                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
-            </tr>
-            <tr>
-                <td><label>DNI</label></td>
-                <td><input type="text" style="background-color:#D3D3D3" readonly th:field="*{dni}" /></td>
+	<div class="contenedor">
+	    <header>
+	    	<div class="loggeduser" th:object="${session}">
+	    		<div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
+				<p th:if="*{volunteer.name == null}">
+					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
+				</p>
+				<p th:unless="*{volunteer.name == null}">
+					Accedeixes com a&nbsp;<span th:text="*{volunteer.name}"></span> &nbsp;
+					<a href="/logout" th:href="@{/logout}">EIXIR</a>
+				</p>
+			</div>
+			<div class="bienvenida" th:object="${session}"><h1>Editant perfil de&nbsp;<span class="nom" th:text="*{volunteer.name}"></span>, estàs editant les teues dades</span></h1></div>
+	    </header>
+		<main class="main_major_add">
+			<form action="#" th:action="@{/volunteer/updateElderly} " th:object="${volunteer}" method="post">
+				<div class="pack_camp_form">
+					<div class="nom_dades">DNI:</div>
+					<div>
+						<input class="form-control" maxlength="9" required type="text"
+							th:field="*{dni}" />
+						<div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+					</div>
+				</div>
 
-            </tr>
-            <tr>
-                <td><label>Contrasenya</label></td>
-                <td><input type="password" maxlength="20" required th:field="*{pwd}" /></td>
-                <td th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></td>
-            </tr>
-            <tr>
-                <td><label>Numero de telefon</label></td>
-                <td><input type="text" maxlength="9" required th:field="*{phoneNumber}" /></td>
-                <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
-            </tr>
-            <tr>
-                <td><label>Email</label></td>
-                <td><input type="email" required th:field="*{email}" /></td>
-                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-            </tr>
-            <tr>
-                <td><label>Hobbies</label></td>
-                <td><input type="text" th:field="*{hobbies}" /></td>
-            </tr>
-            <tr>
-                <td><label>Fecha d'alta</label></td>
-                <td><input type="date" required th:field="*{applicationDate}" /></td>
-            </tr>
-            <tr>
-                <td><label>Fecha de acceptacio</label></td>
-                <td><input type="date" th:field="*{acceptationDate}" /></td>
-            </tr>
-            <tr>
-                <td><label>Fecha de baja</label></td>
-                <td><input type="date" th:field="*{finishDate}" /></td>
-            </tr>
-            <tr>
-                <td><label>En Activo</label></td>
-                <td><input type="checkbox" th:field="*{accepted}" /></td>
-            </tr>
-            <tr>
-                <td><label>Fecha de nacimiento</label></td>
-                <td><input type="date" required th:field="*{birthDate}"  /></td>
-                <td th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Edita Voluntari" /></td>
-        </tr>
-      </table>
-    </form>
+				<div class="pack_camp_form">
+					<div class="nom_dades">NOM:</div>
+					<div>
+						<input class="form-control" type="text" required maxlength="50"
+							th:field="*{name}" />
+						<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">CONTRASENYA:</div>
+					<div>
+						<input class="form-control" type="password" required
+							maxlength="20" th:field="*{pwd}" />
+						<div th:if="${#fields.hasErrors('pwd')}"
+							th:errors="*{pwd}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">E-MAIL:</div>
+					<div>
+						<input class="form-control" type="email" required
+							th:field="*{email}" />
+						<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">TELÉFON:</div>
+					<div>
+						<input class="form-control" type="text" required maxlength="9"
+							th:field="*{phoneNumber}" />
+						<div th:if="${#fields.hasErrors('phoneNumber')}"
+							th:errors="*{phoneNumber}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">DATA DE NAIXEMENT:</div>
+					<div>
+						<input class="form-control" type="date" required
+							th:field="*{birthDate}" />
+						<div th:if="${#fields.hasErrors('birthDate')}"
+							th:errors="*{birthDate}"></div>
+					</div>
+				</div>
+
+				<div class="pack_camp_form">
+					<div class="nom_dades">HOBBIES:</div>
+					<div>
+						<input class="form-control" type="text" maxlength="200"
+							th:field="*{hobbies}" />
+					</div>
+				</div>
+
+				<div class="boton">
+					<input type="submit" class="btn btn-primary" value="ACCEPTAR" />
+				</div>
+			</form>
+		</main>
+		<footer> Majors a Casa - 2020 </footer>
+	</div>
 </body>
 </html>

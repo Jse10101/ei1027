@@ -1,98 +1,99 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crear nou voluntari</title>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/add.css"
+          th:href="@{/css/add.css}" />
+    <title>Majors a casa</title>
 </head>
 <body>
-<div class="container">
-    <h2>Nou Voluntari</h2>
-    <form class="form-horizontal" action="#" th:action="@{/volunteer/add}"
-          th:object="${volunteer}" method="post">
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="name">Nom:</label>
-            <div class="col-sm-4">
-                <input type="text" required maxlength="50" class="form-control" id="name" th:field="*{name}"/>
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="dni">DNI:</label>
-            <div class="col-sm-4">
-                <input type="text" maxlength="9" required class="form-control" id="dni" th:field="*{dni}"/>
-                <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" ></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="pwd">Contrasenya:</label>
-            <div class="col-sm-4">
-                <input type="password" maxlength="50" required class="form-control" id="pwd" th:field="*{pwd}"/>
-                <div th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" ></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="phoneNumber">Numero de telefon:</label>
-            <div class="col-sm-4">
-                <input type="text" maxlength="9" required class="form-control" id="phoneNumber" th:field="*{phoneNumber}"/>
-                <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" ></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="email">Email:</label>
-            <div class="col-sm-4">
-                <input type="email" maxlength="50" required class="form-control" id="email" th:field="*{email}"/>
-                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="hobbies">Hobbies:</label>
-            <div class="col-sm-4">
-                <input type="text" maxlength="200" class="form-control" id="hobbies" th:field="*{hobbies}"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="applicationDate">Data de solicitud:</label>
-            <div class="col-sm-4">
-                <input type="date" required class="form-control" id="applicationDate" th:field="*{applicationDate}"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="acceptationDate">Data d'alta:</label>
-            <div class="col-sm-4">
-                <input type="date" class="form-control" id="acceptationDate" th:field="*{acceptationDate}"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="finishDate">Data de baixa:</label>
-            <div class="col-sm-4">
-                <input type="date" class="form-control" id="finishDate" th:field="*{finishDate}"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="accepted">En Actiu:</label>
-            <div class="col-sm-4">
-                <input type="checkbox" class="form-control" id="accepted" th:field="*{accepted}"/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="birthDate">Data de naixement:</label>
-            <div class="col-sm-4">
-                <input type="date" required class="form-control" id="birthDate" th:field="*{birthDate}"/>
-                <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" ></div>
-            </div>
-        </div>
+    <div class="contenedor">
+        <header>
+            <h1>NOU REGISTRE</h1>
+        </header>
+        <main class="main_major_add">
+            <form action="#" th:action="@{/volunteer/add} " th:object="${volunteer}" method="post">
+                <div class="pack_camp_form">
+                    <div class="nom_dades">DNI:</div>
+                    <div>
+                        <input class="form-control" maxlength="9" required type="text"
+                               th:field="*{dni}" />
+                        <div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+                    </div>
+                </div>
 
-        <div class="form-group row">
-            <div class="col-sm-offset-2 col-sm-4">
-                <a href="list">
-                    <button type="submit" class="btn btn-primary">Afegeix Voluntari</button>
-                </a>
-            </div>
-        </div>
+                <div class="pack_camp_form">
+                    <div class="nom_dades">NOM:</div>
+                    <div>
+                        <input class="form-control" type="text" required maxlength="50"
+                               th:field="*{name}" />
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                </div>
 
-    </form>
-</div>
+                <div class="pack_camp_form">
+                    <div class="nom_dades">CONTRASENYA:</div>
+                    <div>
+                        <input class="form-control" type="password" required
+                               maxlength="20" th:field="*{pwd}" />
+                        <div th:if="${#fields.hasErrors('pwd')}"
+                             th:errors="*{pwd}"></div>
+                    </div>
+                </div>
+
+                <div class="pack_camp_form">
+                    <div class="nom_dades">E-MAIL:</div>
+                    <div>
+                        <input class="form-control" type="email" required
+                               th:field="*{email}" />
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                </div>
+
+                <div class="pack_camp_form">
+                    <div class="nom_dades">TELÉFON:</div>
+                    <div>
+                        <input class="form-control" type="text" required maxlength="9"
+                               th:field="*{phoneNumber}" />
+                        <div th:if="${#fields.hasErrors('phoneNumber')}"
+                             th:errors="*{phoneNumber}"></div>
+                    </div>
+                </div>
+
+                <div class="pack_camp_form">
+                    <div class="nom_dades">DATA DE NAIXEMENT:</div>
+                    <div>
+                        <input class="form-control" type="date" required
+                               th:field="*{birthDate}" />
+                        <div th:if="${#fields.hasErrors('birthDate')}"
+                             th:errors="*{birthDate}"></div>
+                    </div>
+                </div>
+
+                <div class="pack_camp_form">
+                    <div class="nom_dades">HOBBIES:</div>
+                    <div>
+                        <input class="form-control" type="text" maxlength="200"
+                               th:field="*{hobbies}" />
+                    </div>
+                </div>
+
+                <div class="boton">
+                    <input type="submit" class="btn btn-primary" value="ACCEPTAR" />
+                </div>
+            </form>
+        </main>
+        <aside class="text">
+            <div class="text_majors">
+                Si necessites ajuda per a registrar-te pots cridar al teléfon:<br>
+                96XXXXXXX<br>
+                <br> També pots posar-te en contacte amb nosaltres al seguent
+                correu:<br> ei1027@majorsacasa.es
+            </div>
+        </aside>
+        <footer> Majors a Casa - 2020 </footer>
+    </div>
 </body>
 </html>

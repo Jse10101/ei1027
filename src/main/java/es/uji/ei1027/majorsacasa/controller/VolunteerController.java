@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -32,23 +33,6 @@ public class VolunteerController {
     public String listVolunteers(Model model) {
         model.addAttribute("volunteers", volunteerDao.getVolunteers());
         return "volunteer/list";
-    }
-
-    @RequestMapping(value="/add")
-    public String addVolunteer(Model model) {
-        model.addAttribute("volunteer", new Volunteer());
-        return "volunteer/add";
-    }
-
-    @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
-                                   BindingResult bindingResult) {
-        VolunteerValidator voluntarioValidador = new VolunteerValidator();
-        voluntarioValidador.validate(volunteer, bindingResult);
-        if (bindingResult.hasErrors())
-            return "volunteer/add";
-        volunteerDao.addVolunteer(volunteer);
-        return "redirect:list";
     }
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
@@ -126,4 +110,46 @@ public class VolunteerController {
     }
     //////////////////////////
 
+    //Esto es lo relacionado con el add.html pero en la clase ElderlyController------------------------------
+    /*@RequestMapping(value="/add")
+    public String addElderly(Model model) {
+        model.addAttribute("elderly", new Elderly());
+        return "elderly/add";
+    }
+
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "elderly/add";
+        }
+
+        List<Login> listaLogins = loginDao.getLogins();
+        for(Login log : listaLogins) {
+            if(log.getUsuario().equals(elderly.getDni())) {
+                return "elderly/add";
+            }
+        }
+        Login login = new Login(elderly.getDni(), elderly.getUserpwd(), "elderly");
+        loginDao.addLogin(login);
+        elderlyDao.addElderly(elderly);
+        return "redirect:../elderly/home";
+    }*/
+    //---------------------------------------------------------------------------------------------------------
+    //Esto es lo que ya estaba
+    @RequestMapping(value="/add")
+    public String addVolunteer(Model model) {
+        model.addAttribute("volunteer", new Volunteer());
+        return "volunteer/add";
+    }
+
+    @RequestMapping(value="/add", method= RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
+                                   BindingResult bindingResult) {
+        VolunteerValidator voluntarioValidador = new VolunteerValidator();
+        voluntarioValidador.validate(volunteer, bindingResult);
+        if (bindingResult.hasErrors())
+            return "volunteer/add";
+        volunteerDao.addVolunteer(volunteer);
+        return "redirect:list";
+    }
 }
