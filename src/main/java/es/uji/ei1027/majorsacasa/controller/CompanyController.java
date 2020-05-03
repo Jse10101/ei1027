@@ -27,18 +27,20 @@ public class CompanyController {
 
     // Operacions: Crear, llistar, actualitzar, esborrar
     // ...
+    //listar
     @RequestMapping("/list")
     public String listCompanies(Model model) {
         model.addAttribute("companies", companyDao.getCompnanies());
         return "company/list";
     }
 
+    //afegir
     @RequestMapping(value = "/add")
     public String addCompany(Model model) {
         model.addAttribute("company", new Company());
         return "company/add";
     }
-
+    //afegir
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
                                    BindingResult bindingResult) {
