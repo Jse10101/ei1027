@@ -19,8 +19,23 @@ public class Availability {
 
     public Availability() {
     }
+    
+    
 
-    @Override
+    public Availability(LocalDate fecha, LocalTime beginingHour, LocalTime endingHour, boolean stateAvailability,
+			String dni_volunteer, String dni_elderly) {
+		super();
+		this.fecha = fecha;
+		this.beginingHour = beginingHour;
+		this.endingHour = endingHour;
+		this.stateAvailability = stateAvailability;
+		this.dni_volunteer = dni_volunteer;
+		this.dni_elderly = dni_elderly;
+	}
+
+
+
+	@Override
     public String toString() {
         return "Availability{" +
                 "fecha=" + fecha +

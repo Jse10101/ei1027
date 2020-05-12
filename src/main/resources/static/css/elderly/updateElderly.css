@@ -30,6 +30,10 @@ header {
 	align-content:center;
 }
 
+.boton_atras{
+	  padding:5px;
+}
+
 .pack_header{
 	width: 100%;
 	font-size: 15px;

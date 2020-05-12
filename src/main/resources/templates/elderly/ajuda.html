@@ -12,7 +12,7 @@
     <header>
 	    	
 	    	<div class="loggeduser" th:object="${session}">
-	    		<div class="boton_atras"><a th:href="@{/elderly/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
+	    		<div class="boton_atras"><a th:href="@{/elderly/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
 				<p th:if="*{elderly.name == null}">
 					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
 				</p>

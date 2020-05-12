@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
+import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Availability;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/availability")
 public class AvailabilityController {
 
     private AvailabilityDao availabilityDao;
+    private VolunteerDao volunteerDao;
 
+    @Autowired
+    public void setAvailabilityDao(AvailabilityDao availabilityDao) {
+        this.availabilityDao = availabilityDao;
+    }
+    
+    @Autowired
+    public void setVolunteerDao(VolunteerDao volunteerDao) {
+        this.volunteerDao = volunteerDao;
+    }
+    
     @Autowired
     public void AvailabilityDao(AvailabilityDao availabilityDao) {
         this.availabilityDao = availabilityDao;
@@ -79,6 +93,23 @@ public class AvailabilityController {
         LocalTime tiempo = LocalTime.parse(beginingHour);
         availabilityDao.deleteAvailability(fecha1, dni_volunteer, tiempo);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value = "/donaDeAltaAvailability/{dni_volunteer}/{fecha}/{beginingHour}/{endingHour}/{dni_elderly}", method = RequestMethod.GET)
+    public String donaDeAltaAvailability(Model model, @PathVariable String fecha, @PathVariable String dni_volunteer, @PathVariable String beginingHour, @PathVariable String endingHour, @PathVariable String dni_elderly) {
+        LocalDate fecha1 = LocalDate.parse(fecha);
+        LocalTime tiempo_ini = LocalTime.parse(beginingHour);
+        LocalTime tiempo_fin = LocalTime.parse(endingHour);
+        Availability availability = new Availability(fecha1, tiempo_ini, tiempo_fin, false, dni_volunteer, dni_elderly);
+        availabilityDao.donaDeAltaAvailability(availability);
+        return "elderly/home";
+    }
+    
+    @RequestMapping("/acompanyament")
+    public String acompanyament(HttpSession session, Model model) {
+    	model.addAttribute("volunteers", volunteerDao.getVolunteers());
+    	model.addAttribute("availabilities", availabilityDao.getAvailabilities());
+        return "elderly/acompanyament";
     }
 
 }

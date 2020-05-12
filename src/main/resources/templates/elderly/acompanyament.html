@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/elderly/acompanyament.css"
+	th:href="@{/css/elderly/acompanyament.css}"/>
+	<title>Majors a casa</title>
+</head>
+
+<body>
+	<div class="contenedor">
+	    <header>
+	    	<div class="loggeduser" th:object="${session}">
+	    		<div class="boton_atras"><a th:href="@{/elderly/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
+				<p th:if="*{elderly.name == null}">
+					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
+				</p>
+				<p th:unless="*{elderly.name == null}">
+					Accedeixes com a&nbsp;<span th:text="*{elderly.name}"></span> &nbsp;
+					<a href="/logout" th:href="@{/logout}">EIXIR</a>
+				</p>
+			</div>
+			<div class="bienvenida" th:object="${session}"><h1>Serveis d'acompanyament</h1></div>
+	    </header>
+		<main class="main_acompanyament" th:object="${session}">
+			<div class ="text">LLISTAT D'HORARIS OFERITS PER VOLUNTARIS	:</div>
+				<div class="nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada2">FI</div><div class="nom_dada3">HOBBIES</div></div>
+				<div class="bucle1" th:each="volunteer : ${volunteers}">
+					<div class="bucle2" th:each="availability : ${availabilities}">
+						<div class="primerIf" th:if="${availability.dni_volunteer} == ${volunteer.dni}">
+							<div class="segonIf" th:if="${availability.stateAvailability}">
+								<div class="dades_boto">
+									<div class="availability_volunteer">
+										<div class="primera_dada" th:text="${availability.fecha}"></div>
+										<div class="dada" th:text="${availability.beginingHour}"></div>
+										<div class="dada" th:text="${availability.endingHour}"></div>
+										<div class="ultima_dada" th:text="${volunteer.hobbies}"></div>
+									</div>
+									<div class="boto_enviar"><a th:href="@{/availability/donaDeAltaAvailability/{dni_volunteer}/{fecha}/{beginingHour}/{endingHour}/{dni_elderly}(dni_volunteer=${availability.dni_volunteer}, fecha=${availability.fecha}, beginingHour=${availability.beginingHour},endingHour=${availability.endingHour}, dni_elderly=*{elderly.dni})}" class="btn btn-primary" role="button">Cancelar</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		   </main>
+
+
+	 	<aside class="aside_acompanyament" th:object="${session}">
+			<div>HISTORIAL D'ACOMPANYAMENTS:</div>
+			<div class="nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada2">FI</div><div class="nom_dada3">HOBBIES</div></div>
+				<div class="bucle1" th:each="volunteer : ${volunteers}">
+					<div class="bucle2" th:each="availability : ${availabilities}">
+						<div class="primerIf" th:if="${availability.dni_volunteer} == ${volunteer.dni}">
+							<div class="primerIf" th:if="${availability.dni_elderly} == *{elderly.dni}">
+								<div class="availability_volunteer">
+									<div class="primera_dada" th:text="${availability.fecha}"></div>
+									<div class="dada" th:text="${availability.beginingHour}"></div>
+									<div class="dada" th:text="${availability.endingHour}"></div>
+									<div class="ultima_dada" th:text="${volunteer.hobbies}"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		 </aside>
+		<footer>
+			Majors a Casa - 2020
+		</footer>
+	</div>
+</body>
+
+</html>

@@ -61,6 +61,13 @@ h1{
 	display: flex;
 }
 
+.botons_home{
+		width: 100%;
+	/* Flexbox */
+	flex-direction: column;
+	display: flex;
+}
+
 .nom{
 	text-decoration: underline #EB6864;
 }
@@ -92,7 +99,8 @@ h1{
 	color: #fff;
     background-color: #EB6864;
     border-color: #EB6864;
-	padding: 70px;
+    height:250px;
+    width:300px;
 }
 
 body {

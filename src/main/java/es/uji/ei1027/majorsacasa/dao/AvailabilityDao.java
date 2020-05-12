@@ -65,5 +65,13 @@ public class AvailabilityDao {
             return new ArrayList<Availability>();
         }
     }
+    
+    /* Actualitza els atributs del Availability
+   (excepte la clau primària) */
+    public void donaDeAltaAvailability(Availability availability) {
+        jdbcTemplate.update("UPDATE Availability SET endingHour=?, stateAvailability=?, dni_elderly=? WHERE dni_volunteer=? AND fecha=? AND beginingHour=?",
+                availability.getEndingHour(), availability.getStateAvailability(), availability.getDni_elderly(), availability.getDni_volunteer(), availability.getFecha(),
+                availability.getBeginingHour());
+    }
 
 }

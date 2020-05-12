@@ -12,7 +12,7 @@
 	<div class="contenedor">
 	    <header>
 	    	<div class="loggeduser" th:object="${session}">
-	    		<div class="boton_atras"><a th:href="@{/elderly/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
+	    		<div class="boton_atras"><a th:href="@{/elderly/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
 				<p th:if="*{elderly.name == null}">
 					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
 				</p>
@@ -24,18 +24,17 @@
 			<div class="bienvenida" th:object="${session}"><h1>Serveis de &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span> </h1></div>
 	    </header>
 		   <main class="main_serveis">
-		   <div class ="text">CONTRACTA UN NOU SERVEI:</div>
+		   <div class ="text">SOL·LICITA UN NOU SERVEI:</div>
 		   		<form class="form_serveis" action="#" th:action="@{/request/addRequestElderly}" th:object="${requestt}" method="post">
 					<div class="serveis_pack">
 						<div class="sel">
 						<select class="form-control" th:field="*{serviceType}">
-							<option value="Acompanyament">ACOMPANYAMENT</option>
-							<option value="Neteja">NETEJA</option>
-							<option value="Menjar a domicili">MENJAR A DOMICILI</option>
-							<option value="Servei sanitari">SERVEI SANITARI</option>
+							<option value="Neteja">NETEJA  (10€/SERVICI)</option>
+							<option value="Menjar a domicili">MENJAR A DOMICILI  (4€/SERVICI)</option>
+							<option value="Servei sanitari">SERVEI SANITARI  (25€/SERVICI)</option>
 						</select>
 					  </div>
-			          <div class="boto"><input type="submit" value="CONTRACTAR" class="btn btn-primary" /></div>
+			          <div class="boto"><input type="submit" value="SOL·LICITAR" class="btn btn-primary" /></div>
 			      </div>
 		          <div>Comentaris: <textarea class="form-control" type="text" maxlength="200" th:field="*{comentario}"/></div>
 	          </form>
@@ -45,18 +44,42 @@
 
 	 <aside class="serveis" th:object="${session}">
 			<div class="text">HISTORIAL DE SERVEIS:</div>
+			
+			
+			<div class="bucle" th:each="request : ${requests}">
+				    <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
+						<div class="dada" th:if="${request.state}">
+						<div class="pack_nom_dades"><div class="nom_dada1">TIPUS</div><div class="nom_dada2">INICI</div><div class="nom_dada3">ESTAT</div></div>
+						<div class="pack_dades"><div class="nom_dades" th:text="${request.serviceType}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"></div><div class="dada_final">EN ACTIU</div></div></div>
+				 	</div>
+			</div>
+			
 			<div class="bucle" th:each="request : ${requests}">
 				     <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
-						<div class="pack_serveis">
-							<div class="nom_dades" th:text="${request.serviceType}"></div>
-							
-							<div class="dada" th:if="${request.state}">EN ACTIU</div>
-							<div class="dada" th:if="${request.rejectedDate != null}">REBUTJADA</div>
-							<div class="dada" th:if="${request.aprovedDate} == ${request.rejectedDate}">A LA ESPERA</div>
-							<div class="dada" th:if="${request.finishDate != null}">FINALITZADA</div>
+				     	<div class="dada" th:if="${request.aprovedDate} == ${request.rejectedDate}">
+				     		<div class="pack_nom_dades"><div class="nom_dada_re1">TIPUS</div><div class="nom_dada_re2">SOL·LICITAT</div><div class="nom_dada_re2">ESTAT</div></div>
+							<div class="pack_dades"><div class="nom_dades" th:text="${request.serviceType}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"></div><div class="dada_final">A LA ESPERA</div></div>
 						</div>
 				 	</div>
 			</div>
+			
+			<div class="bucle" th:each="request : ${requests}">
+				     <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
+				     	<div class="dada" th:if="${request.rejectedDate != null}">
+				     	<div class="pack_nom_dades"><div class="nom_dada_re1">TIPUS</div><div class="nom_dada_re2">SOL·LICITAT</div><div class="nom_dada_re2">REBUTJAT</div><div class="nom_dada_re2">ESTAT</div></div>
+						<div class="pack_dades"><div class="nom_dades" th:text="${request.serviceType}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"></div><div class="nom_dades_centr" th:text="${request.rejectedDate}"></div><div class="dada_final">REBUTJADA</div></div></div>
+				 	</div>
+			</div>
+			
+			<div class="bucle" th:each="request : ${requests}">
+				    <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
+				    	
+						<div class="dada" th:if="${request.finishDate != null}">
+						<div class="pack_nom_dades"><div class="nom_dada1">TIPUS</div><div class="nom_dada2">INICI</div><div class="nom_dada2">FI</div><div class="nom_dada3">ESTAT</div></div>
+						<div class="pack_dades"><div class="nom_dades" th:text="${request.serviceType}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"></div><div class="nom_dades_centr" th:text="${request.finishDate}"></div><div class="dada_final">FINALITZADA</div></div></div>
+				 	</div>
+			</div>
+
 		 </aside>
 		<footer>
 			Majors a Casa - 2020

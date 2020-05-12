@@ -21,6 +21,11 @@ header {
   flex-direction: column;
 
 }
+
+.boton_atras{
+	  padding:5px;
+}
+
 .serveis_pack{
 	  width: 100%;
   
@@ -132,16 +137,6 @@ h1{
   align-content: center;
 }
 
-.pack_serveis{
-	width: 100%;
-	     /* Flexbox */
-  	display: flex;
-    flex-direction: row;
-    justify-content: center;
-  	align-content: center;
-	padding: 10px;
-}
-
 
 .nom_dades{
 	position:relative;
@@ -151,11 +146,83 @@ h1{
 	background: #fff;
 	text-align:center;
 }
+
+.nom_dades_centr{
+	position:relative;
+	border-radius: 0px 0px 0px 0px;
+	width: 150px;
+	height: 38px;
+	background: #fff;
+	text-align:center;
+}
+
+
 .dada{
+	width: 100%;
+	padding: 10px;
+	/* Flexbox */
+  	display: flex;
+    flex-direction: column;
+}
+
+.dada_final{
 		border-radius: 0 25px 25px 0;
 		background: #fff;
-		width: 250px;
+		width: 200px;
 		text-align:center;
+}
+
+.nom_dada1{
+	width: 250px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+.nom_dada2{
+	width: 150px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+.nom_dada3{
+	width: 200px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+.nom_dada_re1{
+	width: 250px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+.nom_dada_re2{
+	width: 150px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+.pack_nom_dades{
+	padding:10px;
+/* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-content: center;
+}
+
+.pack_dades{
+	padding:10px;
+/* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-content: center;
 }
 
 body {
