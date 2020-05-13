@@ -81,6 +81,25 @@ public class VolunteerController {
 
     }
 
+    @RequestMapping("/ajuda")
+    public String ajudaVolunteer(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        if(login.getRole().equals("volunteer")) {
+            return "volunteer/ajuda";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "volunteer/ajuda");
+        return "login";
+    }
+
     @RequestMapping("/profileVolunteer")
     public String profileVolunteer(HttpSession session, Model model) {
         Login login = (Login) session.getAttribute("login");
@@ -96,7 +115,7 @@ public class VolunteerController {
 
     ///////////CREADO NUEVO para que el VOLUNTEER edite sus cosas:
     @RequestMapping(value="/updateVolunteer")
-    public String updateElderly(HttpSession session, Model model) {
+    public String updateVolunteer(HttpSession session, Model model) {
         Login login = (Login) session.getAttribute("login");
 
         if (login == null) {
@@ -105,13 +124,13 @@ public class VolunteerController {
             return "login";
         }
 
-        return "elderly/update";
+        return "volunteer/update";
     }
 
     @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
     public String processUpdateSubmitElderly(@ModelAttribute("volunteer") Volunteer volunteer) {
         volunteerDao.updateParaVolunteer(volunteer);
-        return "redirect:/elderly/home";
+        return "redirect:/volunteer/home";
     }
     //////////////////////////
     //Esto es lo que ya estaba
