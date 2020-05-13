@@ -33,7 +33,7 @@ CREATE TABLE Volunteer (
 	    (DATE_PART('year',CURRENT_DATE)-DATE_PART('year',birthDate))*12 + (DATE_PART('month', CURRENT_DATE) - DATE_PART('month', birthDate)) >= 18*12)
 );
 
--- T A B L A   T R A B A J A D O R   S O C I A L 
+-- T A B L A   T R A B A J A D O R   S O C I A L
 CREATE TABLE SocialWorker (
 	-- Atributos
 	name VARCHAR(50) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE Availability (
 );
 
 
--- T A B L A   F A C T U R A 
+-- T A B L A   F A C T U R A
 CREATE TABLE Invoice (
 	-- Atributos
 	fecha DATE NOT NULL,
@@ -225,7 +225,7 @@ CREATE TABLE Login (
 
 
 
--- I N S E R T S   V O L U N T E E R 
+-- I N S E R T S   V O L U N T E E R
 INSERT INTO Volunteer VALUES ('Diego Lacomba','12345678R','diegolacomba', 'diego@gmail.com', '123456789', 'deporte y videojuegos', '2019-04-09', NULL, NULL, FALSE, '1999-12-18');
 
 INSERT INTO Volunteer VALUES ('Rafael Mesado','23456789Q','rafamesado', 'rafa@gmail.com', '234567890', 'deporte, videojuegos y leer', '2019-04-09', NULL, NULL, FALSE, '1999-10-23');
@@ -274,7 +274,6 @@ INSERT INTO Company VALUES ('DonLimpio','E12342897','donlimpio', 'C/ Empresas Tr
 INSERT INTO Company VALUES ('Quiropract','E12342345','quiropract', 'C/ Empresas Cuatro', 'Rafa Masaje', '694206923', 'masajito@gmail.com', 'Servei sanitari');
 
 INSERT INTO Company VALUES ('DocsADom','E12344560','docsadom', 'C/ Empresas Cinco', 'Doctor López', '655446623', 'docs@gmail.com', 'Servei sanitari');
-
 
 
 -- I N S E R T S   A V A I L A B I L I T Y
@@ -329,6 +328,32 @@ INSERT INTO Request VALUES ('5','Servei sanitari','2016-02-04',TRUE,'2019-02-04'
 
 
 
+-- I N S E R T S   I S   P A Y E D   B Y
+INSERT INTO isPayedBy VALUES ('28800','1');
+
+INSERT INTO isPayedBy VALUES ('26000','2');
+
+INSERT INTO isPayedBy VALUES ('15500','3');
+
+INSERT INTO isPayedBy VALUES ('10100','4');
+
+INSERT INTO isPayedBy VALUES ('90000','5');
+
+
+
+
+-- INSERTS LOGIN
+INSERT INTO Login VALUES ('48273019S', 'pacogarcia', 'elderly');
+
+INSERT INTO Login VALUES ('58274356Y', 'pepagonzalez', 'elderly');
+
+INSERT INTO Login VALUES ('98561723I', 'carmenmarin', 'elderly');
+
+INSERT INTO Login VALUES ('58761324E', 'julianbazan', 'elderly');
+
+INSERT INTO Login VALUES ('48523694L', 'victorcayetano', 'elderly');
+
+
 -- I N S E R T S   I S   P A Y E D   B Y 
 INSERT INTO isPayedBy VALUES ('28800','1');
 
@@ -353,3 +378,40 @@ INSERT INTO Login VALUES ('98561723I', 'carmenmarin', 'elderly');
 INSERT INTO Login VALUES ('58761324E', 'julianbazan', 'elderly');
 
 INSERT INTO Login VALUES ('48523694L', 'victorcayetano', 'elderly');
+
+-- I N S E R T S   V O L U N T E E R ( L O G I N )
+INSERT INTO Login VALUES ('12345678R','diegolacomba', 'volunter');
+
+INSERT INTO Login VALUES ('23456789Q','rafamesado', 'volunter' );
+
+INSERT INTO Login VALUES ('45678456T','josenebot', 'volunter' );'
+
+INSERT INTO Login VALUES ('12345853F','adriangarcia', 'volunter' );'
+
+INSERT INTO Login VALUES ('69420690W','pericopalotes', 'volunter' );'
+
+
+-- I N S E R T S   S O C I A L   W O R K E R ( L O G I N )
+INSERT INTO Login VALUES ('worker001','trabajador1', 'SocialWorker');
+
+INSERT INTO Login VALUES ('worker002','trabajador2','SocialWorker');
+
+INSERT INTO Login VALUES ('worker003','trabajador3', 'SocialWorker');
+
+INSERT INTO Login VALUES ('worker004','trabajador4', 'SocialWorker');
+
+INSERT INTO Login VALUES ('worker005','trabajador5', 'SocialWorker');
+
+
+
+
+
+-- I N S E R T S   C O M P A N Y ( L O G I N )
+INSERT INTO Login VALUES ('E12345678', 'MCarrones', 'Company')
+
+INSERT INTO Login VALUES ('E12348765','Compañias', 'Company')
+
+INSERT INTO Login VALUES ('E12342897','DonLimpio', 'Company')
+
+INSERT INTO Login VALUES ('E12342345', 'Quiropract','Company')
+INSERT INTO Login VALUES ('E12344560','DocsADom', 'Company')
