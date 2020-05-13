@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
@@ -23,6 +24,7 @@ public class VolunteerController {
 
     private VolunteerDao volunteerDao;
     private LoginDao loginDao;
+    private AvailabilityDao availabilityDao;
 
     @Autowired
     public void VolunteerDao(VolunteerDao volunteerDao) {
@@ -81,6 +83,25 @@ public class VolunteerController {
 
     }
 
+    @RequestMapping("/horaris")
+    public String horarisVolunteer(HttpSession session, Model model) {
+        model.addAttribute("availabilities", availabilityDao.getAvailabilities());
+        return "elderly/horaris";
+    }
+
+    @RequestMapping("/profileVolunteer")
+    public String profileVolunteer(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        return "volunteer/profileVolunteer";
+    }
+
     @RequestMapping("/ajuda")
     public String ajudaVolunteer(HttpSession session, Model model) {
         Login login = (Login) session.getAttribute("login");
@@ -98,19 +119,6 @@ public class VolunteerController {
         model.addAttribute("login", new Login());
         session.setAttribute("nextUrl", "volunteer/ajuda");
         return "login";
-    }
-
-    @RequestMapping("/profileVolunteer")
-    public String profileVolunteer(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-        return "volunteer/profileVolunteer";
     }
 
     ///////////CREADO NUEVO para que el VOLUNTEER edite sus cosas:
