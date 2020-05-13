@@ -353,3 +353,40 @@ INSERT INTO Login VALUES ('98561723I', 'carmenmarin', 'elderly');
 INSERT INTO Login VALUES ('58761324E', 'julianbazan', 'elderly');
 
 INSERT INTO Login VALUES ('48523694L', 'victorcayetano', 'elderly');
+
+-- I N S E R T S   V O L U N T E E R ( L O G I N )
+INSERT INTO Login VALUES ('12345678R','diegolacomba', 'volunter');
+
+INSERT INTO Login VALUES ('23456789Q','rafamesado', 'volunter' );
+
+INSERT INTO Login VALUES ('45678456T','josenebot', 'volunter' );'
+
+INSERT INTO Login VALUES ('12345853F','adriangarcia', 'volunter' );'
+
+INSERT INTO Login VALUES ('69420690W','pericopalotes', 'volunter' );'
+
+
+-- I N S E R T S   S O C I A L   W O R K E R ( L O G I N )
+INSERT INTO Login VALUES ('worker001','trabajador1', 'SocialWorker');
+
+INSERT INTO Login VALUES ('worker002','trabajador2','SocialWorker');
+
+INSERT INTO Login VALUES ('worker003','trabajador3', 'SocialWorker');
+
+INSERT INTO Login VALUES ('worker004','trabajador4', 'SocialWorker');
+
+INSERT INTO Login VALUES ('worker005','trabajador5', 'SocialWorker');
+
+
+
+
+
+-- I N S E R T S   C O M P A N Y ( L O G I N )
+INSERT INTO Login VALUES ('E12345678', 'MCarrones', 'Company')
+
+INSERT INTO Login VALUES ('E12348765','Compañias', 'Company')
+
+INSERT INTO Login VALUES ('E12342897','DonLimpio', 'Company')
+
+INSERT INTO Login VALUES ('E12342345', 'Quiropract','Company')
+INSERT INTO Login VALUES ('E12344560','DocsADom', 'Company')
