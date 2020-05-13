@@ -2,12 +2,9 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.model.Contract;
-import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 public class ContractValidator implements Validator {
@@ -24,13 +21,13 @@ public class ContractValidator implements Validator {
         ContractDao contractDao = new ContractDao();
         List<Contract> listaContratos = contractDao.getContracts();
 
-        for(Contract contrato : listaContratos){
-            if(contrato.getIdNumber().equals(contract.getIdNumber()))
+        for (Contract contrato : listaContratos) {
+            if (contrato.getIdNumber().equals(contract.getIdNumber()))
                 errors.rejectValue("idNumber", "obligatori",
                         "Aquesta ID ja existeix");
         }
 
-        if (contract.getIdNumber().equals("") || contract.getIdNumber().length() != 5)
+        if (contract.getIdNumber().equals("") || contract.getIdNumber().length() > 8)
             errors.rejectValue("idNumber", "obligatori",
                     "Cal introduir un ID vàlid");
 
@@ -42,15 +39,15 @@ public class ContractValidator implements Validator {
             errors.rejectValue("serviceType", "obligatori",
                     "Cal introduir un valor");
 
-        if (contract.getPrice()==0)
+        if (contract.getPrice() == 0)
             errors.rejectValue("price", "obligatori",
                     "Cal introduir un telefon de 9 cifres");
 
-        if (contract.getDateBegining()==null)
+        if (contract.getDateBegining() == null)
             errors.rejectValue("dateBegining", "obligatori",
                     "Cal introduir un valor");
 
-        if (contract.getDateEnding()==null)
+        if (contract.getDateEnding() == null)
             errors.rejectValue("dateEnding", "obligatori",
                     "Cal introduir un valor");
 
