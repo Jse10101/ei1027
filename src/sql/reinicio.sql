@@ -1,3 +1,5 @@
+
+
 DROP TABLE isPayedBy;
 DROP TABLE Request;
 DROP TABLE Contract;
@@ -290,15 +292,15 @@ INSERT INTO Availability VALUES ('2020-05-02','19:30:00.00','21:30:00.00', FALSE
 
 
 -- I N S E R T S   I N V O I C E
-INSERT INTO Invoice VALUES ('2016-03-13','28800',3, NULL, '48273019S');
+INSERT INTO Invoice VALUES ('2016-03-13','28800',3, NULL, '48273019S' );
 
-INSERT INTO Invoice VALUES ('2018-07-01','26000',1,NULL, '58274356Y');
+INSERT INTO Invoice VALUES ('2018-07-01','26000',1,NULL, '58274356Y' );
 
-INSERT INTO Invoice VALUES ('2019-12-04','15500',2,NULL, '98561723I');
+INSERT INTO Invoice VALUES ('2019-12-04','15500',2,NULL, '98561723I' );
 
-INSERT INTO Invoice VALUES ('2019-06-13','10100',1,NULL,   '58761324E');
+INSERT INTO Invoice VALUES ('2019-06-13','10100',1,NULL,   '58761324E' );
 
-INSERT INTO Invoice VALUES ('2017-05-16','90000',1,NULL, '48523694L');
+INSERT INTO Invoice VALUES ('2017-05-16','90000',1,NULL, '48523694L' );
 
 
 
@@ -353,16 +355,16 @@ INSERT INTO Login VALUES ('58761324E', 'julianbazan', 'elderly');
 
 INSERT INTO Login VALUES ('48523694L', 'victorcayetano', 'elderly');
 
--- I N S E R T S   V O L U N T E E R ( L O G I N )
-INSERT INTO Login VALUES ('12345678R','diegolacomba', 'volunter');
 
-INSERT INTO Login VALUES ('23456789Q','rafamesado', 'volunter' );
+INSERT INTO Login VALUES ('12345678R', 'diegolacomba', 'volunteer');
 
-INSERT INTO Login VALUES ('45678456T','josenebot', 'volunter' );
+INSERT INTO Login VALUES ('23456789Q', 'rafamesado', 'volunteer');
 
-INSERT INTO Login VALUES ('12345853F','adriangarcia', 'volunter' );
+INSERT INTO Login VALUES ('45678456T', 'josenebot', 'volunteer');
 
-INSERT INTO Login VALUES ('69420690W','pericopalotes', 'volunter' );
+INSERT INTO Login VALUES ('12345853F', 'adriangarcia', 'volunteer');
+
+INSERT INTO Login VALUES ('69420690W', 'pericopalotes', 'volunteer');
 
 
 -- I N S E R T S   S O C I A L   W O R K E R ( L O G I N )
@@ -377,9 +379,6 @@ INSERT INTO Login VALUES ('worker004','trabajador4', 'SocialWorker');
 INSERT INTO Login VALUES ('worker005','trabajador5', 'SocialWorker');
 
 
-
-
-
 -- I N S E R T S   C O M P A N Y ( L O G I N )
 INSERT INTO Login VALUES ('E12345678', 'MCarrones', 'Company');
 
@@ -388,4 +387,5 @@ INSERT INTO Login VALUES ('E12348765','Compañias', 'Company');
 INSERT INTO Login VALUES ('E12342897','DonLimpio', 'Company');
 
 INSERT INTO Login VALUES ('E12342345', 'Quiropract','Company');
+
 INSERT INTO Login VALUES ('E12344560','DocsADom', 'Company');
