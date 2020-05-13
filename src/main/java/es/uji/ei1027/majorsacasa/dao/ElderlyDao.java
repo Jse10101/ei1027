@@ -24,13 +24,13 @@ public class ElderlyDao {
 	}
 	
 	/* Afegeix al Elderly a la base de dades  VIEJO */
-	//	public void addElderly(Elderly elderly) {
-	//		jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
-	//				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getUserCAS_socialWorker());
-	//	}
+		public void addElderlyAdmin(Elderly elderly) {
+			jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
+					elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), elderly.getDateCreation(), elderly.getAlergies(), elderly.getDiseases(), elderly.getUserCAS_socialWorker());
+		}
 	
 	/* Afegeix al Elderly a la base de dades */
-		public void addElderly(Elderly elderly) {
+		public void addElderlyRegistro(Elderly elderly) {
 			LocalDate today = LocalDate.now();
 			jdbcTemplate.update("INSERT INTO Elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", elderly.getDni(),
 				elderly.getName(), elderly.getSurname(), elderly.getAddress(), elderly.getBankAccountNumber(), elderly.getUserpwd(), elderly.getEmail(), elderly.getPhoneNumber(), elderly.getBirthDate(), today, elderly.getAlergies(), elderly.getDiseases(), null);

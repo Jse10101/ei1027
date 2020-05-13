@@ -62,7 +62,7 @@ public class ElderlyController {
 
 			Elderly elderly = new Elderly(elderlyDao.getElderly(login.getUsuario()));
 			session.setAttribute("elderly", elderly);
-			//session.setAttribute("login", login);
+
 			return "elderly/home";
 
 		}
@@ -149,12 +149,13 @@ public class ElderlyController {
 	        List<Login> listaLogins = loginDao.getLogins();
 	        for(Login log : listaLogins) {
 	        	if(log.getUsuario().equals(elderly.getDni())) {
+	        		//El DNI ya está registrado
 	        		return "elderly/add";
 	        	}
 	        }
 	        Login login = new Login(elderly.getDni(), elderly.getUserpwd(), "elderly");
 			loginDao.addLogin(login);
-	        elderlyDao.addElderly(elderly);
+	        elderlyDao.addElderlyRegistro(elderly);
 	        return "redirect:../elderly/home";
 	    }
 	   

@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+  <meta charset="UTF8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/elderly/ajuda.css"
+	th:href="@{/css/elderly/ajuda.css}"/>
+	<title>Majors a casa</title>
+</head>
+
+<body>
+  <div class="contenedor">
+    <header>
+
+
+		<div class="boton_atras"><a th:href="@{/login}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
+		<div class="bienvenida" th:object="${session}"><h1>Hola &nbsp;<span class="nom" th:text="*{volunteer.name}"></span></h1></div>
+    </header>
+    <main class="main_ajuda">
+		<div class="text_ajuda">
+			Estàs a l'espera d'acceptació per part de l'administrador<br>
+			Rebràs un correu quan s'efectue el procés d'aceptació<br>
+			Si necessites ajuda pots cridar al teléfon:<br>
+			96XXXXXXX<br><br>
+			També pots posar-te en contacte amb nosaltres al seguent correu:<br>
+			ei1027@majorsacasa.es
+		</div>
+    </main>
+      <footer>
+		Majors a Casa - 2020
+		</footer>
+    </div>
+      </body>
+</html>
