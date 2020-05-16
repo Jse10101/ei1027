@@ -368,24 +368,24 @@ INSERT INTO Login VALUES ('69420690W', 'pericopalotes', 'volunteer');
 
 
 -- I N S E R T S   S O C I A L   W O R K E R ( L O G I N )
-INSERT INTO Login VALUES ('worker001','trabajador1', 'SocialWorker');
+INSERT INTO Login VALUES ('worker001','trabajador1', 'socialWorker');
 
-INSERT INTO Login VALUES ('worker002','trabajador2','SocialWorker');
+INSERT INTO Login VALUES ('worker002','trabajador2','socialWorker');
 
-INSERT INTO Login VALUES ('worker003','trabajador3', 'SocialWorker');
+INSERT INTO Login VALUES ('worker003','trabajador3', 'socialWorker');
 
-INSERT INTO Login VALUES ('worker004','trabajador4', 'SocialWorker');
+INSERT INTO Login VALUES ('worker004','trabajador4', 'socialWorker');
 
-INSERT INTO Login VALUES ('worker005','trabajador5', 'SocialWorker');
+INSERT INTO Login VALUES ('worker005','trabajador5', 'socialWorker');
 
 
 -- I N S E R T S   C O M P A N Y ( L O G I N )
-INSERT INTO Login VALUES ('E12345678', 'MCarrones', 'Company');
+INSERT INTO Login VALUES ('E12345678', 'MCarrones', 'company');
 
-INSERT INTO Login VALUES ('E12348765','Compañias', 'Company');
+INSERT INTO Login VALUES ('E12348765','Compañias', 'company');
 
-INSERT INTO Login VALUES ('E12342897','DonLimpio', 'Company');
+INSERT INTO Login VALUES ('E12342897','DonLimpio', 'company');
 
-INSERT INTO Login VALUES ('E12342345', 'Quiropract','Company');
+INSERT INTO Login VALUES ('E12342345', 'Quiropract','company');
 
-INSERT INTO Login VALUES ('E12344560','DocsADom', 'Company');
+INSERT INTO Login VALUES ('E12344560','DocsADom', 'company');

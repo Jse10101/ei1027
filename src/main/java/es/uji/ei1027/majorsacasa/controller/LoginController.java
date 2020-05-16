@@ -76,6 +76,8 @@ public class LoginController {
 				return "redirect:/volunteer/home";
 			case "company":
 				return "redirect:/company/home";
+			case "socialWorker":
+				return "redirect:/socialworker/home";
 
 			//Si es ADMIN entra desde index - REFER -
 		}
