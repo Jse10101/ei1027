@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Availability;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
@@ -75,6 +76,7 @@ public class VolunteerController {
 
         Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
         session.setAttribute("volunteer", volunteer);
+        //model.addAttribute("volunteer", volunteer);
         if ( volunteer.getAccepted() == false){
             return "volunteer/enEspera";
         }
@@ -86,6 +88,7 @@ public class VolunteerController {
     @RequestMapping("/horaris")
     public String horarisVolunteer(HttpSession session, Model model) {
         model.addAttribute("availabilities", availabilityDao.getAvailabilities());
+        model.addAttribute("availability", new Availability());
         return "volunteer/horaris";
     }
 
@@ -132,12 +135,15 @@ public class VolunteerController {
             return "login";
         }
 
+        Volunteer volunteer_update = (Volunteer) session.getAttribute("volunteer");
+        model.addAttribute("volunteer_update", volunteer_update);
         return "volunteer/update";
     }
 
     @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
-    public String processUpdateSubmitElderly(@ModelAttribute("volunteer") Volunteer volunteer) {
+    public String processUpdateSubmitVolunteer(HttpSession session, @ModelAttribute("volunteer_update") Volunteer volunteer) {
         volunteerDao.updateParaVolunteer(volunteer);
+        session.setAttribute("volunteer", volunteer);
         return "redirect:/volunteer/home";
     }
     //////////////////////////

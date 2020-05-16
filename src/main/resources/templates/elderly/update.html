@@ -24,7 +24,7 @@
 			<div class="bienvenida" th:object="${session}"><h1>Editant perfil de&nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}">, estàs editant les teues dades</span></h1></div>
 	    </header>
 		<main class="main_major_add">
-			<form action="#" th:action="@{/elderly/updateElderly} " th:object="${elderly}" method="post">
+			<form action="#" th:action="@{/elderly/updateElderly} " th:object="${elderly_update}" method="post">
 				<div class="pack_camp_form">
 					<div class="nom_dades">DNI:</div>
 					<div>

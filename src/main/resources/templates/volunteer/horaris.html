@@ -24,14 +24,66 @@
     </header>
 
     <main class="main_acompanyament" th:object="${session}">
+        <div class="container">
+            <h2>Nova Disponibilitat</h2>
+            <form class="form-horizontal" action="#" th:action="@{/availability/add}"
+                  th:object="${availability}" method="post">
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="fecha">Data:</label>
+                    <div class="col-sm-4">
+                        <input type="date" required class="form-control" id="fecha" th:field="*{fecha}"/>
+                        <div th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="beginingHour">Hora d'inici:</label>
+                    <div class="col-sm-4">
+                        <input type="time" required class="form-control" id="beginingHour" th:field="*{beginingHour}"/>
+                        <div th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" for="endingHour">Hora de fi:</label>
+                    <div class="col-sm-4">
+                        <input type="time" required class="form-control" id="endingHour" th:field="*{endingHour}"/>
+                        <div th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <a href="list">
+                            <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <aside>
         <div class ="text">LLISTAT D'HORARIS OFERITS:</div>
         <div class="bucle" th:each="horari : ${availabilities}">
             <div class="primerIf" th:if="${horari.dni_volunteer} == *{volunteer.dni}">
-                <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada3">FI</div><div class="nom_dada3">ESTAT</div></div>
-                <div class="pack_dades"><div class="primera_dada" th:text="${horaris.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada" th:text="${horari.stateAvailability}"></div></div>
+                <div class="segundoIf" th:if="${horari.stateAvailability}">
+                    <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada3">FI</div><div class="nom_dada3">ESTAT</div></div>
+                    <div class="pack_dades"><div class="primera_dada" th:text="${horaris.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada" th:text="${horari.stateAvailability}"></div></div>
+                    <!-- <a th:href="@{/availability/update/{fecha}/{dni_volunteer}/{beginingHour}(fecha=${horari.fecha}, dni_volunteer=${horari.dni_volunteer}, beginingHour=${horari.beginingHour})}" class="btn btn-warning" role="button">Edita</a> -->
+                    <a th:href="@{/availability/delete/{fecha}/{dni_volunteer}/{beginingHour}(fecha=${horari.fecha}, dni_volunteer=${horari.dni_volunteer}, beginingHour=${horari.beginingHour})}" class="btn btn-danger" role="button">Esborra</a>
+                </div>
             </div>
         </div>
-    </main>
+        <div class="bucle" th:each="horari : ${availabilities}">
+            <div class="primerIf" th:if="${horari.dni_volunteer} == *{volunteer.dni}">
+                <div class="segundoIf" th:unless="${horari.stateAvailability}">
+                    <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada3">FI</div><div class="nom_dada3">ESTAT</div></div>
+                    <div class="pack_dades"><div class="primera_dada" th:text="${horaris.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada" th:text="${horari.stateAvailability}"></div></div>
+                </div>
+            </div>
+        </div>
+    </aside>
 
     <footer>
         Majors a Casa - 2020

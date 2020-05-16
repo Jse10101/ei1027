@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Availability;
+import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,9 +24,9 @@ public class AvailabilityDao {
     }
 
     /* Afegeix al Availability a la base de dades */
-    public void addAvailability(Availability availability) {
-        jdbcTemplate.update("INSERT INTO Availability VALUES(?, ?, ?, ?, ?, ?)", availability.getFecha(), availability.getBeginingHour(), availability.getEndingHour(), availability.getStateAvailability(),
-                availability.getDni_volunteer(), availability.getDni_elderly());
+    public void addAvailability(Availability availability, Volunteer volunteer) {
+        jdbcTemplate.update("INSERT INTO Availability VALUES(?, ?, ?, ?, ?, ?)", availability.getFecha(), availability.getBeginingHour(), availability.getEndingHour(), true,
+                volunteer.getDni(), null);
     }
 
     /* Esborra el Availability de la base de dades */
@@ -39,7 +40,7 @@ public class AvailabilityDao {
 
     /* Actualitza els atributs del Availability
    (excepte la clau primària) */
-    public void updateAvailability(Availability availability) {
+    public void updateAvailability(Availability availability, Volunteer volunteer) {
         jdbcTemplate.update("UPDATE Availability SET endingHour=?, stateAvailability=?, dni_elderly=? WHERE dni_volunteer=? AND fecha=? AND beginingHour=?",
                 availability.getEndingHour(), availability.getStateAvailability(), availability.getDni_elderly(), availability.getDni_volunteer(), availability.getFecha(),
                 availability.getBeginingHour());

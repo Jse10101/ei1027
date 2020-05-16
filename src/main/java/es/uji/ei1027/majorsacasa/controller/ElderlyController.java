@@ -185,19 +185,21 @@ public class ElderlyController {
 	   @RequestMapping(value="/updateElderly")
 	   public String updateElderly(HttpSession session, Model model) {
 		   Login login = (Login) session.getAttribute("login");
-		   
-			if (login == null) {
-				model.addAttribute("login", new Login());
-				session.setAttribute("nextUrl", "/login");
-				return "login";
-			}
 
-			return "elderly/update";
-		}
+		   if (login == null) {
+			   model.addAttribute("login", new Login());
+			   session.setAttribute("nextUrl", "/login");
+			   return "login";
+		   }
+		   Elderly elderly_update = (Elderly) session.getAttribute("elderly") ;
+		   model.addAttribute("elderly_update", elderly_update);
+		   return "elderly/update";
+	   }
 
 	   @RequestMapping(value="/updateElderly", method = RequestMethod.POST) 
-	   public String processUpdateSubmitElderly(@ModelAttribute("elderly") Elderly elderly) {
+	   public String processUpdateSubmitElderly(HttpSession session, @ModelAttribute("elderly_update") Elderly elderly) {
 		   elderlyDao.updateParaElderly(elderly);
+		   session.setAttribute("elderly", elderly);
 		   return "redirect:/elderly/home";
 	   }
 	   //////////////////////////

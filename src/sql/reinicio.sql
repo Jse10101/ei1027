@@ -228,7 +228,7 @@ CREATE TABLE Login (
 
 
 -- I N S E R T S   V O L U N T E E R
-INSERT INTO Volunteer VALUES ('Diego Lacomba','12345678R','diegolacomba', 'diego@gmail.com', '123456789', 'deporte y videojuegos', '2019-04-09', NULL, NULL, FALSE, '1999-12-18');
+INSERT INTO Volunteer VALUES ('Diego Lacomba','12345678R','diegolacomba', 'diego@gmail.com', '123456789', 'deporte y videojuegos', '2019-04-09', '2020-05-16', NULL, TRUE, '1999-12-18');
 
 INSERT INTO Volunteer VALUES ('Rafael Mesado','23456789Q','rafamesado', 'rafa@gmail.com', '234567890', 'deporte, videojuegos y leer', '2019-04-09', NULL, NULL, FALSE, '1999-10-23');
 

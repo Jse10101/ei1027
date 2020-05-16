@@ -3,15 +3,13 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Availability;
+import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -55,13 +53,14 @@ public class AvailabilityController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("availability") Availability availability,
+    public String processAddSubmit(@ModelAttribute("availability") Availability availability, HttpSession session,
                                    BindingResult bindingResult) {
-       AvailabilityValidator availabilityValidador = new AvailabilityValidator();
+        AvailabilityValidator availabilityValidador = new AvailabilityValidator();
         availabilityValidador.validate(availability, bindingResult);
         if (bindingResult.hasErrors())
             return "availability/add";
-        availabilityDao.addAvailability(availability);
+        Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+        availabilityDao.addAvailability(availability, volunteer);
         return "redirect:list";
     }
 
@@ -70,19 +69,20 @@ public class AvailabilityController {
                                     @PathVariable String dni_volunteer, @PathVariable String beginingHour) {
         LocalDate fecha1 = LocalDate.parse(fecha);
         LocalTime tiempo = LocalTime.parse(beginingHour);
-        model.addAttribute("availability", availabilityDao.getAvailability(fecha1, dni_volunteer, tiempo));
+        model.addAttribute("availability_update", availabilityDao.getAvailability(fecha1, dni_volunteer, tiempo));
         return "availability/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(
-            @ModelAttribute("availability") Availability availability,
+            @ModelAttribute("availability") Availability availability, HttpSession session,
             BindingResult bindingResult) {
-       AvailabilityValidator availabilityValidador = new AvailabilityValidator();
+        AvailabilityValidator availabilityValidador = new AvailabilityValidator();
         availabilityValidador.validate(availability, bindingResult);
+        Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
         if (bindingResult.hasErrors())
             return "availability/update";
-        availabilityDao.updateAvailability(availability);
+        availabilityDao.updateAvailability(availability, volunteer);
         return "redirect:list";
     }
 
@@ -92,7 +92,7 @@ public class AvailabilityController {
         LocalDate fecha1 = LocalDate.parse(fecha);
         LocalTime tiempo = LocalTime.parse(beginingHour);
         availabilityDao.deleteAvailability(fecha1, dni_volunteer, tiempo);
-        return "redirect:../list";
+        return "redirect:../horaris";
     }
 
     @RequestMapping(value = "/donaDeAltaAvailability/{dni_volunteer}/{fecha}/{beginingHour}/{endingHour}/{dni_elderly}", method = RequestMethod.GET)
