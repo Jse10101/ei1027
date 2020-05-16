@@ -65,7 +65,7 @@ h1{
 }
 
 
-.bucle1{
+.bucle{
   width: 100%;
      /* Flexbox */
   display: flex;
@@ -147,6 +147,24 @@ body {
 	text-align:center;
 	font-weight:bold;
 	text-decoration: underline #EB6864;
+}
+
+.pack_nom_dades{
+	padding:10px;
+/* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-content: center;
+}
+
+.pack_dades{
+	padding:10px;
+/* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-content: center;
 }
 
 .nom_dades{

@@ -28,7 +28,7 @@
         <div class="bucle" th:each="horari : ${availabilities}">
             <div class="primerIf" th:if="${horari.dni_volunteer} == *{volunteer.dni}">
                 <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada3">FI</div><div class="nom_dada3">ESTAT</div></div>
-                <div class="pack_dades"><div class="nom_dades" th:text="${horaris.fecha}"></div><div class="nom_dades_centr" th:text="${horari.beginingHour}"></div><div class="nom_dades_centr" th:text="${horari.endingHour}"></div><div class="dada_final" th:text="${horari.stateAvailability}"></div></div>
+                <div class="pack_dades"><div class="primera_dada" th:text="${horaris.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada" th:text="${horari.stateAvailability}"></div></div>
             </div>
         </div>
     </main>
