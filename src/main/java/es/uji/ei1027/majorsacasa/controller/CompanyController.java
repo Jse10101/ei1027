@@ -68,6 +68,7 @@ public class CompanyController {
         return "redirect:list";
     }
 
+
     @RequestMapping(value = "/delete/{cif}")
     public String processDelete(@PathVariable String CIF) {
         companyDao.deleteCompany(CIF);
