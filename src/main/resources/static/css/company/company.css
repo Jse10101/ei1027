@@ -31,6 +31,11 @@ header {
 	align-content:center;
 }
 
+.boton_atras{
+	  padding:5px;
+}
+
+
 
 .pack_header{
 	width: 100%;
@@ -54,76 +59,30 @@ h1{
 	align-items:center;
 }
 
-.main_perfil{
-	width: 100%;
-	font-weight:bold;
-	/* Flexbox */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-  	flex: 1 1 50%;
-}
-
-.pack_camp_form{
-	display: flex;
-	flex-direction: row;
-	padding: 10px;
-}
-
-.nom_dades{
-	position:relative;
-	border-radius: 25px 0px 0px 25px;
-	width: 350px;
-	height: 38px;
-	background: #fff;
-	text-align:center;
-}
-.dada{
-		border-radius: 0 25px 25px 0;
-		background: #fff;
-		width: 250px;
-		text-align:center;
-}
-
 .nom{
 	text-decoration: underline #EB6864;
 }
 
-.boto{
-	  padding:15px;
-}
 
-.serveis{
-  width: 100%;
+.main_ajuda{
+  background: #dcdcdc;
+  width:100%;
+  height:250px;
+  /* Flexbox */
+  display: flex;
   font-weight:bold;
-	 /* Flexbox */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 1 1 50%;
 }
 
-.bucle{
-  width: 100%;
-     /* Flexbox */
-  display: flex;
+.text_ajuda{
+	width:100%;
+	font-weight:bold;
+	font-size: 30px;
+	text-decoration: underline #EB6864;
+	/* Flexbox */
+	display: flex;
+	justify-content:center;
+	align-items:center;
 }
-
-.primerIf{
-	  width: 100%;
-     /* Flexbox */
-  display: flex;
-}
-
-.segonIf{
-	  width: 100%;
-     /* Flexbox */
-  display: flex;
-  justify-content:space-around;
-}
-
 
 body {
   font-size: x-large;
@@ -131,10 +90,6 @@ body {
   color: #4d4d4d;
 }
 
-
-.btn {
-    font-family: serif;
-}
 
 footer {
   background: #c0c0c0;
