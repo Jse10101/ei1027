@@ -28,7 +28,7 @@ public class InvoiceValidator implements Validator {
                         "Aquesta ID ja existeix");
         }
 
-        if (invoice.getIdNumber().equals("") || invoice.getIdNumber().length() != 5)
+        if (invoice.getIdNumber().equals("") || invoice.getIdNumber().length() > 8)
             errors.rejectValue("idNumber", "obligatori",
                     "Cal introduir un ID vàlid");
 

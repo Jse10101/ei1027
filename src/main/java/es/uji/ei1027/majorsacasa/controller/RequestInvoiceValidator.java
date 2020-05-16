@@ -4,9 +4,6 @@ import es.uji.ei1027.majorsacasa.model.RequestInvoice;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 public class RequestInvoiceValidator implements Validator {
     @Override
     public boolean supports(Class<?> cls) {
@@ -18,11 +15,11 @@ public class RequestInvoiceValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         RequestInvoice requestInvoice = (RequestInvoice) obj;
-        if (requestInvoice.getIdNumber_request().equals("") || requestInvoice.getIdNumber_invoice().length() !=5)
+        if (requestInvoice.getIdNumber_request().equals("") || requestInvoice.getIdNumber_invoice().length() > 8)
             errors.rejectValue("idNumber_request", "obligatori",
                     "Cal introduir un ID valid");
 
-        if (requestInvoice.getIdNumber_invoice().equals("") || requestInvoice.getIdNumber_invoice().length() !=5)
+        if (requestInvoice.getIdNumber_invoice().equals("") || requestInvoice.getIdNumber_invoice().length() > 8)
             errors.rejectValue("idNumber_invoice", "obligatori",
                     "Cal introduir un ID valid");
 

@@ -5,8 +5,6 @@ import es.uji.ei1027.majorsacasa.model.Company;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 public class CompanyValidator implements Validator {
@@ -21,7 +19,7 @@ public class CompanyValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         Company company = (Company) obj;
         CompanyDao companyDao = new CompanyDao();
-        List<Company> listaCompanies = companyDao.getCompnanies();
+        List<Company> listaCompanies = companyDao.getCompanies();
 
         for(Company compañia : listaCompanies){
             if(compañia.getCif().equals(company.getCif()))

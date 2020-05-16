@@ -55,7 +55,7 @@ public class CompanyDao {
     }
 
     /* Obté tots els companies. Torna una llista buida si no n'hi ha cap. */
-    public List<Company> getCompnanies() {
+    public List<Company> getCompanies() {
         try {
             return jdbcTemplate.query("SELECT * FROM Company ORDER BY cif",
                     new CompanyRowMapper());
@@ -63,6 +63,5 @@ public class CompanyDao {
             return new ArrayList<Company>();
         }
     }
-
 
 }

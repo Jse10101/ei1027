@@ -80,4 +80,16 @@ public class VolunteerDao {
         jdbcTemplate.update("UPDATE Volunteer SET name=?, dni=?, pwd=?, email=?, phoneNumber=?, hobbies=?, birthDate=? WHERE dni=?",
                 volunteer.getName(), volunteer.getDni(), volunteer.getPwd(), volunteer.getEmail(), volunteer.getPhoneNumber(), volunteer.getHobbies(), volunteer.getBirthDate(),volunteer.getDni());
     }
+
+    public void approveVolunteer(String dni) {
+        LocalDate today = LocalDate.now();
+
+        jdbcTemplate.update("UPDATE Volunteer SET accepted=?, acceptationDate=? WHERE dni=?", true, today, dni);
+    }
+
+    public void rejectVolunteer(String dni) {
+        LocalDate today = LocalDate.now();
+
+        jdbcTemplate.update("UPDATE Volunteer SET accepted=?, finishDate=? WHERE dni=?", false, today, dni);
+    }
 }

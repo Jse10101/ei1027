@@ -52,7 +52,12 @@ public class SocialWorkerDao {
 			return null;
 		}
 	}
-	
+	//
+//    @RequestMapping(value = "/delete/{cif}")
+//    public String processDelete(@PathVariable String CIF) {
+//        companyDao.deleteCompany(CIF);
+//        return "redirect:../list";
+//    }
 	public List<SocialWorker> getSocialWorkers() {
 		try {
 			return jdbcTemplate.query("Select * from SocialWorker ORDER BY userCAS", new SocialWorkerRowMapper());

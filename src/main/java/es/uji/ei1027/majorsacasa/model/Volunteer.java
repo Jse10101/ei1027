@@ -14,7 +14,9 @@ public class Volunteer {
     private String hobbies;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate applicationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate acceptationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate finishDate;
     private boolean accepted;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

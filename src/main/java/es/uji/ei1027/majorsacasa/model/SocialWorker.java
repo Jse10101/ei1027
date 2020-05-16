@@ -1,57 +1,68 @@
 package es.uji.ei1027.majorsacasa.model;
 
 public class SocialWorker {
-	private String name;
-	private String userCAS;
-	private String pwd;
-	private String phoneNumber;
-	private String email;
-	
-	@Override
-	public String toString() {
-		return "SocialWorker [name=" + name + ", userCAS=" + userCAS + ", pwd=" + pwd + ", phoneNumber=" + phoneNumber
-				+ ", email=" + email + "]";
-	}
+    private String name;
+    private String userCAS;
+    private String pwd;
+    private String phoneNumber;
+    private String email;
 
-	public String getName() {
-		return name;
-	}
+    public SocialWorker() {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public SocialWorker(SocialWorker socialWorker) {
+        this.name = socialWorker.name;
+        this.userCAS = socialWorker.userCAS;
+        this.pwd = socialWorker.pwd;
+        this.phoneNumber = socialWorker.phoneNumber;
+        this.email = socialWorker.email;
+    }
 
-	public String getUserCAS() {
-		return userCAS;
-	}
+    @Override
+    public String toString() {
+        return "SocialWorker [name=" + name + ", userCAS=" + userCAS + ", pwd=" + pwd + ", phoneNumber=" + phoneNumber
+                + ", email=" + email + "]";
+    }
 
-	public void setUserCAS(String userCAS) {
-		this.userCAS = userCAS;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPwd() {
-		return pwd;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+    public String getUserCAS() {
+        return userCAS;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public void setUserCAS(String userCAS) {
+        this.userCAS = userCAS;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public String getPwd() {
+        return pwd;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }
