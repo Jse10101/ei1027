@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.time.LocalDate;
-
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
@@ -30,7 +28,7 @@ public class CompanyController {
     //listar
     @RequestMapping("/list")
     public String listCompanies(Model model) {
-        model.addAttribute("companies", companyDao.getCompnanies());
+        model.addAttribute("companies", companyDao.getCompanies());
         return "company/list";
     }
 
@@ -70,10 +68,15 @@ public class CompanyController {
         return "redirect:list";
     }
 
+
     @RequestMapping(value = "/delete/{cif}")
     public String processDelete(@PathVariable String CIF) {
         companyDao.deleteCompany(CIF);
         return "redirect:../list";
     }
+
+
+
+
 
 }

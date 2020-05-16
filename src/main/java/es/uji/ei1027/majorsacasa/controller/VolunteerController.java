@@ -1,5 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
+import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
@@ -21,6 +23,8 @@ import java.util.List;
 public class VolunteerController {
 
     private VolunteerDao volunteerDao;
+    private LoginDao loginDao;
+    private AvailabilityDao availabilityDao;
 
     @Autowired
     public void VolunteerDao(VolunteerDao volunteerDao) {
@@ -71,9 +75,18 @@ public class VolunteerController {
 
         Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
         session.setAttribute("volunteer", volunteer);
-        //session.setAttribute("login", login);
+        if ( volunteer.getAccepted() == false){
+            return "volunteer/enEspera";
+        }
+
         return "volunteer/home";
 
+    }
+
+    @RequestMapping("/horaris")
+    public String horarisVolunteer(HttpSession session, Model model) {
+        model.addAttribute("availabilities", availabilityDao.getAvailabilities());
+        return "volunteer/horaris";
     }
 
     @RequestMapping("/profileVolunteer")
@@ -89,9 +102,8 @@ public class VolunteerController {
         return "volunteer/profileVolunteer";
     }
 
-    ///////////CREADO NUEVO para que el VOLUNTEER edite sus cosas:
-    @RequestMapping(value="/updateVolunteer")
-    public String updateElderly(HttpSession session, Model model) {
+    @RequestMapping("/ajuda")
+    public String ajudaVolunteer(HttpSession session, Model model) {
         Login login = (Login) session.getAttribute("login");
 
         if (login == null) {
@@ -100,41 +112,35 @@ public class VolunteerController {
             return "login";
         }
 
-        return "elderly/update";
+        if(login.getRole().equals("volunteer")) {
+            return "volunteer/ajuda";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "volunteer/ajuda");
+        return "login";
+    }
+
+    ///////////CREADO NUEVO para que el VOLUNTEER edite sus cosas:
+    @RequestMapping(value="/updateVolunteer")
+    public String updateVolunteer(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        return "volunteer/update";
     }
 
     @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
     public String processUpdateSubmitElderly(@ModelAttribute("volunteer") Volunteer volunteer) {
         volunteerDao.updateParaVolunteer(volunteer);
-        return "redirect:/elderly/home";
+        return "redirect:/volunteer/home";
     }
     //////////////////////////
-
-    //Esto es lo relacionado con el add.html pero en la clase ElderlyController------------------------------
-    /*@RequestMapping(value="/add")
-    public String addElderly(Model model) {
-        model.addAttribute("elderly", new Elderly());
-        return "elderly/add";
-    }
-
-    @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "elderly/add";
-        }
-
-        List<Login> listaLogins = loginDao.getLogins();
-        for(Login log : listaLogins) {
-            if(log.getUsuario().equals(elderly.getDni())) {
-                return "elderly/add";
-            }
-        }
-        Login login = new Login(elderly.getDni(), elderly.getUserpwd(), "elderly");
-        loginDao.addLogin(login);
-        elderlyDao.addElderly(elderly);
-        return "redirect:../elderly/home";
-    }*/
-    //---------------------------------------------------------------------------------------------------------
     //Esto es lo que ya estaba
     @RequestMapping(value="/add")
     public String addVolunteer(Model model) {
@@ -142,14 +148,21 @@ public class VolunteerController {
         return "volunteer/add";
     }
 
-    @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
-                                   BindingResult bindingResult) {
-        VolunteerValidator voluntarioValidador = new VolunteerValidator();
-        voluntarioValidador.validate(volunteer, bindingResult);
-        if (bindingResult.hasErrors())
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "volunteer/add";
-        volunteerDao.addVolunteer(volunteer);
-        return "redirect:list";
+        }
+
+        List<Login> listaLogins = loginDao.getLogins();
+        for(Login log : listaLogins) {
+            if(log.getUsuario().equals(volunteer.getDni())) {
+                return "volunteer/add";
+            }
+        }
+        Login login = new Login(volunteer.getDni(), volunteer.getPwd(), "volunteer");
+        loginDao.addLogin(login);
+        volunteerDao.addVolunteerRegister(volunteer);
+        return "redirect:../volunteer/home";
     }
 }

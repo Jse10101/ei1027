@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +25,15 @@ public class VolunteerDao {
     }
 
     /* Afegeix al Volunteer a la base de dades */
-    public void addVolunteer(Volunteer volunteer) {
+    public void addVolunteerAdmin(Volunteer volunteer) {
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", volunteer.getName(), volunteer.getDni(), volunteer.getPhoneNumber(), volunteer.getEmail(),
                 volunteer.getPwd(), volunteer.getHobbies(), volunteer.getApplicationDate(), volunteer.getAcceptationDate(), volunteer.getFinishDate(), volunteer.getAccepted(), volunteer.getBirthDate());
+    }
+
+    public void addVolunteerRegister(Volunteer volunteer) {
+        LocalDate applicationDate = LocalDate.now();
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", volunteer.getName(), volunteer.getDni(), volunteer.getPhoneNumber(), volunteer.getEmail(),
+                volunteer.getPwd(), volunteer.getHobbies(), applicationDate, volunteer.getAcceptationDate(), volunteer.getFinishDate(), false, volunteer.getBirthDate());
     }
 
     /* Esborra al Volunteer de la base de dades */
