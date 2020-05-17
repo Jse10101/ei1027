@@ -13,7 +13,7 @@
     <div class="loggeduser" th:object="${session}">
         <div class="boton_atras"><a th:href="@{/socialworker/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a>
         </div>
-        <p th:if="*{elderly.name == null}">
+        <p th:if="*{socialworker.name == null}">
             No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
         </p>
         <p th:unless="*{socialworker.name == null}">
@@ -39,15 +39,17 @@
         <div class="nom_dada3">HOBBIES</div>
     </div>
     <div class="bucle1" th:each="volunteer : ${volunteers}">
-        <div class="dades_boto">
-            <div class="availability_volunteer">
-                <div class="primera_dada" th:text="${volunteer.dni}"></div>
-                <div class="dada" th:text="${volunteer.nom}"></div>
-                <div class="dada" th:text="${volunteer.email}"></div>
-                <div class="dada" th:text="${volunteer.phoneNumber}"></div>
-                <div class="dada" th:text="${volunteer.birthDate}"></div>
-                <div class="dada" th:text="${volunteer.acceptationDate}"></div>
-                <div class="ultima_dada" th:text="${volunteer.finishDate}"></div>
+        <div class="dada" th:if="${volunteer.acceptationDate!=null}">
+            <div class="dades_boto">
+                <div class="availability_volunteer">
+                    <div class="primera_dada" th:text="${volunteer.dni}"></div>
+                    <div class="dada" th:text="${volunteer.name}"></div>
+                    <div class="dada" th:text="${volunteer.email}"></div>
+                    <div class="dada" th:text="${volunteer.phoneNumber}"></div>
+                    <div class="dada" th:text="${volunteer.birthDate}"></div>
+                    <div class="dada" th:text="${volunteer.acceptationDate}"></div>
+                    <div class="ultima_dada" th:text="${volunteer.finishDate}"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -59,7 +61,7 @@
 <aside class="serveis" th:object="${session}">
     <div class="text">GESTIÓ DE SOL·LICITUTS DE VOLUNTARIS:</div>
     <div class="bucle" th:each="volunteer : ${volunteers}">
-        <div class="dada" th:if="${volunteer.finishDate} == ${volunteer.acceptationdDate}">
+        <div class="dada" th:if="${volunteer.finishDate} == ${volunteer.acceptationDate}">
             <div class="pack_nom_dades">
                 <div class="nom_dada1">DNI Voluntari</div>
                 <div class="nom_dada2">NOM</div>
@@ -77,7 +79,7 @@
                 <div class="dada_final" th:text="${volunteer.applicationDate}"></div>
                 <div><a th:href="@{/socialworker/approveVolunteer/{dni}(dni=${volunteer.dni})}"
                         class="btn btn-primary" role="button">ACCEPTAR</a></div>
-                <div><a th:href="@{/socialworker/rejectVolunteer/{dni}(idNumber=${volunteer.dni})}"
+                <div><a th:href="@{/socialworker/rejectVolunteer/{dni}(dni=${volunteer.dni})}"
                         class="btn btn-primary" role="button">REBUTJAR</a></div>
             </div>
         </div>

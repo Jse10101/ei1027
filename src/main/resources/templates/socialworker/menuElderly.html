@@ -13,7 +13,7 @@
     <div class="loggeduser" th:object="${session}">
         <div class="boton_atras"><a th:href="@{/socialworker/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a>
         </div>
-        <p th:if="*{elderly.name == null}">
+        <p th:if="*{socialworker.name == null}">
             No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
         </p>
         <p th:unless="*{socialworker.name == null}">
@@ -43,7 +43,7 @@
         <div class="dades_boto">
             <div class="availability_volunteer">
                 <div class="primera_dada" th:text="${elderly.dni}"></div>
-                <div class="dada" th:text="${elderly.nom}"></div>
+                <div class="dada" th:text="${elderly.name}"></div>
                 <div class="dada" th:text="${elderly.surname}"></div>
                 <div class="dada" th:text="${elderly.address}"></div>
                 <div class="dada" th:text="${elderly.bankAccountNumber}"></div>
@@ -53,7 +53,7 @@
                 <div class="dada" th:text="${elderly.dateCreation}"></div>
                 <div class="dada" th:text="${elderly.alergies}"></div>
                 <div class="dada" th:text="${elderly.diseases}"></div>
-                <div class="ultima_dada" th:text="${elderly.userCAS_socialworker}"></div>
+                <div class="ultima_dada" th:text="${elderly.userCAS_socialWorker}"></div>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
                 <div class="nom_dada3">FECHA DE SOL·LICITUD</div>
             </div>
             <div class="pack_dades">
-                <div class="nom_dades" th:text="${elderly.dni}"></div>
+                <div class="nom_dades" th:text="${request.dni_elderly}"></div>
                 <div class="nom_dades_centr" th:text="${request.serviceType}"></div>
                 <div class="nom_dades_centr" th:text="${request.comentario}"></div>
                 <div class="dada_final" th:text="${request.creationDate}"></div>

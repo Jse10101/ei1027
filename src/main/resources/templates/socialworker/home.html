@@ -15,7 +15,7 @@
             <p th:if="*{socialworker.name == null}">
                 No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
             </p>
-            <p th:unless="*{elderly.name == null}">
+            <p th:unless="*{socialworker.name == null}">
                 Accedeixes com a&nbsp;<span th:text="*{socialworker.name}"></span> &nbsp;
                 <a href="/logout" th:href="@{/logout}">EIXIR</a>
             </p>
@@ -31,7 +31,7 @@
                     <div class="text_pr">Administrar Persones Majors</div>
                     <div class="boto"><input type="submit" value="PERSONES MAJORS" class="btn btn-primary"/></div>
                 </form>
-                <form class="pack_boto_text" action="#" th:action="@{/socialworker/menuCompanyia}">
+                <form class="pack_boto_text" action="#" th:action="@{/socialworker/menuCompany}">
                     <div class="text_pr">Administrar Companyies</div>
                     <div class="boto"><input type="submit" value="COMPANYIES" class="btn btn-primary"/></div>
                 </form>

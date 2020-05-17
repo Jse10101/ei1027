@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.*;
+import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.Login;
 import es.uji.ei1027.majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,7 +122,7 @@ public class SocialWorkerController {
         }
 
 
-        if (login.getRole().equals("socialworker")) {
+        if (login.getRole().equals("socialWorker")) {
             model.addAttribute("requests", requestDao.getRequests());
             model.addAttribute("elderlys", elderlyDao.getElderlys());
             return "socialworker/menuElderly";
@@ -142,7 +143,7 @@ public class SocialWorkerController {
             return "login";
         }
 
-        if(login.getRole().equals("socialworker")){
+        if(login.getRole().equals("socialWorker")){
             requestDao.approveRequest(idNumber);
             return "redirect:../menuElderly";
         }
@@ -161,7 +162,7 @@ public class SocialWorkerController {
             return "login";
         }
 
-        if(login.getRole().equals("socialworker")){
+        if(login.getRole().equals("socialWorker")){
             requestDao.rejectRequest(idNumber);
             return "redirect:../menuElderly";
         }
@@ -182,8 +183,10 @@ public class SocialWorkerController {
         }
 
 
-        if (login.getRole().equals("socialworker")) {
+        if (login.getRole().equals("socialWorker")) {
             model.addAttribute("companies", companyDao.getCompanies());
+            Company companyy = new Company();
+            model.addAttribute("companyy", companyy);
             return "socialworker/menuCompany";
         }
 
@@ -204,7 +207,7 @@ public class SocialWorkerController {
         }
 
 
-        if (login.getRole().equals("socialworker")) {
+        if (login.getRole().equals("socialWorker")) {
             model.addAttribute("volunteers", volunteerDao.getVolunteers());
             return "socialworker/menuVolunteer";
         }
@@ -224,7 +227,7 @@ public class SocialWorkerController {
             return "login";
         }
 
-        if(login.getRole().equals("socialworker")){
+        if(login.getRole().equals("socialWorker")){
             volunteerDao.approveVolunteer(dni);
             return "redirect:../menuVolunteer";
         }
@@ -243,7 +246,7 @@ public class SocialWorkerController {
             return "login";
         }
 
-        if(login.getRole().equals("socialworker")){
+        if(login.getRole().equals("socialWorker")){
             volunteerDao.rejectVolunteer(dni);
             return "redirect:../menuVolunteer";
         }

@@ -19,13 +19,13 @@ public class CompanyValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         Company company = (Company) obj;
         CompanyDao companyDao = new CompanyDao();
-        List<Company> listaCompanies = companyDao.getCompanies();
+        /*List<Company> listaCompanies = companyDao.getCompanies();
 
         for(Company compañia : listaCompanies){
             if(compañia.getCif().equals(company.getCif()))
                 errors.rejectValue("cif", "obligatori",
                         "Aquest CIF ja existeix");
-        }
+        }*/
 
         if (company.getName().equals(""))
             errors.rejectValue("name", "obligatori",

@@ -2,7 +2,9 @@ package es.uji.ei1027.majorsacasa.controller;
 
 
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
+import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +14,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
 
     private CompanyDao companyDao;
+    private LoginDao loginDao;
 
     @Autowired
     public void CompanyDao(CompanyDao companyDao) {
         this.companyDao = companyDao;
+    }
+
+    public void setLoginDao(LoginDao loginDao) {
+        this.loginDao = loginDao;
     }
 
     // Operacions: Crear, llistar, actualitzar, esborrar
@@ -38,6 +47,7 @@ public class CompanyController {
         model.addAttribute("company", new Company());
         return "company/add";
     }
+
     //afegir
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
@@ -76,7 +86,27 @@ public class CompanyController {
     }
 
 
+    @RequestMapping(value = "/afegirCompany", method = RequestMethod.POST)
+    public String afegirCompany(@ModelAttribute("companyy") Company companyy,
+                                   BindingResult bindingResult) {
+        CompanyValidator companyValidador = new CompanyValidator();
+        companyValidador.validate(companyy, bindingResult);
+        if (bindingResult.hasErrors())
+            return "redirect:../socialworker/menuCompany";
 
+        List<Login> listaLogins = loginDao.getLogins();
+        for(Login log : listaLogins) {
+            if(log.getUsuario().equals(companyy.getCif())) {
+                //El DNI ya está registrado
+                return "redirect:../socialworker/menuCompany";
+            }
+        }
+        Login login = new Login(companyy.getCif(), companyy.getPwd(), "elderly");
+        loginDao.addLogin(login);
+
+        companyDao.addCompany(companyy);
+        return "redirect:../socialworker/menuCompany";
+    }
 
 
 }

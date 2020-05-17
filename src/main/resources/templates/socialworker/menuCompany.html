@@ -34,11 +34,11 @@
         <div class="nom_dada2">EMAIL DE CONTACTE</div>
         <div class="nom_dada2">TIPUS DE SERVICI</div>
     </div>
-    <div class="bucle1" th:each="elderly : ${elderlys}">
+    <div class="bucle1" th:each="company : ${companies}">
         <div class="dades_boto">
             <div class="availability_volunteer">
                 <div class="primera_dada" th:text="${company.cif}"></div>
-                <div class="dada" th:text="${company.nom}"></div>
+                <div class="dada" th:text="${company.name}"></div>
                 <div class="dada" th:text="${company.address}"></div>
                 <div class="dada" th:text="${company.contactName}"></div>
                 <div class="dada" th:text="${company.contactPhoneNumber}"></div>
@@ -53,7 +53,7 @@
 
 <aside class="main_major_add" th:object="${session}">
     <div class="text">ANYADIR COMPANYIES :</div>
-    <form action="#" th:action="@{/company/add} " th:object="${company}"
+    <form action="#" th:action="@{/company/afegirCompany} " th:object="${companyy}"
           method="post">
         <div class="pack_camp_form">
             <div class="nom_dades">CIF:</div>
@@ -116,7 +116,7 @@
         <div class="pack_camp_form">
             <div class="nom_dades">E-MAIL DE CONTACTE:</div>
             <div>
-                <input class="form-control" type="contactEmail" required
+                <input class="form-control" type="text" required
                        th:field="*{contactEmail}"/>
                 <div th:if="${#fields.hasErrors('contactEmail')}" th:errors="*{contactEmail}"></div>
             </div>
@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="boton">
-            <input type="submit" class="btn btn-primary" value="REGISTRAR-ME"/>
+            <input type="submit" class="btn btn-primary" value="REGISTRAR COMPANYIA"/>
         </div>
     </form>
 </aside>
