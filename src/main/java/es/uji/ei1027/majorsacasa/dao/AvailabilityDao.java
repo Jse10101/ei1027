@@ -66,6 +66,17 @@ public class AvailabilityDao {
             return new ArrayList<Availability>();
         }
     }
+
+    public List<Availability> getAvailabilitiesVolunteer(Volunteer volunteer) {
+        try {
+            String dni_volunteer = volunteer.getDni();
+            return jdbcTemplate.query("SELECT * FROM Availability WHERE dni_volunteer=? ORDER BY fecha",
+                    new AvailabilityRowMapper(),
+                    dni_volunteer);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Availability>();
+        }
+    }
     
     /* Actualitza els atributs del Availability
    (excepte la clau primària) */

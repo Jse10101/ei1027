@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,9 +29,17 @@ public class VolunteerController {
     private AvailabilityDao availabilityDao;
 
     @Autowired
-    public void VolunteerDao(VolunteerDao volunteerDao) {
+    public void setVolunteerDao(VolunteerDao volunteerDao) {
         this.volunteerDao = volunteerDao;
     }
+
+    @Autowired
+    public void setLoginDao(LoginDao loginDao) {
+        this.loginDao = loginDao;
+    }
+
+    @Autowired
+    public void setAvailabilityDao(AvailabilityDao availabilityDao) { this.availabilityDao = availabilityDao; }
 
     // Operacions: Crear, llistar, actualitzar, esborrar
     // ...
@@ -87,8 +96,9 @@ public class VolunteerController {
 
     @RequestMapping("/horaris")
     public String horarisVolunteer(HttpSession session, Model model) {
-        model.addAttribute("availabilities", availabilityDao.getAvailabilities());
         model.addAttribute("availability", new Availability());
+        Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+        model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
         return "volunteer/horaris";
     }
 

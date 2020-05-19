@@ -16,7 +16,9 @@ public class AvailabilityRowMapper implements RowMapper<Availability> {
         availability.setEndingHour(rs.getTime("endingHour").toLocalTime());
         availability.setStateAvailability(rs.getBoolean("stateAvailability"));
         availability.setDni_volunteer(rs.getString("dni_volunteer"));
-        availability.setDni_elderly(rs.getString("dni_elderly"));
+
+        String dni = rs.getString("dni_elderly");
+        availability.setDni_elderly(dni != null ? dni : null);
         return availability;
     }
 }

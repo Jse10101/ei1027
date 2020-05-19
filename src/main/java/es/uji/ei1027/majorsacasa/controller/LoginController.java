@@ -63,8 +63,7 @@ public class LoginController {
 			bindingResult.rejectValue("pwd", "badpw", "Contraseña incorrecta"); 
 			return "redirect:/login";
 		}
-		
-		
+
 		session.setAttribute("login", login);
 		
 		
