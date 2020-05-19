@@ -2,8 +2,8 @@
 <head>
   <meta charset="UTF8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
-  <link rel="stylesheet" type="text/css" href="/css/company/ajuda.css"
-	th:href="@{/css/company/ajuda.css}"/>
+  <link rel="stylesheet" type="text/css" href="/css/ajuda.css"
+	th:href="@{/css/ajuda.css}"/>
 	<title>Majors a casa</title>
 </head>
 
@@ -16,7 +16,7 @@
 				<p th:if="*{company.name == null}">
 					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
 				</p>
-				<p th:unless="*{elderly.name == null}">
+				<p th:unless="*{company.name == null}">
 					Accedeixes com a&nbsp;<span th:text="*{company.name}"></span> &nbsp;
 					<a href="/logout" th:href="@{/logout}">EIXIR</a>
 				</p>

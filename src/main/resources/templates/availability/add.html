@@ -1,70 +1,111 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crear nova disponibilitat</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <meta charset="UTF8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/ajuda.css"
+          th:href="@{/css/ajuda.css}"/>
+    <title>Majors a casa</title>
 </head>
+
 <body>
-<div class="container">
-    <h2>Nova Disponibilitat</h2>
-    <form class="form-horizontal" action="#" th:action="@{/availability/add}"
-          th:object="${availability}" method="post">
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="fecha">Data:</label>
-            <div class="col-sm-4">
-                <input type="date" required class="form-control" id="fecha" th:field="*{fecha}"/>
-                <div th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="beginingHour">Hora d'inici:</label>
-            <div class="col-sm-4">
-                <input type="time" required class="form-control" id="beginingHour" th:field="*{beginingHour}"/>
-                <div th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>
-            </div>
-        </div>
+<div class="contenedor">
+    <header>
 
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="endingHour">Hora de fi:</label>
-            <div class="col-sm-4">
-                <input type="time" required class="form-control" id="endingHour" th:field="*{endingHour}"/>
-                <div th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>
-            </div>
+        <div class="loggeduser" th:object="${session}">
+            <div class="boton_atras"><a th:href="@{/company/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
+            <p th:if="*{company.name == null}">
+                No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
+            </p>
+            <p th:unless="*{company.name == null}">
+                Accedeixes com a&nbsp;<span th:text="*{company.name}"></span> &nbsp;
+                <a href="/logout" th:href="@{/logout}">EIXIR</a>
+            </p>
         </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="stateAvailability">En Actiu:</label>
-            <div class="col-sm-4">
-                <input type="checkbox" class="form-control" id="stateAvailability" th:field="*{stateAvailability}"/>
-            </div>
+        <div class="bienvenida" th:object="${session}"><h1>Hola &nbsp;<span class="nom" th:text="*{company.name}"></span>&nbsp;<span class="nom" th:text="*{company.surname}"></span>, necessites ajuda? </h1></div>
+    </header>
+    <main class="main_ajuda">
+        <div class="text_ajuda">
+            Si necessites ajuda pots cridar al teléfon:<br>
+            96XXXXXXX<br><br>
+            També pots posar-te en contacte amb nosaltres al seguent correu:<br>
+            ei1027@majorsacasa.es
         </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="dni_volunteer">DNI del Voluntari:</label>
-            <div class="col-sm-4">
-                <input type="text" maxlength="9" required class="form-control" id="dni_volunteer"
-                       th:field="*{dni_volunteer}"/>
-                <div th:if="${#fields.hasErrors('dni_volunteer')}" th:errors="*{dni_volunteer}"></div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-sm-2" for="dni_elderly">DNI de la Pesona Major:</label>
-            <div class="col-sm-4">
-                <input type="text" maxlength="9" required class="form-control" id="dni_elderly"
-                       th:field="*{dni_elderly}"/>
-                <div th:if="${#fields.hasErrors('dni_elderly')}" th:errors="*{dni_elderly}"></div>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-offset-2 col-sm-4">
-                <a href="list">
-                    <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>
-                </a>
-            </div>
-        </div>
-
-    </form>
+    </main>
+    <footer>
+        Majors a Casa - 2020
+    </footer>
 </div>
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Crear nova disponibilitat</title>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h2>Nova Disponibilitat</h2>-->
+<!--    <form class="form-horizontal" action="#" th:action="@{/availability/add}"-->
+<!--          th:object="${availability}" method="post">-->
+<!--        <div class="form-group row">-->
+<!--            <label class="control-label col-sm-2" for="fecha">Data:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="date" required class="form-control" id="fecha" th:field="*{fecha}"/>-->
+<!--                <div th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--            <label class="control-label col-sm-2" for="beginingHour">Hora d'inici:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="time" required class="form-control" id="beginingHour" th:field="*{beginingHour}"/>-->
+<!--                <div th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="form-group row">-->
+<!--            <label class="control-label col-sm-2" for="endingHour">Hora de fi:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="time" required class="form-control" id="endingHour" th:field="*{endingHour}"/>-->
+<!--                <div th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--            <label class="control-label col-sm-2" for="stateAvailability">En Actiu:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="checkbox" class="form-control" id="stateAvailability" th:field="*{stateAvailability}"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--            <label class="control-label col-sm-2" for="dni_volunteer">DNI del Voluntari:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="text" maxlength="9" required class="form-control" id="dni_volunteer"-->
+<!--                       th:field="*{dni_volunteer}"/>-->
+<!--                <div th:if="${#fields.hasErrors('dni_volunteer')}" th:errors="*{dni_volunteer}"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--            <label class="control-label col-sm-2" for="dni_elderly">DNI de la Pesona Major:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="text" maxlength="9" required class="form-control" id="dni_elderly"-->
+<!--                       th:field="*{dni_elderly}"/>-->
+<!--                <div th:if="${#fields.hasErrors('dni_elderly')}" th:errors="*{dni_elderly}"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="form-group row">-->
+<!--            <div class="col-sm-offset-2 col-sm-4">-->
+<!--                <a href="list">-->
+<!--                    <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

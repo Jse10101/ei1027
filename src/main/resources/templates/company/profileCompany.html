@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/company/companyVolunteer.css"
-          th:href="@{/css/company/companyVolunteer.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/company/profileCompany.css"
+          th:href="@{/css/company/profileCompany.css}"/>
     <title>Majors a casa</title>
 </head>
 
@@ -12,19 +12,19 @@
 <div class="contenedor">
     <header>
         <div class="loggeduser" th:object="${session}">
-            <div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
-            <p th:if="*{volunteer.name == null}">
+            <div class="boton_atras"><a th:href="@{/company/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
+            <p th:if="*{company.name == null}">
                 No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
             </p>
-            <p th:unless="*{volunteer.name == null}">
-                Accedeixes com a&nbsp;<span th:text="*{volunteer.name}"></span> &nbsp;
+            <p th:unless="*{company.name == null}">
+                Accedeixes com a&nbsp;<span th:text="*{company.name}"></span> &nbsp;
                 <a href="/logout" th:href="@{/logout}">EIXIR</a>
             </p>
         </div>
-        <div class="bienvenida" th:object="${session}"><h1>Perfil de &nbsp;<span class="nom" th:text="*{company.name}"></span> </h1></div>
+        <div class="bienvenida" th:object="${session}"><h1>Perfil de &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span> </h1></div>
     </header>
     <main class="main_perfil" th:object="${session}">
-        <div class="text">DADES EMPRESARIALS:</div>
+        <div class="text">DADES PERSONALS:</div>
         <div class="pack_camp_form">
             <div class="nom_dades">CIF:</div>
             <div class="dada" th:text="*{company.cif}"></div>
@@ -35,25 +35,33 @@
         </div>
         <div class="pack_camp_form">
             <div class="nom_dades">ADREÇA:</div>
-            <div class="dada" th:text="*{adress.address}"></div>
+            <div class="dada" th:text="*{elderly.address}"></div>
         </div>
         <div class="pack_camp_form">
             <div class="nom_dades">NOM CONTACT:</div>
             <div class="dada" th:text="*{company.contactName}">
             </div></div>
         <div class="pack_camp_form">
-            <div class="nom_dades">NÚMERO DE CONTACTE:</div>
+            <div class="nom_dades">CONTRASENYA:</div>
+            <div class="dada" th:text="*{company.pwd}"></div>
+        </div>
+        <div class="pack_camp_form">
+            <div class="nom_dades">CORREU DE CONTACTE
+                :</div>
+            <div class="dada" th:text="*{company.ContactEmail}"></div>
+        </div>
+        <div class="pack_camp_form">
+            <div class="nom_dades">TELÉFON DE CONTACTE:</div>
             <div class="dada" th:text="*{company.contactPhoneNumber}"></div>
         </div>
         <div class="pack_camp_form">
-            <div class="nom_dades">CORREU DE CONTACTE:</div>
-            <div class="dada" th:text="*{company.contactEmail}"></div>
-        </div>
-        <div class="pack_camp_form">
-            <div class="nom_dades">TIPUS DE SERVICI:</div>
+            <div class="nom_dades">TIPUS DE SERVICE:</div>
             <div class="dada" th:text="*{company.serviceType}"></div>
         </div>
 
+        <form action="#" th:action="@{/company/updateCompany}">
+            <div class="boto"><input type="submit" value="EDITAR" class="btn btn-primary" /></div>
+        </form>
 
     </main>
     <footer>
@@ -61,5 +69,70 @@
     </footer>
 </div>
 </body>
-
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF8">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>-->
+<!--    <link rel="stylesheet" type="text/css" href="/css/company/companyVolunteer.css"-->
+<!--          th:href="@{/css/company/companyVolunteer.css}"/>-->
+<!--    <title>Majors a casa</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div class="contenedor">-->
+<!--    <header>-->
+<!--        <div class="loggeduser" th:object="${session}">-->
+<!--            <div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>-->
+<!--            <p th:if="*{volunteer.name == null}">-->
+<!--                No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>-->
+<!--            </p>-->
+<!--            <p th:unless="*{volunteer.name == null}">-->
+<!--                Accedeixes com a&nbsp;<span th:text="*{volunteer.name}"></span> &nbsp;-->
+<!--                <a href="/logout" th:href="@{/logout}">EIXIR</a>-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="bienvenida" th:object="${session}"><h1>Perfil de &nbsp;<span class="nom" th:text="*{company.name}"></span> </h1></div>-->
+<!--    </header>-->
+<!--    <main class="main_perfil" th:object="${session}">-->
+<!--        <div class="text">DADES EMPRESARIALS:</div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">CIF:</div>-->
+<!--            <div class="dada" th:text="*{company.cif}"></div>-->
+<!--        </div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">NOM:</div>-->
+<!--            <div class="dada" th:text="*{company.name}"></div>-->
+<!--        </div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">ADREÇA:</div>-->
+<!--            <div class="dada" th:text="*{adress.address}"></div>-->
+<!--        </div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">NOM CONTACT:</div>-->
+<!--            <div class="dada" th:text="*{company.contactName}">-->
+<!--            </div></div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">NÚMERO DE CONTACTE:</div>-->
+<!--            <div class="dada" th:text="*{company.contactPhoneNumber}"></div>-->
+<!--        </div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">CORREU DE CONTACTE:</div>-->
+<!--            <div class="dada" th:text="*{company.contactEmail}"></div>-->
+<!--        </div>-->
+<!--        <div class="pack_camp_form">-->
+<!--            <div class="nom_dades">TIPUS DE SERVICI:</div>-->
+<!--            <div class="dada" th:text="*{company.serviceType}"></div>-->
+<!--        </div>-->
+
+
+<!--    </main>-->
+<!--    <footer>-->
+<!--        Majors a Casa - 2020-->
+<!--    </footer>-->
+<!--</div>-->
+<!--</body>-->
+
+<!--</html>-->
