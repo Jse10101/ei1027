@@ -234,7 +234,7 @@ INSERT INTO Volunteer VALUES ('Rafael Mesado','23456789Q','rafamesado', 'rafa@gm
 
 INSERT INTO Volunteer VALUES ('Jose Nebot','45678456T','josenebot', 'jose@gmail.com', '126789865', NULL, '2019-04-09', NULL, NULL, FALSE, '1998-09-20');
 
-INSERT INTO Volunteer VALUES ('Adrián García','12345853F','adriangarcia', 'adrian@gmail.com', '123895386', 'cine', '2019-04-09', NULL, NULL, FALSE, '1996-02-18');
+INSERT INTO Volunteer VALUES ('Adrián Martínez','12345853F','adrianmartinez', 'adrian@gmail.com', '123895386', 'cine', '2019-04-09', NULL, NULL, FALSE, '1996-02-18');
 
 INSERT INTO Volunteer VALUES ('Perico Palotes','69420690W','pericopalotes', 'perico@gmail.com', '987654321', 'salir de parranda', '2019-04-09', NULL, NULL, FALSE, '1997-10-23');
 
@@ -362,7 +362,7 @@ INSERT INTO Login VALUES ('23456789Q', 'rafamesado', 'volunteer');
 
 INSERT INTO Login VALUES ('45678456T', 'josenebot', 'volunteer');
 
-INSERT INTO Login VALUES ('12345853F', 'adriangarcia', 'volunteer');
+INSERT INTO Login VALUES ('12345853F', 'adrianmartinez', 'volunteer');
 
 INSERT INTO Login VALUES ('69420690W', 'pericopalotes', 'volunteer');
 
