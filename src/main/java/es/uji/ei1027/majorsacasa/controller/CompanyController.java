@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -106,6 +108,25 @@ public class CompanyController {
 
         companyDao.addCompany(companyy);
         return "redirect:../socialworker/menuCompany";
+    }
+
+
+    @RequestMapping("/home")
+    public String homeElderly(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/company/home");
+            return "login";
+        }
+
+
+        Company company = new Company(companyDao.getCompany(login.getUsuario()));
+        session.setAttribute("company", company);
+
+        return "company/home";
+
     }
 
 
