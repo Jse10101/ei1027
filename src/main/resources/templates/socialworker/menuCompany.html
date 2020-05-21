@@ -124,11 +124,12 @@
 
         <div class="pack_camp_form">
             <div class="nom_dades">TIPUS DE SERVICI:</div>
-            <div>
-                <input class="form-control" type="text" required maxlength="50"
-                       th:field="*{serviceType}"/>
-                <div th:if="${#fields.hasErrors('serviceType')}"
-                     th:errors="*{serviceType}"></div>
+            <div class="sel">
+                <select class="form-control" th:field="*{serviceType}">
+                    <option value="Neteja">NETEJA</option>
+                    <option value="Menjar a domicili">MENJAR A DOMICILI</option>
+                    <option value="Servei sanitari">SERVEI SANITARI</option>
+                </select>
             </div>
         </div>
         <div class="boton">

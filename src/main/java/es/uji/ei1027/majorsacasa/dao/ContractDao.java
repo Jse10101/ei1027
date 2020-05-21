@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Repository
 public class ContractDao {
@@ -74,9 +75,9 @@ public class ContractDao {
         }
     }
 
-    /* Actualitza els atributs dels Contrats
+     /*Actualitza els atributs dels Contrats
    (excepte la clau primària) */
-    /*public void nouContract(Request request) {
+    public void nouContract(Request request) {
         LocalDate today = LocalDate.now();
 
         //Creamos un requestDao, hacemos una lista de Requests y la recorremos para comprobar el valor de id
@@ -92,11 +93,20 @@ public class ContractDao {
             if(request.getServiceType().equals(com.getServiceType()))
                 listaCompaniesServici.add(com);
         }
-        Company company = listaCompaniesServici.get((int)Math.random()*(listaCompaniesServici.size()-0+1)+0);
+        Random rand = new Random();
+        Company company = listaCompaniesServici.get(rand.nextInt(listaCompaniesServici.size()));
+        int precio=0;
         switch (request.getServiceType()){
-
+            case "Neteja":
+                precio = 10;
+                break;
+            case "Menjar a domicili":
+                precio = 4;
+                break;
+            case "Servei sanitari":
+                precio =25;
         }
             jdbcTemplate.update("INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?, ?)", Integer.toString(id),
-                    request.getServiceType(), true, request.getAprovedDate(), request.getAprovedDate().plusDays(7), company.getPrice(), company.getCif());
-    }*/
+                    request.getServiceType(), true, request.getAprovedDate(), request.getAprovedDate().plusDays(7), precio, company.getCif());
+    }
 }
