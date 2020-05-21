@@ -13,6 +13,19 @@ public class Company {
 
     public Company(){}
 
+    public Company(Company company){
+        this.name = company.name;
+        this.cif = company.cif;
+        this.pwd = company.pwd;
+        this.address = company.address;
+        this.contactName = company.contactName;
+        this.contactPhoneNumber = company.contactPhoneNumber;
+        this.contactEmail = company.contactEmail;
+        this.serviceType = company.serviceType;
+
+    }
+
+
     @Override
     public String toString() {
         return "Company{" +
