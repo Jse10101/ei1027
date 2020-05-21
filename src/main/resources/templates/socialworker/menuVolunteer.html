@@ -31,11 +31,11 @@
         <div class="nom_dada2">EMAIL</div>
         <div class="nom_dada3">TELEFON</div>
         <div class="nom_dada3">DATA DE NAIXEMENT</div>
-        <div class="nom_dada2">DATA DE REGISTRE</div>
+        <!--<div class="nom_dada2">DATA DE REGISTRE</div>
         <div class="nom_dada2">DATA DE ACCEPTACIÓ</div>
         <div class="nom_dada2">DATA DE FINALITZACIÓ</div>
         <div class="nom_dada1">DATA DE NAIXEMENT</div>
-        <div class="nom_dada1">DATA DE REGISTRE</div>
+        <div class="nom_dada1">DATA DE REGISTRE</div>-->
         <div class="nom_dada3">HOBBIES</div>
     </div>
     <div class="bucle1" th:each="volunteer : ${volunteers}">
@@ -47,8 +47,7 @@
                     <div class="dada" th:text="${volunteer.email}"></div>
                     <div class="dada" th:text="${volunteer.phoneNumber}"></div>
                     <div class="dada" th:text="${volunteer.birthDate}"></div>
-                    <div class="dada" th:text="${volunteer.acceptationDate}"></div>
-                    <div class="ultima_dada" th:text="${volunteer.finishDate}"></div>
+                    <div class="ultima_dada" th:text="${volunteer.hobbies}"></div>
                 </div>
             </div>
         </div>
