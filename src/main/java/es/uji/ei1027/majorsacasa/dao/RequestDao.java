@@ -17,11 +17,17 @@ public class RequestDao {
 
     private JdbcTemplate jdbcTemplate;
     private int id = 1;
+    private ContractDao contractDao;
 
 
     @Autowired
     public void setDateSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
+        this.contractDao = contractDao;
     }
 
 
@@ -104,6 +110,9 @@ public class RequestDao {
         LocalDate today = LocalDate.now();
 
         jdbcTemplate.update("UPDATE Request SET state=?, aprovedDate=? WHERE idNumber=?", true, today, idNumber);
+        Request request = getRequest(idNumber);
+        contractDao.nouContract(request);
+
     }
 
     public void rejectRequest(String idNumber) {
