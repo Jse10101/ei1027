@@ -110,40 +110,26 @@ body {
 .primera_dada{
 	border-radius: 25px 0px 0px 25px;
 	background: #fff;
-	width: 125px;
+	width: 150px;
 	text-align:center;
 }
 
 .dada{
 	border-radius: 0px 0px 0px 0px;
 	background: #fff;
-	width: 75px;
+	width: 150px;
 	text-align:center;
 }
 
 .ultima_dada{
 	border-radius: 0 25px 25px 0;
 	background: #fff;
-	width: 450px;
+	width: 150px;
 	text-align:center;
 }
 
 .nom_dada1{
-	width: 125px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada2{
-	width: 75px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada3{
-	width: 450px;
+	width: 150px;
 	text-align:center;
 	font-weight:bold;
 	text-decoration: underline #EB6864;
@@ -186,7 +172,7 @@ body {
 }
 
 
-.aside_acompanyament{
+aside{
 	  width: 100%;
   font-weight:bold;
 	 /* Flexbox */

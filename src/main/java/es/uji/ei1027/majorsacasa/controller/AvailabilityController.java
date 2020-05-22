@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Availability;
@@ -53,15 +54,22 @@ public class AvailabilityController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("availability") Availability availability, HttpSession session,
+    public String processAddSubmit(@ModelAttribute("availability") Availability availability, Model model, HttpSession session,
                                    BindingResult bindingResult) {
+        Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+
+        availability.setDni_volunteer(volunteer.getDni());
+        availability.setStateAvailability(true);
+
         AvailabilityValidator availabilityValidador = new AvailabilityValidator();
         availabilityValidador.validate(availability, bindingResult);
-        if (bindingResult.hasErrors())
-            return "availability/add";
-        Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
+            return "/volunteer/horaris";
+        }
         availabilityDao.addAvailability(availability, volunteer);
-        return "redirect:list";
+        return "redirect:/volunteer/horaris";
     }
 
     @RequestMapping(value = "/update/{fecha}/{dni_volunteer}/{beginingHour}", method = RequestMethod.GET)
@@ -92,7 +100,7 @@ public class AvailabilityController {
         LocalDate fecha1 = LocalDate.parse(fecha);
         LocalTime tiempo = LocalTime.parse(beginingHour);
         availabilityDao.deleteAvailability(fecha1, dni_volunteer, tiempo);
-        return "redirect:../horaris";
+        return "redirect:/volunteer/horaris";
     }
 
     @RequestMapping(value = "/donaDeAltaAvailability/{dni_volunteer}/{fecha}/{beginingHour}/{endingHour}/{dni_elderly}", method = RequestMethod.GET)

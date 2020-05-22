@@ -53,9 +53,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-offset-2 col-sm-4">
-                        <a href="list">
-                            <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>
-                        </a>
+                        <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>
                     </div>
                 </div>
 
@@ -65,18 +63,17 @@
 
     <aside>
         <div class ="text">LLISTAT D'HORARIS OFERITS:</div>
+
+        <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada1">INICI</div><div class="nom_dada1">FI</div><div class="nom_dada1">ESTAT</div></div>
         <div class="bucle" th:each="horari : ${availabilities}">
             <div class="primerIf" th:if="${horari.stateAvailability}">
-                <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada3">FI</div><div class="nom_dada3">ESTAT</div></div>
-                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada" th:text="${horari.stateAvailability}"></div></div>
-                <!-- <a th:href="@{/availability/update/{fecha}/{dni_volunteer}/{beginingHour}(fecha=${horari.fecha}, dni_volunteer=${horari.dni_volunteer}, beginingHour=${horari.beginingHour})}" class="btn btn-warning" role="button">Edita</a> -->
-                <a th:href="@{/availability/delete/{fecha}/{dni_volunteer}/{beginingHour}(fecha=${horari.fecha}, dni_volunteer=${horari.dni_volunteer}, beginingHour=${horari.beginingHour})}" class="btn btn-danger" role="button">Esborra</a>
+                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada">LIBRE</div></div>
+                <a th:href="@{/availability/delete/{fecha}/{dni_volunteer}/{beginingHour}(fecha=${horari.fecha}, dni_volunteer=${horari.dni_volunteer}, beginingHour=${horari.beginingHour})}" class="btn btn-primary" role="button">Esborra</a>
             </div>
         </div>
         <div class="bucle" th:each="horari : ${availabilities}">
             <div class="primerIf" th:unless="${horari.stateAvailability}">
-                <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada3">FI</div><div class="nom_dada3">ESTAT</div></div>
-                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada" th:text="${horari.stateAvailability}"></div></div>
+                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada">NO LIBRE</div></div>
             </div>
         </div>
     </aside>

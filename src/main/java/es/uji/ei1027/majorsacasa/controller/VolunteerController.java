@@ -96,8 +96,8 @@ public class VolunteerController {
 
     @RequestMapping("/horaris")
     public String horarisVolunteer(HttpSession session, Model model) {
-        model.addAttribute("availability", new Availability());
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+        model.addAttribute("availability", new Availability());
         model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
         return "volunteer/horaris";
     }
