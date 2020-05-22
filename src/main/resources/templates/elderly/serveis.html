@@ -44,12 +44,12 @@
 
 	 <aside class="serveis" th:object="${session}">
 			<div class="text">HISTORIAL DE SERVEIS:</div>
-			
-			
+
+
 			<div class="bucle" th:each="request : ${requests}">
 				    <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
 						<div class="dada" th:if="${request.state}">
-						<div class="pack_nom_dades"><div class="nom_dada1">TIPUS</div><div class="nom_dada2">INICI</div><div class="nom_dada3">ESTAT</div></div>
+							<div class="pack_nom_dades"><div class="nom_dada1">TIPUS</div><div class="nom_dada2">INICI</div><div class="nom_dada3">ESTAT</div></div>
 						<div class="pack_dades"><div class="nom_dades" th:text="${request.serviceType}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"></div><div class="dada_final">EN ACTIU</div></div></div>
 				 	</div>
 			</div>
