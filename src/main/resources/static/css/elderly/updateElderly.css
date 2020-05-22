@@ -51,7 +51,7 @@ h1{
 	width: 100%;
 	font-weight:bold;
 	font-size: 60px;
-	font-family: serif;
+	font-family: sans-serif;
 	height:150px;
 	
 	/* Flexbox */
@@ -72,11 +72,11 @@ h1{
 
 h3{
 	font-weight:bold;
-	font-family: serif;
+	font-family: sans-serif;
 }
 
 .btn {
-    font-family: serif;
+    font-family: sans-serif;
     font-weight: 700;
 }
 
@@ -120,7 +120,7 @@ form{
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
 }
 

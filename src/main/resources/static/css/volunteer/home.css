@@ -87,7 +87,7 @@ h1{
 }
 
 .boto{
-		/* Flexbox */
+	/* Flexbox */
 	display: flex;
 	justify-content:center;
 	align-items:space-between;
@@ -99,8 +99,8 @@ h1{
 	color: #fff;
     background-color: #EB6864;
     border-color: #EB6864;
-    height:250px;
-    width:300px;
+    height:180px;
+    width:230px;
 }
 
 body {
@@ -121,7 +121,7 @@ footer {
 
 @media screen and (max-width: 790px){
 	
-	.pack_boto_text{
+.pack_boto_text{
 
 	/* Flexbox */
 	display: flex;

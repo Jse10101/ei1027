@@ -24,12 +24,12 @@ header {
 
 h1{
 	font-weight:bold;
-	font-family: serif;
+	font-family: sans-serif;
 	font-size: 60px;
 }
 
 .btn {
-    font-family: serif;
+    font-family: sans-serif;
 }
 
 .main {
@@ -44,7 +44,7 @@ h1{
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
   text-align:center;
 }

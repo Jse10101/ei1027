@@ -22,6 +22,50 @@ header {
 
 }
 
+.container{
+    width: 100%
+    /* Flexbox */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.formulario{
+    width: 100%
+        /* Flexbox */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+}
+
+.pack_formulario{
+    width: 100%
+            /* Flexbox */
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+}
+/*
+.formulario_nombre{
+    width: 100%
+        /* Flexbox
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+}
+
+.formulario_dato{
+    width: 100%
+        /* Flexbox
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+}*/
+
 .loggeduser{
 	width: 100%;
 	font-size: 15px;
@@ -39,7 +83,7 @@ h1{
 	width: 100%;
 	font-weight:bold;
 	font-size: 60px;
-	font-family: serif;
+	font-family: sans-serif;
 	height:150px;
 	
 	/* Flexbox */
@@ -53,14 +97,15 @@ h1{
 	text-decoration: underline #EB6864;
 }
 
-.main_acompanyament{
+.main{
+
   width: 100%;
   font-weight:bold;
 	 /* Flexbox */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex: 1 1 50%;
 }
 
@@ -79,10 +124,10 @@ h1{
 }
 
 .primerIf{
-	  width: 100%;
+    width: 100%;
           /* Flexbox */
   display: flex;
-  justify-content:flex-start;
+  justify-content: center;
   align-content: center;
 }
 
@@ -96,7 +141,7 @@ h1{
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
 }
 
@@ -163,7 +208,9 @@ body {
 }
 
 .btn {
-    font-family: serif;
+    font-family: sans-serif;
+    height: 40px;
+    weight: 70px;
 }
 
 .text{
@@ -171,15 +218,14 @@ body {
 	text-align:center;
 }
 
-
 aside{
 	  width: 100%;
   font-weight:bold;
 	 /* Flexbox */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
+  justify-content: center;
+  align-content: flex;
   flex: 1 1 50%;
 }
 
