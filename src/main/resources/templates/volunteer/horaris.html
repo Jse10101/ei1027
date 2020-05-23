@@ -25,7 +25,7 @@
 
     <main class="main" >
         <div class="container">
-            <h2>Nova Disponibilitat</h2>
+            <div class="text">NOVA DISPONIBILITAT</div>
             <form class="formulario" action="#" th:action="@{/availability/add}"
                   th:object="${availability}" method="post">
                 <div class="pack_formulario">
@@ -52,9 +52,7 @@
                 </div>
 
                 <div class="pack_formulario">
-                    <div class="formulario_nombre">
                         <button type="submit" class="btn btn-primary">Afegeix Disponibilitat</button>
-                    </div>
                 </div>
 
             </form>
