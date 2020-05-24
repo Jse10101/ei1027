@@ -29,7 +29,7 @@
 					<div class="nom_dades">DNI:</div>
 					<div>
 						<input class="form-control" maxlength="9" required type="text"
-							th:field="*{dni}" />
+							th:field="*{dni}" readonly/>
 						<div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
 					</div>
 				</div>

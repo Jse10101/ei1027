@@ -21,22 +21,24 @@
                 <a href="/logout" th:href="@{/logout}">EIXIR</a>
             </p>
         </div>
+        <div class="bienvenida" th:object="${session}"><h1>Horaris de &nbsp;<span class="nom" th:text="*{volunteer.name}"></span></h1></div>
     </header>
 
     <main class="main" >
         <div class="container">
-            <div class="text">NOVA DISPONIBILITAT</div>
+            <h2>NOVA DISPONIBILITAT:</h2>
+            <br>
             <form class="formulario" action="#" th:action="@{/availability/add}"
                   th:object="${availability}" method="post">
                 <div class="pack_formulario">
-                    <div class="formulario_nombre">Data:</div>
+                    <div class="formulario_nombre">DATA</div>
                     <div class="formulario_dato">
                         <div class="casilla"><input type="date" required class="form-control" id="fecha" th:field="*{fecha}"/></div>
                         <div th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
                     </div>
                 </div>
                 <div class="pack_formulario">
-                    <div class="formulario_nombre">Hora d'inici:</div>
+                    <div class="formulario_nombre">HORA D'INICI</div>
                     <div class="formulario_dato">
                         <div class="casilla"><input type="time" required class="form-control" id="beginingHour" th:field="*{beginingHour}"/></div>
                         <div th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>
@@ -44,7 +46,7 @@
                 </div>
 
                 <div class="pack_formulario">
-                    <div class="formulario_nombre">Hora de fi:</div>
+                    <div class="formulario_nombre">HORA DE FI</div>
                     <div class="formulario_dato">
                         <div class="casilla"><input type="time" required class="form-control" id="endingHour" th:field="*{endingHour}"/></div>
                         <div th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>
@@ -60,18 +62,18 @@
     </main>
 
     <aside>
-        <div class ="text">LLISTAT D'HORARIS OFERITS:</div>
+        <h2 class="no_centrat">LLISTAT D'HORARIS OFERITS:</h2>
 
         <div class="pack_nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada1">INICI</div><div class="nom_dada1">FI</div><div class="nom_dada1">ESTAT</div></div>
         <div class="bucle" th:each="horari : ${availabilities}">
             <div class="primerIf" th:if="${horari.stateAvailability}">
-                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada">LIBRE</div></div>
+                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada">LLIURE</div></div>
                 <div class="boto"><a th:href="@{/availability/delete/{fecha}/{dni_volunteer}/{beginingHour}(fecha=${horari.fecha}, dni_volunteer=${horari.dni_volunteer}, beginingHour=${horari.beginingHour})}" class="btn btn-primary" role="button">Esborra</a></div>
             </div>
         </div>
         <div class="bucle" th:each="horari : ${availabilities}">
             <div class="primerIf" th:unless="${horari.stateAvailability}">
-                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada">NO LIBRE</div></div>
+                <div class="pack_dades"><div class="primera_dada" th:text="${horari.fecha}"></div><div class="dada" th:text="${horari.beginingHour}"></div><div class="dada" th:text="${horari.endingHour}"></div><div class="ultima_dada">RESERVAT</div></div>
             </div>
         </div>
     </aside>

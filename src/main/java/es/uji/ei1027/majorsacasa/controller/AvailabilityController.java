@@ -110,7 +110,8 @@ public class AvailabilityController {
         LocalTime tiempo_fin = LocalTime.parse(endingHour);
         Availability availability = new Availability(fecha1, tiempo_ini, tiempo_fin, false, dni_volunteer, dni_elderly);
         availabilityDao.donaDeAltaAvailability(availability);
-        return "elderly/home";
+        model.addAttribute("availabilities", availabilityDao.getAvailabilities());
+        return "redirect:/availability/acompanyament";
     }
     
     @RequestMapping("/acompanyament")

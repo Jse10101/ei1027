@@ -31,6 +31,13 @@ header {
 	align-content:center;
 }
 
+h2{
+	font-family: sans-serif;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
+}
+
 
 .pack_header{
 	width: 100%;

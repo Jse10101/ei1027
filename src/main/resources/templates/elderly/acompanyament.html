@@ -24,7 +24,7 @@
 			<div class="bienvenida" th:object="${session}"><h1>Serveis d'acompanyament</h1></div>
 	    </header>
 		<main class="main_acompanyament" th:object="${session}">
-			<div class ="text">LLISTAT D'HORARIS OFERITS PER VOLUNTARIS	:</div>
+			<h2 class="no_centrado">LLISTAT D'HORARIS OFERITS PER VOLUNTARIS:</h2>
 				<div class="nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada2">FI</div><div class="nom_dada3">HOBBIES</div></div>
 				<div class="bucle1" th:each="volunteer : ${volunteers}">
 					<div class="bucle2" th:each="availability : ${availabilities}">
@@ -37,7 +37,7 @@
 										<div class="dada" th:text="${availability.endingHour}"></div>
 										<div class="ultima_dada" th:text="${volunteer.hobbies}"></div>
 									</div>
-									<div class="boto_enviar"><a th:href="@{/availability/donaDeAltaAvailability/{dni_volunteer}/{fecha}/{beginingHour}/{endingHour}/{dni_elderly}(dni_volunteer=${availability.dni_volunteer}, fecha=${availability.fecha}, beginingHour=${availability.beginingHour},endingHour=${availability.endingHour}, dni_elderly=*{elderly.dni})}" class="btn btn-primary" role="button">Cancelar</a></div>
+									<div class="boto_enviar"><a th:href="@{/availability/donaDeAltaAvailability/{dni_volunteer}/{fecha}/{beginingHour}/{endingHour}/{dni_elderly}(dni_volunteer=${availability.dni_volunteer}, fecha=${availability.fecha}, beginingHour=${availability.beginingHour},endingHour=${availability.endingHour}, dni_elderly=*{elderly.dni})}" class="btn btn-primary" role="button">RESERVA</a></div>
 								</div>
 							</div>
 						</div>
@@ -47,7 +47,7 @@
 
 
 	 	<aside class="aside_acompanyament" th:object="${session}">
-			<div>HISTORIAL D'ACOMPANYAMENTS:</div>
+			<h2 class="no_centrado">HISTORIAL D'ACOMPANYAMENTS:</h2>
 			<div class="nom_dades"><div class="nom_dada1">DATA</div><div class="nom_dada2">INICI</div><div class="nom_dada2">FI</div><div class="nom_dada3">HOBBIES</div></div>
 				<div class="bucle1" th:each="volunteer : ${volunteers}">
 					<div class="bucle2" th:each="availability : ${availabilities}">

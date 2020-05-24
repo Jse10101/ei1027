@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/home.css"
-          th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/socialworker/home"
+          th:href="@{/css/socialworker/home.css}"/>
     <title>Majors a casa</title>
 </head>
 
@@ -26,10 +26,9 @@
     </header>
     <main class="main_principal">
         <div class="botons">
-            <div class="botons_home">
                 <form class="pack_boto_text" action="#" th:action="@{/socialworker/menuElderly}"><!--Falta el tema de contratos e invoices-->
                     <div class="text_pr">Administrar Persones Majors</div>
-                    <div class="boto"><input type="submit" value="PERSONES MAJORS" class="btn btn-primary"/></div>
+                    <div class="boto"><input type="submit" value="MAJORS" class="btn btn-primary"/></div>
                 </form>
                 <form class="pack_boto_text" action="#" th:action="@{/socialworker/menuCompany}">
                     <div class="text_pr">Administrar Companyies</div>
@@ -39,7 +38,6 @@
                     <div class="text_pr">Administrar Voluntaris</div>
                     <div class="boto"><input type="submit" value="VOLUNTARIS" class="btn btn-primary"/></div>
                 </form>
-            </div>
         </div>
     </main>
     <footer>

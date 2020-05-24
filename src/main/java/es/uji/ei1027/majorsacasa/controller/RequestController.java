@@ -64,7 +64,7 @@ public class RequestController {
     @RequestMapping(value="/donaDeBaixaRequest/{idNumber}", method = RequestMethod.GET)
     public String donaDeBaixaRequest(Model model, @PathVariable String idNumber) {
         requestDao.donaDeBaixaRequest(idNumber);
-        return "elderly/home";
+        return "redirect:/elderly/profileElderly";
     }
     
     /////////////////nou add

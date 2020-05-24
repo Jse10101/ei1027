@@ -18,15 +18,13 @@ header {
   
     /* Flexbox */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .container{
     width: 100%;
     display: flex;
     flex-direction: column;
-      justify-content: center;
-      align-content: center;
 }
 
 .formulario{
@@ -81,6 +79,15 @@ header {
 	  padding:5px;
 }
 
+.pack_header{
+	width: 100%;
+	font-size: 15px;
+		  /* Flexbox */
+	display: flex;
+	 flex-direction: row;
+	 justify-content:space-between;
+}
+
 h1{
 	width: 100%;
 	font-weight:bold;
@@ -106,7 +113,7 @@ h1{
 	 /* Flexbox */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 1 1 50%;
 }
 
@@ -210,8 +217,6 @@ body {
 
 .btn {
     font-family: sans-serif;
-    height: 40px;
-    weight: 70px;
 }
 
 .text{
@@ -223,11 +228,9 @@ body {
 	text-align:center;
 	font-weight:bold;
 	font-family: sans-serif;
+	text-align:center;
 }
 
-h2{
-	font-family: sans-serif;
-}
 
 aside{
 	  width: 100%;
@@ -235,8 +238,33 @@ aside{
 	 /* Flexbox */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 1 1 50%;
+}
+
+
+.boto{
+	width: 100%;
+	height: 56px;
+    width: 100px;
+	/* Flexbox */
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  
+}
+
+h2{
+	font-family: sans-serif;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
+}
+.no_centrat{
+	font-family: sans-serif;
+	text-align:left;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
 }
 
 footer {

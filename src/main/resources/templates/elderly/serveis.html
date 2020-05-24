@@ -24,7 +24,7 @@
 			<div class="bienvenida" th:object="${session}"><h1>Serveis de &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span> </h1></div>
 	    </header>
 		   <main class="main_serveis">
-		   <div class ="text">SOL·LICITA UN NOU SERVEI:</div>
+		   <h2>SOL·LICITA UN NOU SERVEI:</h2>
 		   		<form class="form_serveis" action="#" th:action="@{/request/addRequestElderly}" th:object="${requestt}" method="post">
 					<div class="serveis_pack">
 						<div class="sel">
@@ -43,7 +43,7 @@
 
 
 	 <aside class="serveis" th:object="${session}">
-			<div class="text">HISTORIAL DE SERVEIS:</div>
+			<h2 class="no_centrado">HISTORIAL DE SERVEIS:</h2>
 
 
 			<div class="bucle" th:each="request : ${requests}">

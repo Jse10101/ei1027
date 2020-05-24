@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/elderly/acompanyament.css"
-          th:href="@{/css/elderly/acompanyament.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/socialworker/menuCompany.css"
+          th:href="@{/css/socialworker/menuCompany.css}"/>
     <title>Majors a casa</title>
 </head>
 
 <body>
+<div class="contenedor">
 <header>
     <div class="loggeduser" th:object="${session}">
         <div class="boton_atras"><a th:href="@{/socialworker/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a>
@@ -23,40 +24,13 @@
     </div>
     <div class="bienvenida" th:object="${session}"><h1>Administració de Companyies</h1></div>
 </header>
-<main class="main_menuElderly" th:object="${session}">
-    <div class="text">LLISTAT DE COMPANYIES ACCEPTADES :</div>
-    <div class="nom_dades">
-        <div class="nom_dada1">CIF</div>
-        <div class="nom_dada2">NOM</div>
-        <div class="nom_dada2">DIRECCIÓ</div>
-        <div class="nom_dada3">NOM DE CONTACTE</div>
-        <div class="nom_dada2">TELÉFON DE CONTACTE</div>
-        <div class="nom_dada2">EMAIL DE CONTACTE</div>
-        <div class="nom_dada2">TIPUS DE SERVICI</div>
-    </div>
-    <div class="bucle1" th:each="company : ${companies}">
-        <div class="dades_boto">
-            <div class="availability_volunteer">
-                <div class="primera_dada" th:text="${company.cif}"></div>
-                <div class="dada" th:text="${company.name}"></div>
-                <div class="dada" th:text="${company.address}"></div>
-                <div class="dada" th:text="${company.contactName}"></div>
-                <div class="dada" th:text="${company.contactPhoneNumber}"></div>
-                <div class="ultima_dada" th:text="${company.serviceType}"></div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-</main>
 
-
-<aside class="main_major_add" th:object="${session}">
-    <div class="text">ANYADIR COMPANYIES :</div>
+<main class="add_company" th:object="${session}">
+    <h2>ANYADIR COMPANYIES :</h2>
     <form action="#" th:action="@{/company/afegirCompany} " th:object="${companyy}"
           method="post">
         <div class="pack_camp_form">
-            <div class="nom_dades">CIF:</div>
+            <div class="nom_dades_form">CIF:</div>
             <div>
                 <input class="form-control" maxlength="9" required type="text"
                        th:field="*{cif}"/>
@@ -65,8 +39,8 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">NOM:</div>
-            <div>
+            <div class="nom_dades_form">NOM:</div>
+            <div class="">
                 <input class="form-control" type="text" required maxlength="50"
                        th:field="*{name}"/>
                 <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
@@ -74,7 +48,7 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">CONTRASENYA:</div>
+            <div class="nom_dades_form">CONTRASENYA:</div>
             <div>
                 <input class="form-control" type="password" required maxlength="50"
                        th:field="*{pwd}"/>
@@ -84,7 +58,7 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">ADREÇA:</div>
+            <div class="nom_dades_form">ADREÇA:</div>
             <div>
                 <input class="form-control" type="text" required maxlength="50"
                        th:field="*{address}"/>
@@ -94,7 +68,7 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">NOM DE CONTACTE:</div>
+            <div class="nom_dades_form">NOM DE CONTACTE:</div>
             <div>
                 <input class="form-control" maxlength="50" required type="text"
                        th:field="*{contactName}"/>
@@ -104,7 +78,7 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">TELEFON DE CONTACTE:</div>
+            <div class="nom_dades_form">TELEFON DE CONTACTE:</div>
             <div>
                 <input class="form-control" required
                        maxlength="9" type="text" th:field="*{contactPhoneNumber}"/>
@@ -114,7 +88,7 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">E-MAIL DE CONTACTE:</div>
+            <div class="nom_dades_form">E-MAIL DE CONTACTE:</div>
             <div>
                 <input class="form-control" type="text" required
                        th:field="*{contactEmail}"/>
@@ -123,7 +97,7 @@
         </div>
 
         <div class="pack_camp_form">
-            <div class="nom_dades">TIPUS DE SERVICI:</div>
+            <div class="nom_dades_form">TIPUS DE SERVICI:</div>
             <div class="sel">
                 <select class="form-control" th:field="*{serviceType}">
                     <option value="Neteja">NETEJA</option>
@@ -132,11 +106,39 @@
                 </select>
             </div>
         </div>
-        <div class="boton">
+        <div class="boto">
             <input type="submit" class="btn btn-primary" value="REGISTRAR COMPANYIA"/>
         </div>
     </form>
+</main>
+
+<aside class="main_menuElderly" th:object="${session}">
+<br><br>
+    <h2>LLISTAT DE COMPANYIES ACCEPTADES :</h2>
+    <div class="pack_nom_dades">
+        <div class="nom_dada_petita">CIF</div>
+        <div class="nom_dada_llarga">NOM</div>
+        <div class="nom_dada_llarga">DIRECCIÓ</div>
+        <div class="nom_dada_llarga">CONTACTE</div>
+        <div class="nom_dada_petita">TELÉFON</div>
+        <div class="nom_dada_llarga">EMAIL</div>
+        <div class="nom_dada_llarga">SERVEI</div>
+    </div>
+    <div class="bucle1" th:each="company : ${companies}">
+        <div class="dades_boto">
+            <div class="availability_volunteer">
+                <div class="primera_dada" th:text="${company.cif}"></div>
+                <div class="dada_llarga" th:text="${company.name}"></div>
+                <div class="dada_llarga" th:text="${company.address}"></div>
+                <div class="dada_llarga" th:text="${company.contactName}"></div>
+                <div class="dada_petita" th:text="${company.contactPhoneNumber}"></div>
+                <div class="dada_llarga" th:text="${company.contactEmail}"></div>
+                <div class="ultima_dada" th:text="${company.serviceType}"></div>
+            </div>
+        </div>
+    </div>
 </aside>
+
 <footer>
     Majors a Casa - 2020
 </footer>
