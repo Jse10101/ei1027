@@ -21,6 +21,7 @@ public class VolunteerValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Volunteer voluntario = (Volunteer) obj;
+        /*
         VolunteerDao volunteerDao = new VolunteerDao();
         List<Volunteer> listaVolunteer = volunteerDao.getVolunteers();
 
@@ -28,7 +29,7 @@ public class VolunteerValidator implements Validator {
             if(voluntario1.getDni().equals(voluntario.getDni()))
                 errors.rejectValue("dni", "obligatori",
                         "Aquest DNI ja existeix");
-        }
+        }*/
 
         if (voluntario.getName().equals(""))
             errors.rejectValue("name", "obligatori",

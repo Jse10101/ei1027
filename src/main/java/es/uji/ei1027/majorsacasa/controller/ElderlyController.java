@@ -129,9 +129,8 @@ public class ElderlyController {
 			}
 
 		    Elderly elderly = (Elderly) session.getAttribute("elderly");
+		   model.addAttribute("requests", requestDao.getRequests());
 			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
-				model.addAttribute("requests", requestDao.getRequests());
-				/*model.addAttribute("availabilities", elderlyDao.getAvaiabilities(elderly.getDni()));*/
 				return "elderly/profileElderly";
 			}
 			
@@ -183,8 +182,8 @@ public class ElderlyController {
 				return "login";
 			}
 
+			model.addAttribute("elderly_update", elderly_update);
 			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly_update.getDni())) {
-				model.addAttribute("elderly_update", elderly_update);
 				return "elderly/update";
 			}
 
@@ -204,8 +203,6 @@ public class ElderlyController {
 
 			elderlyDao.updateParaElderly(elderly);
 			session.setAttribute("elderly", elderly);
-			List<Request> listaRequests = requestDao.getRequests();
-			model.addAttribute("requests",listaRequests);
 			return "redirect:/elderly/profileElderly";
 		}
 		//////////////////////////
