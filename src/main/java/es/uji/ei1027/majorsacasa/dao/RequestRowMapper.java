@@ -24,9 +24,9 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setRejectedDate(fecha != null ? fecha.toLocalDate() : null);
         fecha = rs.getDate("finishDate");
         request.setFinishDate(fecha != null ? fecha.toLocalDate() : null);
-        
         request.setDni_elderly(rs.getString("dni_elderly"));
         request.setIdNumber_contract(rs.getString("idNumber_contract"));
+        request.setComentario(rs.getString("comentari"));
         return request;
     }
 }

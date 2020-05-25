@@ -21,7 +21,7 @@
                 <a href="/logout" th:href="@{/logout}">EIXIR</a>
             </p>
         </div>
-        <div class="bienvenida" th:object="${session}"><h1>Perfil de &nbsp;<span class="nom" th:text="*{elderly.name}"></span>&nbsp;<span class="nom" th:text="*{elderly.surname}"></span> </h1></div>
+        <div class="bienvenida" th:object="${session}"><h1>Perfil de &nbsp;<span class="nom" th:text="*{company.name}"></span> </h1></div>
     </header>
     <main class="main_perfil" th:object="${session}">
         <div class="text">DADES PERSONALS:</div>
@@ -35,7 +35,7 @@
         </div>
         <div class="pack_camp_form">
             <div class="nom_dades">ADREÇA:</div>
-            <div class="dada" th:text="*{elderly.address}"></div>
+            <div class="dada" th:text="*{company.address}"></div>
         </div>
         <div class="pack_camp_form">
             <div class="nom_dades">NOM CONTACT:</div>
@@ -58,22 +58,19 @@
             <div class="nom_dades">TIPUS DE SERVICE:</div>
             <div class="dada" th:text="*{company.serviceType}"></div>
         </div>
-
-        <div class="text_ajuda">
-
-
-
+</main>
+	<aside class="text_ajuda">
+        <div class="ajuda">
             Si necessites ajuda o modificar alguna dada, pots cridar al teléfon:<br>
             96XXXXXXX<br><br>
             També pots posar-te en contacte amb nosaltres al seguent correu:<br>
             ei1027@majorsacasa.es
         </div>
-
-    </main>
+	</aside>
+    
     <footer>
         Majors a Casa - 2020
     </footer>
 </div>
 </body>
 </html>
->

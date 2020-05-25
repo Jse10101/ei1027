@@ -2,9 +2,10 @@ package es.uji.ei1027.majorsacasa.controller;
 
 
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
+import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
+import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Company;
-import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ public class CompanyController {
 
     private CompanyDao companyDao;
     private LoginDao loginDao;
+    private RequestDao requestDao;
+    private ContractDao contractDao;
 
     @Autowired
     public void CompanyDao(CompanyDao companyDao) {
@@ -33,6 +36,15 @@ public class CompanyController {
     public void setLoginDao(LoginDao loginDao) {
         this.loginDao = loginDao;
     }
+    @Autowired
+    public void setRequestDao(RequestDao requestDao) {
+        this.requestDao = requestDao;
+    }
+    @Autowired
+    public void setContractDao(ContractDao contractDao) {
+        this.contractDao = contractDao;
+    }
+    
 
     // Operacions: Crear, llistar, actualitzar, esborrar
     // ...
@@ -147,5 +159,47 @@ public class CompanyController {
         return "login";
     }
 
+    @RequestMapping("/ajuda")
+    public String ajudaCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
 
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+
+        if(login.getRole().equals("company")) {
+            return "company/ajuda";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/ajuda");
+        return "login";
+    }
+    
+    @RequestMapping("/serveis")
+    public String serveisCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+
+        if(login.getRole().equals("company")) {
+            model.addAttribute("requests", requestDao.getRequests());
+            model.addAttribute("contracts", contractDao.getContracts());
+            return "company/serveis";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/serveis");
+        return "login";
+    }
 }

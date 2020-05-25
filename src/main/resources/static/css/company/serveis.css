@@ -22,12 +22,15 @@ header {
 
 }
 
-.no_centrado{
+.boton_atras{
+	  padding:5px;
+}
+
+h2{
 	font-family: sans-serif;
 	text-align:left;
 	font-weight:bold;
 	text-decoration: underline #4d4d4d;
-	padding:5px;
 }
 
 .loggeduser{
@@ -39,9 +42,6 @@ header {
 	align-content:center;
 }
 
-.boton_atras{
-	  padding:5px;
-}
 
 h1{
 	width: 100%;
@@ -56,28 +56,27 @@ h1{
 	align-items:center;
 }
 
+.serveis{
+	width: 100%;
+	font-weight:bold;
+	/* Flexbox */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
 
 .nom{
 	text-decoration: underline #EB6864;
 }
 
-.main_acompanyament{
-  width: 100%;
-  font-weight:bold;
-	 /* Flexbox */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
-  flex: 1 1 50%;
-}
-
-
 .bucle1{
   width: 100%;
      /* Flexbox */
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
+  justify-content:center;
+  align-content: center;
 }
 
 .bucle2{
@@ -90,16 +89,90 @@ h1{
 	  width: 100%;
           /* Flexbox */
   display: flex;
-  justify-content:flex-start;
+}
+
+.ultimoIf{
+	width: 100%;
+	font-weight:bold;
+	/* Flexbox */
+	display: flex;
+	justify-content:center;
+	align-content: center;
+}
+
+
+.nom_dades{
+	position:relative;
+	border-radius: 25px 0px 0px 25px;
+	width: 250px;
+	height: 38px;
+	background: #fff;
+	text-align:center;
+}
+
+.primera_dada{
+	border-radius: 25px 0px 0px 25px;
+	background: #fff;
+	width: 150px;
+	text-align:center;
+}
+
+.dada_petita{
+	border-radius: 0 0px 0px 0;
+	background: #fff;
+	width: 150px;
+	text-align:center;
+}
+
+.dada_llarga{
+	border-radius: 0 0px 0px 0;
+	background: #fff;
+	width: 400px;
+	text-align:center;
+}
+
+.ultima_dada{
+	border-radius: 0 25px 25px 0px;
+	background: #fff;
+	width: 150px;
+	text-align:center;
+}
+
+
+.nom_dada_petita{
+	width: 150px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+.nom_dada_llarga{
+	width: 400px;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #EB6864;
+}
+
+
+
+
+
+.pack_nom_dades{
+	padding:10px;
+/* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
   align-content: center;
 }
 
-.availability_volunteer{
-		  width: 100%;
-		  padding:10px;
-          /* Flexbox */
+.pack_dades{
+	padding:10px;
+/* Flexbox */
   display: flex;
   flex-direction: row;
+  justify-content:center;
+  align-content: center;
 }
 
 body {
@@ -108,63 +181,6 @@ body {
   color: #4d4d4d;
 }
 
-.dades_boto{
-	          /* Flexbox */
-  display: flex;
-  justify-content:center;
-  align-items: center;
-}
-
-.primera_dada{
-	border-radius: 25px 0px 0px 25px;
-	background: #fff;
-	width: 125px;
-	text-align:center;
-}
-
-.dada{
-	border-radius: 0px 0px 0px 0px;
-	background: #fff;
-	width: 75px;
-	text-align:center;
-}
-
-.ultima_dada{
-	border-radius: 0 25px 25px 0;
-	background: #fff;
-	width: 450px;
-	text-align:center;
-}
-
-.nom_dada1{
-	width: 125px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada2{
-	width: 75px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada3{
-	width: 450px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dades{
-	padding:10px;
-/* Flexbox */
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-start;
-  align-content: center;
-}
 
 .btn {
     font-family: sans-serif;
@@ -173,18 +189,6 @@ body {
 .text{
 	font-weight:bold;
 	text-align:center;
-}
-
-
-.aside_acompanyament{
-	  width: 100%;
-  font-weight:bold;
-	 /* Flexbox */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
-  flex: 1 1 50%;
 }
 
 footer {

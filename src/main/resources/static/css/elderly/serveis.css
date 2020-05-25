@@ -133,7 +133,12 @@ h1{
   flex: 1 1 50%;
 }
 
-.bucle{
+.bucle1{
+  width: 100%;
+     /* Flexbox */
+  display: flex;
+}
+.bucle2{
   width: 100%;
      /* Flexbox */
   display: flex;
