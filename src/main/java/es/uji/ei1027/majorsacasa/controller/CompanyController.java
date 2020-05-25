@@ -112,7 +112,7 @@ public class CompanyController {
 
 
     @RequestMapping("/home")
-    public String homeElderly(HttpSession session, Model model) {
+    public String homeCompany(HttpSession session, Model model) {
         Login login = (Login) session.getAttribute("login");
 
         if (login == null) {
@@ -127,6 +127,24 @@ public class CompanyController {
 
         return "company/home";
 
+    }
+
+
+    @RequestMapping("/profileCompany")
+    public String profileCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        if(login.getRole().equals("company")) {
+            return "company/profileCompany";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/profileCompany");
+        return "login";
     }
 
 

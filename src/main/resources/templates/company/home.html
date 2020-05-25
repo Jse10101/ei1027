@@ -29,8 +29,14 @@
 					<div class="text_pr">Permet veure les teues dades</div><div class="boto"><input type="submit" value="PERFIL" class="btn btn-primary" /></div>
 		        </form>
 			</div>
+
+			<form class="pack_boto_text" action="#" th:action="@{/company/serveis}">
+				<div class="text_pr">Permet veure els serveis accesibles per a cada usuari</div>
+				<div class="boto"><input type="submit" value="SERVEIS" class="btn btn-primary"/></div>
+			</form>
+		</div>
 			<div class="botons_home">
-		        <form class="pack_boto_text" action="#" th:action="@{/elderly/ajuda}">
+		        <form class="pack_boto_text" action="#" th:action="@{/company/ajuda}">
 		        	<div class="text_pr">Solicita un cambi en les dades</div><div class="boto"><input type="submit" value="AJUDA" class="btn btn-primary" /></div>
 		        </form>
 			</div>
