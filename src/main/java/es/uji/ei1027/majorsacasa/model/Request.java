@@ -20,6 +20,7 @@ public class Request {
     private String dni_elderly;
     private String idNumber_contract;
     private String comentario;
+    
 	@Override
 	public String toString() {
 		return "Request [idNumber=" + idNumber + ", serviceType=" + serviceType + ", creationDate=" + creationDate

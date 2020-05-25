@@ -28,26 +28,9 @@ header {
 
 h2{
 	font-family: sans-serif;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #4d4d4d;
-}
-
-.no_centrado{
-	font-family: sans-serif;
 	text-align:left;
 	font-weight:bold;
 	text-decoration: underline #4d4d4d;
-}
-
-.serveis_pack{
-	  width: 100%;
-  
-    /* Flexbox */
-  display: flex;
-  align-content:center;
-  justify-content:center;
-  flex-direction: row;
 }
 
 .loggeduser{
@@ -59,20 +42,6 @@ h2{
 	align-content:center;
 }
 
-.pack_header{
-	width: 100%;
-	font-size: 15px;
-		  /* Flexbox */
-	display: flex;
-	 flex-direction: row;
-	 justify-content:space-between;
-}
-
-.textarea{
-	margin-top: 0px;
-	margin-bottom: 0px;
-	height: 200px;"
-}
 
 h1{
 	width: 100%;
@@ -87,7 +56,7 @@ h1{
 	align-items:center;
 }
 
-.main_serveis{
+.serveis{
 	width: 100%;
 	font-weight:bold;
 	/* Flexbox */
@@ -95,65 +64,40 @@ h1{
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-  	flex: 1 1 50%;
-}
-
-.form_serveis{
-	width: 100%;
-     /* Flexbox */
-     display: flex;
-     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.sel{
-	     /* Flexbox */
-     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.boto{
-	  padding:15px;
 }
 
 .nom{
 	text-decoration: underline #EB6864;
 }
 
-.serveis{
-  width: 100%;
-  font-weight:bold;
-	 /* Flexbox */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
-  flex: 1 1 50%;
-}
-
 .bucle1{
   width: 100%;
      /* Flexbox */
   display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-content: center;
 }
+
 .bucle2{
   width: 100%;
      /* Flexbox */
   display: flex;
-    flex-direction: column;
-  justify-content: center;
-  align-content: center;
 }
 
 .primerIf{
 	  width: 100%;
           /* Flexbox */
   display: flex;
-    flex-direction: column;
-  justify-content: center;
-  align-content: center;
+}
+
+.ultimoIf{
+	width: 100%;
+	font-weight:bold;
+	/* Flexbox */
+	display: flex;
+	justify-content:center;
+	align-content: center;
 }
 
 
@@ -166,72 +110,59 @@ h1{
 	text-align:center;
 }
 
-.nom_dades_centr{
-	position:relative;
-	border-radius: 0px 0px 0px 0px;
-	width: 150px;
-	height: 38px;
+.primera_dada{
+	border-radius: 25px 0px 0px 25px;
 	background: #fff;
+	width: 150px;
+	text-align:center;
+}
+
+.dada_petita{
+	border-radius: 0 0px 0px 0;
+	background: #fff;
+	width: 150px;
+	text-align:center;
+}
+
+.dada_llarga{
+	border-radius: 0 0px 0px 0;
+	background: #fff;
+	width: 400px;
+	text-align:center;
+}
+
+.ultima_dada{
+	border-radius: 0 25px 25px 0px;
+	background: #fff;
+	width: 150px;
 	text-align:center;
 }
 
 
-.dada{
-	width: 100%;
-	padding: 10px;
-	/* Flexbox */
-  	display: flex;
-    flex-direction: column;
-}
-
-.dada_final{
-		border-radius: 0 25px 25px 0;
-		background: #fff;
-		width: 200px;
-		text-align:center;
-}
-
-.nom_dada1{
-	width: 250px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada2{
+.nom_dada_petita{
 	width: 150px;
 	text-align:center;
 	font-weight:bold;
 	text-decoration: underline #EB6864;
 }
 
-.nom_dada3{
-	width: 200px;
+.nom_dada_llarga{
+	width: 400px;
 	text-align:center;
 	font-weight:bold;
 	text-decoration: underline #EB6864;
 }
 
-.nom_dada_re1{
-	width: 250px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
 
-.nom_dada_re2{
-	width: 150px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
+
+
 
 .pack_nom_dades{
 	padding:10px;
 /* Flexbox */
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content:center;
   align-content: center;
 }
 
@@ -240,7 +171,7 @@ h1{
 /* Flexbox */
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content:center;
   align-content: center;
 }
 

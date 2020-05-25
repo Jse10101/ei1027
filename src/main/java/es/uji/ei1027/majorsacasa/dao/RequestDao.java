@@ -52,7 +52,7 @@ public class RequestDao {
    (excepte la clau primària) */
     public void updateRequest(Request request) {
         jdbcTemplate.update("UPDATE Request SET serviceType=?, creationDate=?, state=?, aprovedDate=?, rejectedDate=?, finishDate=?, comentari=?, dni_elderly=?, idNumber_contract=? WHERE idNumber=?",
-                request.getServiceType(), request.getCreationDate(), request.getState(), request.getAprovedDate(), request.getRejectedDate(), request.getFinishDate(), request.getComentario(), request.getDni_elderly(), null, request.getIdNumber());
+                request.getServiceType(), request.getCreationDate(), request.getState(), request.getAprovedDate(), request.getRejectedDate(), request.getFinishDate(), request.getComentario(), request.getDni_elderly(), request.getIdNumber_contract(), request.getIdNumber());
     }
 
     // Obté la Request amb el id donat. Torna null si no existeix. 

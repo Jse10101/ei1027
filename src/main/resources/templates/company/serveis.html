@@ -1,61 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/company/serveis.css"
-          th:href="@{/css/company/serveis.css}"/>
-    <title>Majors a casa</title>
+<meta charset="UTF8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/company/serveis.css"
+	th:href="@{/css/company/serveis.css}" />
+<title>Majors a casa</title>
 </head>
 
 <body>
-<div class="contenedor">
-    <header>
-        <div class="loggeduser" th:object="${session}">
-            <div class="boton_atras"><a th:href="@{/company/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
-            <p th:if="*{company.name == null}">
-                No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
-            </p>
-            <p th:unless="*{company.name == null}">
-                Accedeixes com a&nbsp;<span th:text="*{company.name}"></span> &nbsp;
-                <a href="/logout" th:href="@{/logout}">EIXIR</a>
-            </p>
-        </div>
-        <div class="bienvenida" th:object="${session}"><h1>Serveis de &nbsp;<span class="nom" th:text="*{company.name}"></span> </h1></div>
-    </header>
+	<div class="contenedor">
+		<header>
+			<div class="loggeduser" th:object="${session}">
+				<div class="boton_atras">
+					<a th:href="@{/company/home}" class="btn btn-primary">PÀGINA
+						PRINCIPAL</a>
+				</div>
+				<p th:if="*{company.name == null}">
+					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
+				</p>
+				<p th:unless="*{company.name == null}">
+					Accedeixes com a&nbsp;<span th:text="*{company.name}"></span>
+					&nbsp; <a href="/logout" th:href="@{/logout}">EIXIR</a>
+				</p>
+			</div>
+			<div class="bienvenida" th:object="${session}">
+				<h1>
+					Serveis de &nbsp;<span class="nom" th:text="*{company.name}"></span>
+				</h1>
+			</div>
+		</header>
 
 
-    <main class="serveis" th:object="${session}">
-        <h2 class="no_centrado">HISTORIAL DE SERVEIS:</h2>
+		<main class="serveis" th:object="${session}">
+			<h2>HISTORIAL DE SERVEIS:</h2>
 
-        <div class="bucle" th:each="request : ${requests}">
-                <div class="bucle" th:each="contract : ${contracts}">
-                    <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
-                        <div class="segundoIf" th:if="${contract.cif} == *{company.cif}">
-                            <div class="dada" th:if="${request.state}">
-                    <div class="pack_nom_dades"><div class="nom_dada1">DNI</div><div class="nom_dada2">INICI</div><div class="nom_dada3">ESTAT</div></div>
-                    <div class="pack_dades"><div class="nom_dades" th:text="${request.dni_elderly}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"></div><div class="dada_final">EN ACTIU</div></div>
-                        </div></div></div></div></div>
+			<div class="pack_nom_dades">
+				<div class="nom_dada_petita">DNI</div>
+				<div class="nom_dada_petita">INICI</div>
+				<div class="nom_dada_petita">FI</div>
+				<div class="nom_dada_llarga">COMENTARI</div>
+				<div class="nom_dada_petita">ESTAT</div>
+			</div>
+			<div class="bucle1" th:each="request : ${requests}">
+				<div class="bucle2" th:each="contract : ${contracts}">
+					<div class="primerIf"th:if="${contract.cif_company} == *{company.cif}">
+						<div class="primerIf" th:if="${request.state}">
+							<div class="ultimoIf"
+								th:if="${request.idNumber_contract} == ${contract.idNumber}">
+								<div class="pack_dades">
+									<div class="primera_dada" th:text="${request.dni_elderly}"></div>
+									<div class="dada_petita" th:text="${request.creationDate}"></div>
+									<div class="dada_petita" th:text="${request.finishDate}"></div>
+									<div class="dada_llarga" th:text="${request.comentario}"></div>
+									<div class="ultima_dada">EN ACTIU</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bucle1" th:each="request : ${requests}">
+				<div class="bucle2" th:each="contract : ${contracts}">
+					<div class="primerIf"
+						th:if="${contract.cif_company} == *{company.cif}">
+						<div class="primerIf" th:if="${request.finishDate != null}">
+							<div class="ultimoIf"
+								th:if="${request.idNumber_contract} == ${contract.idNumber}">
+								<div class="pack_dades">
+									<div class="primera_dada" th:text="${request.dni_elderly}"></div>
+									<div class="dada_petita" th:text="${request.creationDate}"></div>
+									<div class="dada_petita" th:text="${request.finishDate}"></div>
+									<div class="dada_llarga" th:text="${request.comentario}"></div>
+									<div class="ultima_dada">ACABAT</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        <div class="bucle" th:each="request : ${requests}">
-            <div class="bucle" th:each="contract : ${contracts}">
-                <div class="primerIf" th:if="${request.dni_elderly} == *{elderly.dni}">
-                    <div class="segundoIf" th:if="${contract.cif} == *{company.cif}">
-                        <div class="dada" th:if="${request.finishDate != null}"><div class="dada" th:if="${request.state} == Null">
-                            <div class="pack_nom_dades"><div class="nom_dada1">DNI</div><div class="nom_dada2">INICI</div><div class="nom_dada2">FINAL</div><div class="nom_dada3">ESTAT</div></div>
-                            <div class="pack_dades"><div class="nom_dades" th:text="${request.dni_elderly}"></div><div class="nom_dades_centr" th:text="${request.creationDate}"><div class="nom_dades_centr" th:text="${request.finishDate}"></div><div class="dada_final">TERMINADA</div></div></div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-
-    </main>
-    <footer>
-        Majors a Casa - 2020
-    </footer>
-</div>
+		</main>
+		<footer> Majors a Casa - 2020 </footer>
+	</div>
 </body>
 
 </html>
