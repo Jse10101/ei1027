@@ -79,9 +79,9 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        model.addAttribute("availability", new Availability());
-        model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
         if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+            model.addAttribute("availability", new Availability());
+            model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
             return "volunteer/horaris";
         }
 
@@ -175,14 +175,14 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        model.addAttribute("volunteer_update", volunteer);
         if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+            model.addAttribute("volunteer_update", volunteer);
             return "volunteer/update";
         }
 
         session.invalidate();
         model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "volunteer/update");
+        session.setAttribute("nextUrl", "volunteer/updateVolunteer");
         return "login";
     }
 

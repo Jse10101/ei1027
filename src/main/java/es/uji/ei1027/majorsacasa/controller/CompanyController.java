@@ -6,6 +6,7 @@ import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,92 @@ public class CompanyController {
         this.contractDao = contractDao;
     }
     
+
+    @RequestMapping("/home")
+    public String homeCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/company/home");
+            return "login";
+        }
+
+        Company company = (Company) session.getAttribute("company");
+        if(login.getRole().equals("company") && login.getUsuario().equals(company.getCif())) {
+            return "company/home";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/home");
+        return "login";
+    }
+
+
+    @RequestMapping("/profileCompany")
+    public String profileCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        Company company = (Company) session.getAttribute("company");
+        if(login.getRole().equals("company") && login.getUsuario().equals(company.getCif())) {
+            return "company/profileCompany";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/profileCompany");
+        return "login";
+    }
+
+    @RequestMapping("/ajuda")
+    public String ajudaCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        Company company = (Company) session.getAttribute("company");
+        if(login.getRole().equals("company") && login.getUsuario().equals(company.getCif()) ) {
+            return "company/ajuda";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/ajuda");
+        return "login";
+    }
+    
+    @RequestMapping("/serveis")
+    public String serveisCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        Company company = (Company) session.getAttribute("company");
+        if(login.getRole().equals("company") && login.getUsuario().equals(company.getCif())) {
+            model.addAttribute("requests", requestDao.getRequests());
+            model.addAttribute("contracts", contractDao.getContracts());
+            return "company/serveis";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/serveis");
+        return "login";
+    }
 
     // Operacions: Crear, llistar, actualitzar, esborrar
     // ...
@@ -102,7 +189,7 @@ public class CompanyController {
 
     @RequestMapping(value = "/afegirCompany", method = RequestMethod.POST)
     public String afegirCompany(@ModelAttribute("companyy") Company companyy,
-                                   BindingResult bindingResult) {
+                                BindingResult bindingResult) {
         CompanyValidator companyValidador = new CompanyValidator();
         companyValidador.validate(companyy, bindingResult);
         if (bindingResult.hasErrors())
@@ -123,83 +210,4 @@ public class CompanyController {
     }
 
 
-    @RequestMapping("/home")
-    public String homeCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/company/home");
-            return "login";
-        }
-
-
-        Company company = new Company(companyDao.getCompany(login.getUsuario()));
-        session.setAttribute("company", company);
-
-        return "company/home";
-
-    }
-
-
-    @RequestMapping("/profileCompany")
-    public String profileCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-        if(login.getRole().equals("company")) {
-            return "company/profileCompany";
-        }
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "company/profileCompany");
-        return "login";
-    }
-
-    @RequestMapping("/ajuda")
-    public String ajudaCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if(login.getRole().equals("company")) {
-            return "company/ajuda";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "company/ajuda");
-        return "login";
-    }
-    
-    @RequestMapping("/serveis")
-    public String serveisCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if(login.getRole().equals("company")) {
-            model.addAttribute("requests", requestDao.getRequests());
-            model.addAttribute("contracts", contractDao.getContracts());
-            return "company/serveis";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "company/serveis");
-        return "login";
-    }
 }

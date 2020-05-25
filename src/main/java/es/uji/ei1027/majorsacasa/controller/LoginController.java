@@ -2,8 +2,10 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import javax.servlet.http.HttpSession;
 
+import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,9 @@ public class LoginController {
 
 	@Autowired
 	private VolunteerDao volunteerDao;
+
+	@Autowired
+	private CompanyDao companyDao;
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
@@ -61,7 +66,8 @@ public class LoginController {
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String checkLogin(@ModelAttribute("login") Login login, BindingResult bindingResult, HttpSession session) {
-		LoginValidator loginValidator = new LoginValidator(); 
+
+		LoginValidator loginValidator = new LoginValidator();
 		loginValidator.validate(login, bindingResult); 
 		if (bindingResult.hasErrors()) {
 			return "redirect:/login";
@@ -75,19 +81,30 @@ public class LoginController {
 		}
 
 		session.setAttribute("login", login);
-
+		String url = (String) session.getAttribute("nextUrl");
 		//Switch per a saber qui entra en la web
 		switch (login.getRole()) {
 			case "elderly":
 				Elderly elderly = new Elderly(elderlyDao.getElderly(login.getUsuario()));
 				session.setAttribute("elderly", elderly);
+				if (url != null){
+					return "redirect:/" + url;
+				}
 				return "redirect:/elderly/home";
 
 			case "volunteer":
 				Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
 				session.setAttribute("volunteer", volunteer);
+				if (url != null){
+					return "redirect/" + url;
+				}
 				return "redirect:/volunteer/home";
 			case "company":
+				Company company = new Company(companyDao.getCompany(login.getUsuario()));
+				session.setAttribute("company", company);
+				if (url != null){
+					return "redirect/" + url;
+				}
 				return "redirect:/company/home";
 			case "socialWorker":
 				return "redirect:/socialworker/home";
