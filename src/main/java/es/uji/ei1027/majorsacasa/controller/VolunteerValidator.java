@@ -7,6 +7,7 @@ import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -55,14 +56,22 @@ public class VolunteerValidator implements Validator {
             errors.rejectValue("birthDate", "obligatori",
                     "Cal introduir un valor");
 
+        //Solucion rapida para fallo edad menor de 18 y numero que no es longitud = 0
+        LocalDate today = LocalDate.now();
+        long years = ChronoUnit.YEARS.between(voluntario.getBirthDate(), today);
+        if(years < 18 || voluntario.getPhoneNumber().length() != 9) {
+            errors.rejectValue("birthDate", "obligatori",
+                    "Has de ser major de edat");
+        }
+
         //if(voluntario.getAcceptationDate()!=null)
           //  if(!voluntario.getAcceptationDate().isAfter(voluntario.getBirthDate()))
             //    errors.rejectValue("acceptationDate", "menor", "Tens que ser major de 18 anys");
 
         // Afegeix ací la validació per a Edat >= 18 anys
-        Period periodo = Period.between(voluntario.getBirthDate(), LocalDate.now());
+        /*Period periodo = Period.between(voluntario.getBirthDate(), LocalDate.now());
         if (periodo.getYears() < 18) {
             errors.rejectValue("birthDate", "menor", "Tens que ser major de 18 anys");
-        }
+        }*/
     }
 }

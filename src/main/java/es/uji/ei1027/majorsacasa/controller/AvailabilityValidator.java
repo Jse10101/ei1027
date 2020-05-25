@@ -1,14 +1,21 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.AvailabilityDao;
 import es.uji.ei1027.majorsacasa.model.Availability;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 
 import org.springframework.validation.Validator;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AvailabilityValidator implements Validator {
+
+    @Autowired
+    AvailabilityDao availabilityDao = new AvailabilityDao();
 
     @Override
     public boolean supports(Class<?> cls) {
@@ -24,11 +31,6 @@ public class AvailabilityValidator implements Validator {
         if (availability.getDni_volunteer().equals("") || availability.getDni_volunteer().length() != 9)
             errors.rejectValue("dni_volunteer", "obligatori",
                     "Cal introduir un DNI vàlid");
-
-        /*if (availability.getDni_elderly().equals("") || availability.getDni_elderly().length() != 9)
-            errors.rejectValue("dni_elderly", "obligatori",
-                    "Cal introduir un DNI vàlid");*/
-
 
         if (availability.getFecha()==null)
             errors.rejectValue("fecha", "obligatori",

@@ -161,7 +161,7 @@ public class VolunteerController {
         volunteerDao.addVolunteerRegister(volunteer);
         Volunteer new_volunteer = volunteerDao.getVolunteer(login.getUsuario());
         session.setAttribute("volunteer", new_volunteer);
-        return "redirect:../volunteer/home";
+        return "redirect:/volunteer/home";
     }
     ///////////CREADO NUEVO para que el VOLUNTEER edite sus cosas:
     @RequestMapping(value="/updateVolunteer")
@@ -187,12 +187,11 @@ public class VolunteerController {
     }
 
     @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
-    public String processUpdateSubmitVolunteer(HttpSession session, @ModelAttribute("volunteer_update") Volunteer volunteer) {
-        //Solucion rapida para fallo edad menor de 18 y numero que no es longitud = 0
-        LocalDate today = LocalDate.now();
-        long years = ChronoUnit.YEARS.between(volunteer.getBirthDate(), today);
-        if(years < 18 || volunteer.getPhoneNumber().length() != 9) {
-            return "redirect:/volunteer/profileVolunteer";
+    public String processUpdateSubmitVolunteer(HttpSession session, @ModelAttribute("volunteer_update") Volunteer volunteer, BindingResult bindingResult) {
+        VolunteerValidator volunteerValidator = new VolunteerValidator();
+        volunteerValidator.validate(volunteer, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "/volunteer/update";
         }
 
         // Si no hay nada mal, funcionara

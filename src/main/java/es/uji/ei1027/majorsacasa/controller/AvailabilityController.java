@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -57,17 +58,23 @@ public class AvailabilityController {
     public String processAddSubmit(@ModelAttribute("availability") Availability availability, Model model, HttpSession session,
                                    BindingResult bindingResult) {
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-
         availability.setDni_volunteer(volunteer.getDni());
         availability.setStateAvailability(true);
 
-        AvailabilityValidator availabilityValidador = new AvailabilityValidator();
-        availabilityValidador.validate(availability, bindingResult);
-
+        AvailabilityValidator availabilityValidator = new AvailabilityValidator();
+        availabilityValidator.validate(availability, bindingResult);
+        List<Availability> horarios = availabilityDao.getAvailabilitiesVolunteer(volunteer);
+        for(Availability horario : horarios){
+            //Compruebo si las claves primarias de la nueva disponibilidad(dni_vol, fecha y hora_inicio) coinciden con alguna ya creada.
+            if(horario.getDni_volunteer().equals(availability.getDni_volunteer()) && horario.getFecha().equals(availability.getFecha()) && horario.getBeginingHour().equals(availability.getBeginingHour())){
+                bindingResult.rejectValue("beginingHour", "obligatori", "Les dades introduides coincideixen amb un horari ya creat (fecha y hora inici)");
+            }
+        }
         if (bindingResult.hasErrors()) {
             model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
-            return "/volunteer/horaris";
+            return "volunteer/horaris";
         }
+
         availabilityDao.addAvailability(availability, volunteer);
         return "redirect:/volunteer/horaris";
     }
