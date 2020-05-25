@@ -64,8 +64,9 @@ h1{
 .botons_home{
 		width: 100%;
 	/* Flexbox */
-	flex-direction: column;
 	display: flex;
+	flex-direction: column;
+
 }
 
 .nom{
@@ -87,7 +88,7 @@ h1{
 }
 
 .boto{
-		/* Flexbox */
+	/* Flexbox */
 	display: flex;
 	justify-content:center;
 	align-items:space-between;
@@ -99,8 +100,8 @@ h1{
 	color: #fff;
     background-color: #EB6864;
     border-color: #EB6864;
-    height:250px;
-    width:300px;
+    height:270px;
+    width:320px;
 }
 
 body {
@@ -121,7 +122,7 @@ footer {
 
 @media screen and (max-width: 790px){
 	
-	.pack_boto_text{
+.pack_boto_text{
 
 	/* Flexbox */
 	display: flex;

@@ -20,21 +20,22 @@ public class AvailabilityValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Availability availability = (Availability) obj;
+
         if (availability.getDni_volunteer().equals("") || availability.getDni_volunteer().length() != 9)
             errors.rejectValue("dni_volunteer", "obligatori",
                     "Cal introduir un DNI vàlid");
 
-        if (availability.getDni_elderly().equals("") || availability.getDni_elderly().length() != 9)
+        /*if (availability.getDni_elderly().equals("") || availability.getDni_elderly().length() != 9)
             errors.rejectValue("dni_elderly", "obligatori",
-                    "Cal introduir un DNI vàlid");
+                    "Cal introduir un DNI vàlid");*/
 
 
         if (availability.getFecha()==null)
             errors.rejectValue("fecha", "obligatori",
                     "Cal introduir una fecha");
 
-        Period periodo = Period.between(availability.getFecha(), LocalDate.now());
-        if (periodo.getYears() <= 0) {
+        LocalDate today = LocalDate.now();
+        if(availability.getFecha().isBefore(today)){
             errors.rejectValue("fecha", "fecha", "Tiene que ser una fecha futura");
         }
 

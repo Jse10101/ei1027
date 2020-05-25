@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/socialworker/menuelderly.css"
-          th:href="@{/css/socialworker/menuelderly.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/socialworker/menuElderly.css"
+          th:href="@{/css/socialworker/menuElderly.css}"/>
     <title>Majors a casa</title>
 </head>
 
@@ -25,10 +25,10 @@
         <div class="bienvenida" th:object="${session}"><h1>Administració de Persones Majors</h1></div>
     </header>
     <main class="main_menuElderly" th:object="${session}">
-        <div class="text">LLISTAT DE PERSONES MAJORS :</div>
+        <h2>LLISTAT DE PERSONES MAJORS:</h2>
         <div class="nom_dades">
-            <div class="nom_dada_petitia">DNI</div>
-            <div class="nom_dada_mitja">NOM</div>
+            <div class="nom_dada_petita">DNI</div>
+            <div class="nom_dada_petita">NOM</div>
             <!--<div class="nom_dada_mitja">COGNOM</div>
             <div class="nom_dada_mes_llarga">DIRECCIÓ</div>
             <div class="nom_dada_mitja">COMPTE BANCARI</div>
@@ -36,15 +36,15 @@
             <div class="nom_dada_mitja">TELÉFON</div>
             <div class="nom_dada_mitja">NAIXEMENT</div>
             <div class="nom_dada_mitja">REGISTRE</div>-->
-            <div class="nom_dada_mes_llarga">ALÉRGIES</div>
-            <div class="nom_dada_mes_llarga">ENFERMETATS</div>
-            <div class="nom_dada_petitia">TREBALLADOR SOCIAL</div>
+            <div class="nom_dada_llarga">ALÉRGIES</div>
+            <div class="nom_dada_llarga">ENFERMETATS</div>
+            <div class="nom_dada_petita">CAS</div>
         </div>
         <div class="bucle1" th:each="elderly : ${elderlys}">
             <div class="dades_boto">
                 <div class="availability_volunteer">
                     <div class="primera_dada" th:text="${elderly.dni}"></div>
-                    <div class="dada_mitja" th:text="${elderly.name}"></div>
+                    <div class="dada_petita" th:text="${elderly.name}"></div>
                     <!--<div class="dada_mitja" th:text="${elderly.surname}"></div>
                      <div class="dada_mes_llarga" th:text="${elderly.address}"></div>
                      <div class="dada_mes_llarga" th:text="${elderly.bankAccountNumber}"></div>
@@ -52,8 +52,8 @@
                      <div class="dada_mitja" th:text="${elderly.phoneNumber}"></div>
                      <div class="dada_mitja" th:text="${elderly.birthDate}"></div>
                      <div class="dada_mitja" th:text="${elderly.dateCreation}"></div>-->
-                    <div class="dada_mes_llarga" th:text="${elderly.alergies}"></div>
-                    <div class="dada_mes_llarga" th:text="${elderly.diseases}"></div>
+                    <div class="dada_llarga" th:text="${elderly.alergies}"></div>
+                    <div class="dada_llarga" th:text="${elderly.diseases}"></div>
                     <div class="ultima_dada" th:text="${elderly.userCAS_socialWorker}"></div>
                 </div>
             </div>
@@ -62,25 +62,30 @@
 
 
     <aside class="serveis" th:object="${session}">
-        <div class="text">HISTORIAL DE SERVEIS:</div>
+    <br><br>
+        <h2>HISTORIAL DE SERVEIS:</h2>
+		<div class="pack_nom_dades">
+			<div class="nom_dada_petita">DNI</div>
+			<div class="nom_dada_llarga">TIPUS</div>
+			<div class="nom_dada_llarga">COMENTARI</div>
+			<div class="nom_dada_petita">SOL·LICITUD</div>
+        </div>
         <div class="bucle" th:each="request : ${requests}">
             <div class="dada" th:if="${request.aprovedDate} == ${request.rejectedDate}">
-                <div class="pack_nom_dades">
-                    <div class="nom_dada_petitia">DNI Persona Major</div>
-                    <div class="nom_dada_petitia">TIPUS</div>
-                    <div class="nom_dada_mes_llarga">COMENTARI</div>
-                    <div class="nom_dada_mitja">FECHA DE SOL·LICITUD</div>
-                </div>
-                <div class="pack_dades">
-                    <div class="primera_dada" th:text="${request.dni_elderly}"></div>
-                    <div class="dada_mitja" th:text="${request.serviceType}"></div>
-                    <div class="dada_mes_llarga" th:text="${request.comentario}"></div>
-                    <div class="ultima_dada" th:text="${request.creationDate}"></div>
-                    <div><a th:href="@{/socialworker/approveRequest/{idNumber}(idNumber=${request.idNumber})}"
-                            class="btn btn-primary" role="button">ACCEPTAR</a></div>
-                    <div><a th:href="@{/socialworker/rejectRequest/{idNumber}(idNumber=${request.idNumber})}"
-                            class="btn btn-primary" role="button">REBUTJAR</a></div>
-                </div>
+            	<div class="dades_botons">
+                    <div class="pack_bucle">
+	                    <div class="primera_dada" th:text="${request.dni_elderly}"></div>
+	                    <div class="dada_llarga" th:text="${request.serviceType}"></div>
+	                    <div class="dada_llarga" th:text="${request.comentario}"></div>
+	                    <div class="ultima_dada" th:text="${request.creationDate}"></div>
+                    </div>
+                    <div class="pack_botons">
+	                    <div class="boto"><a th:href="@{/socialworker/approveRequest/{idNumber}(idNumber=${request.idNumber})}"
+	                            class="btn btn-primary" role="button">ACCEPTAR</a></div>
+	                    <div class="boto"><a th:href="@{/socialworker/rejectRequest/{idNumber}(idNumber=${request.idNumber})}"
+	                            class="btn btn-primary" role="button">REBUTJAR</a></div>
+                    </div>
+                 </div>
             </div>
         </div>
     </aside>

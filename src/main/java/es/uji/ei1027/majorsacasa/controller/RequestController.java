@@ -64,12 +64,12 @@ public class RequestController {
     @RequestMapping(value="/donaDeBaixaRequest/{idNumber}", method = RequestMethod.GET)
     public String donaDeBaixaRequest(Model model, @PathVariable String idNumber) {
         requestDao.donaDeBaixaRequest(idNumber);
-        return "elderly/home";
+        return "redirect:/elderly/profileElderly";
     }
     
     /////////////////nou add
     @RequestMapping(value="/addRequestElderly", method=RequestMethod.POST)
-    public String addRequestElderly(@ModelAttribute("requestt") Request requestt, HttpSession session) {
+    public String addRequestElderly(@ModelAttribute("requestt") Request requestt, Model model, HttpSession session) {
     	Login login = (Login) session.getAttribute("login");
 		if(login.getRole().equals("elderly")) {
 			requestt.setDni_elderly(login.getUsuario());
@@ -85,7 +85,8 @@ public class RequestController {
 			
 			
 			requestDao.donaDeAltaRequest(requestt);
-			return "elderly/home";
+            model.addAttribute("requests", requestDao.getRequests());
+			return "redirect:/elderly/serveis";
 		}
 		
         return "elderly/home";

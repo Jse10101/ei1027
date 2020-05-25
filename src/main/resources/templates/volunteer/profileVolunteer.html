@@ -12,7 +12,7 @@
 	<div class="contenedor">
 	    <header>
 			<div class="loggeduser" th:object="${session}">
-	    		<div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
+	    		<div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
 				<p th:if="*{volunteer.name == null}">
 					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
 				</p>
@@ -24,7 +24,7 @@
 			<div class="bienvenida" th:object="${session}"><h1>Perfil de &nbsp;<span class="nom" th:text="*{volunteer.name}"></span> </h1></div>
 	    </header>
 		   <main class="main_perfil" th:object="${session}">
-				   <div class="text">DADES PERSONALS:</div>
+				   <h2>DADES PERSONALS:</h2>
 				   <div class="pack_camp_form">
 				   		<div class="nom_dades">DNI:</div>
 				   		<div class="dada" th:text="*{volunteer.dni}"></div>

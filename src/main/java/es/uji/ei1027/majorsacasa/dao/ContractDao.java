@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -75,8 +76,8 @@ public class ContractDao {
         }
     }
 
-     /*Actualitza els atributs dels Contrats
-   (excepte la clau primària) */
+    /*Actualitza els atributs dels Contrats
+  (excepte la clau primària) */
     public void nouContract(Request request) {
         LocalDate today = LocalDate.now();
 
@@ -88,15 +89,16 @@ public class ContractDao {
             }
         }
         id++;
-        List<Company> listaCompaniesServici = null;
-        for (Company com : companyDao.getCompanies()){
-            if(request.getServiceType().equals(com.getServiceType()))
+        List<Company> listaCompaniesServici = new LinkedList<>();
+        for (Company com : companyDao.getCompanies()) {
+            if (request.getServiceType().equals(com.getServiceType()))
                 listaCompaniesServici.add(com);
         }
         Random rand = new Random();
         Company company = listaCompaniesServici.get(rand.nextInt(listaCompaniesServici.size()));
-        int precio=0;
-        switch (request.getServiceType()){
+        int precio = 0;
+        String serviceType = request.getServiceType();
+        switch (serviceType) {
             case "Neteja":
                 precio = 10;
                 break;
@@ -104,9 +106,10 @@ public class ContractDao {
                 precio = 4;
                 break;
             case "Servei sanitari":
-                precio =25;
+                precio = 25;
+                break;
         }
-            jdbcTemplate.update("INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?, ?)", Integer.toString(id),
-                    request.getServiceType(), true, request.getAprovedDate(), request.getAprovedDate().plusDays(7), precio, company.getCif());
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?)", Integer.toString(id), request.getAprovedDate(), request.getAprovedDate().plusDays(7), serviceType, precio, company.getCif());
+        jdbcTemplate.update("UPDATE Request SET idNumber_contract=? WHERE idNumber=?", Integer.toString(id), request.getIdNumber());
     }
 }

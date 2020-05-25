@@ -29,7 +29,7 @@ public class CompanyController {
     public void CompanyDao(CompanyDao companyDao) {
         this.companyDao = companyDao;
     }
-
+    @Autowired
     public void setLoginDao(LoginDao loginDao) {
         this.loginDao = loginDao;
     }
@@ -103,7 +103,7 @@ public class CompanyController {
                 return "redirect:../socialworker/menuCompany";
             }
         }
-        Login login = new Login(companyy.getCif(), companyy.getPwd(), "elderly");
+        Login login = new Login(companyy.getCif(), companyy.getPwd(), "company");
         loginDao.addLogin(login);
 
         companyDao.addCompany(companyy);

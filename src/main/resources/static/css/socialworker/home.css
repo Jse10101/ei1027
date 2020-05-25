@@ -35,7 +35,7 @@ h1{
 	width: 100%;
 	font-weight:bold;
 	font-size: 60px;
-	font-family: serif;
+	font-family: sans-serif;
 	height:150px;
 	
 	/* Flexbox */
@@ -57,15 +57,10 @@ h1{
 .botons{
 	width: 100%;
 	/* Flexbox */
-	flex-direction: row;
 	display: flex;
-}
-
-.botons_home{
-		width: 100%;
-	/* Flexbox */
-	flex-direction: row;
-	display: flex;
+	flex-direction:row;
+	justify-content:center;
+	align-items:space-between;
 }
 
 .nom{
@@ -73,7 +68,6 @@ h1{
 }
 
 .pack_boto_text{
-
 	/* Flexbox */
 	display: flex;
 	flex-direction:column;
@@ -95,17 +89,17 @@ h1{
 
 .btn-primary {
 	font-size: 30px;
-	font-family: serif;
+	font-family: sans-serif;
 	color: #fff;
     background-color: #EB6864;
     border-color: #EB6864;
-    height:250px;
-    width:350px;
+    height:180px;
+    width:230px;
 }
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
 }
 
@@ -121,7 +115,7 @@ footer {
 
 @media screen and (max-width: 790px){
 	
-	.pack_boto_text{
+.pack_boto_text{
 
 	/* Flexbox */
 	display: flex;
@@ -133,7 +127,7 @@ footer {
 .botons{
 	width: 100%;
 	/* Flexbox */
-	flex-direction: column;
 	display: flex;
+	flex-direction: column;
 }
 }

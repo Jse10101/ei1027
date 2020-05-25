@@ -19,7 +19,51 @@ header {
     /* Flexbox */
   display: flex;
   flex-direction: column;
+}
 
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario{
+    width: 100%;
+        /* Flexbox */
+          display: flex;
+          flex-direction: column;
+}
+
+.pack_formulario{
+    width: 100%;
+    padding:5px;
+	display: flex;
+	flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.formulario_nombre{
+	position:relative;
+	border-radius: 25px 0px 0px 25px;
+	width: 350px;
+	height: 38px;
+	background: #EB6864;
+	text-align:center;
+}
+.form-control{
+		border-radius: 0 25px 25px 0;
+		width: 250px;
+}
+
+
+.casilla{
+	    width: 100%;
+        /* Flexbox*/
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
 }
 
 .loggeduser{
@@ -35,11 +79,20 @@ header {
 	  padding:5px;
 }
 
+.pack_header{
+	width: 100%;
+	font-size: 15px;
+		  /* Flexbox */
+	display: flex;
+	 flex-direction: row;
+	 justify-content:space-between;
+}
+
 h1{
 	width: 100%;
 	font-weight:bold;
 	font-size: 60px;
-	font-family: serif;
+	font-family: sans-serif;
 	height:150px;
 	
 	/* Flexbox */
@@ -53,14 +106,14 @@ h1{
 	text-decoration: underline #EB6864;
 }
 
-.main_acompanyament{
+.main{
+
   width: 100%;
   font-weight:bold;
 	 /* Flexbox */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-content: center;
   flex: 1 1 50%;
 }
 
@@ -79,10 +132,10 @@ h1{
 }
 
 .primerIf{
-	  width: 100%;
+    width: 100%;
           /* Flexbox */
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   align-content: center;
 }
 
@@ -96,7 +149,7 @@ h1{
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
 }
 
@@ -110,40 +163,26 @@ body {
 .primera_dada{
 	border-radius: 25px 0px 0px 25px;
 	background: #fff;
-	width: 125px;
+	width: 150px;
 	text-align:center;
 }
 
 .dada{
 	border-radius: 0px 0px 0px 0px;
 	background: #fff;
-	width: 75px;
+	width: 150px;
 	text-align:center;
 }
 
 .ultima_dada{
 	border-radius: 0 25px 25px 0;
 	background: #fff;
-	width: 450px;
+	width: 150px;
 	text-align:center;
 }
 
 .nom_dada1{
-	width: 125px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada2{
-	width: 75px;
-	text-align:center;
-	font-weight:bold;
-	text-decoration: underline #EB6864;
-}
-
-.nom_dada3{
-	width: 450px;
+	width: 150px;
 	text-align:center;
 	font-weight:bold;
 	text-decoration: underline #EB6864;
@@ -163,7 +202,7 @@ body {
 /* Flexbox */
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content:center;
   align-content: center;
 }
 
@@ -172,29 +211,60 @@ body {
 /* Flexbox */
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content:center;
   align-content: center;
 }
 
 .btn {
-    font-family: serif;
+    font-family: sans-serif;
 }
 
 .text{
 	font-weight:bold;
+	font-family: sans-serif;
+}
+
+.texto{
+	text-align:center;
+	font-weight:bold;
+	font-family: sans-serif;
 	text-align:center;
 }
 
 
-.aside_acompanyament{
+aside{
 	  width: 100%;
   font-weight:bold;
 	 /* Flexbox */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-content: center;
   flex: 1 1 50%;
+}
+
+
+.boto{
+	width: 100%;
+	height: 56px;
+    width: 100px;
+	/* Flexbox */
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  
+}
+
+h2{
+	font-family: sans-serif;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
+}
+.no_centrat{
+	font-family: sans-serif;
+	text-align:left;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
 }
 
 footer {

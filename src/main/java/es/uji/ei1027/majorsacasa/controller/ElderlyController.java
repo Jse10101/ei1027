@@ -197,10 +197,12 @@ public class ElderlyController {
 	   }
 
 	   @RequestMapping(value="/updateElderly", method = RequestMethod.POST) 
-	   public String processUpdateSubmitElderly(HttpSession session, @ModelAttribute("elderly_update") Elderly elderly) {
+	   public String processUpdateSubmitElderly(HttpSession session, @ModelAttribute("elderly_update") Elderly elderly, Model model) {
 		   elderlyDao.updateParaElderly(elderly);
 		   session.setAttribute("elderly", elderly);
-		   return "redirect:/elderly/home";
+		   List<Request> listaRequests = requestDao.getRequests();
+		   model.addAttribute("requests",listaRequests);
+		   return "redirect:/elderly/profileElderly";
 	   }
 	   //////////////////////////
 	   

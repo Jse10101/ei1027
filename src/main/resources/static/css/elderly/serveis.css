@@ -26,6 +26,20 @@ header {
 	  padding:5px;
 }
 
+h2{
+	font-family: sans-serif;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
+}
+
+.no_centrado{
+	font-family: sans-serif;
+	text-align:left;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
+}
+
 .serveis_pack{
 	  width: 100%;
   
@@ -64,7 +78,7 @@ h1{
 	width: 100%;
 	font-weight:bold;
 	font-size: 60px;
-	font-family: serif;
+	font-family: sans-serif;
 	height:150px;
 	
 	/* Flexbox */
@@ -227,13 +241,13 @@ h1{
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
 }
 
 
 .btn {
-    font-family: serif;
+    font-family: sans-serif;
 }
 
 .text{

@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,8 +99,8 @@ public class VolunteerController {
 
     @RequestMapping("/horaris")
     public String horarisVolunteer(HttpSession session, Model model) {
-        model.addAttribute("availability", new Availability());
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+        model.addAttribute("availability", new Availability());
         model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
         return "volunteer/horaris";
     }
@@ -144,7 +147,6 @@ public class VolunteerController {
             session.setAttribute("nextUrl", "/login");
             return "login";
         }
-
         Volunteer volunteer_update = (Volunteer) session.getAttribute("volunteer");
         model.addAttribute("volunteer_update", volunteer_update);
         return "volunteer/update";
@@ -152,9 +154,17 @@ public class VolunteerController {
 
     @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
     public String processUpdateSubmitVolunteer(HttpSession session, @ModelAttribute("volunteer_update") Volunteer volunteer) {
-        volunteerDao.updateParaVolunteer(volunteer);
+        //Solucion rapida para fallo edad menor de 18 y numero que no es longitud = 0
+    	LocalDate today = LocalDate.now(); 
+    	long years = ChronoUnit.YEARS.between(volunteer.getBirthDate(), today);
+    	if(years < 18 || volunteer.getPhoneNumber().length() != 9) {
+    		return "redirect:/volunteer/profileVolunteer";
+    	}
+    	
+    	// Si no hay nada mal, funcionara
+    	volunteerDao.updateParaVolunteer(volunteer);
         session.setAttribute("volunteer", volunteer);
-        return "redirect:/volunteer/home";
+        return "redirect:/volunteer/profileVolunteer";
     }
     //////////////////////////
     //Esto es lo que ya estaba

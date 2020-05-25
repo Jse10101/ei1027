@@ -35,6 +35,13 @@ header {
 	  padding:5px;
 }
 
+h2{
+	font-family: sans-serif;
+	text-align:center;
+	font-weight:bold;
+	text-decoration: underline #4d4d4d;
+}
+
 
 .pack_header{
 	width: 100%;
@@ -49,7 +56,7 @@ h1{
 	width: 100%;
 	font-weight:bold;
 	font-size: 60px;
-	font-family: serif;
+	font-family: sans-serif;
 	height:150px;
 	
 	/* Flexbox */
@@ -86,7 +93,7 @@ h1{
 .dada{
 		border-radius: 0 25px 25px 0;
 		background: #fff;
-		width: 250px;
+		width: 350px;
 		text-align:center;
 }
 
@@ -96,6 +103,23 @@ h1{
 
 .boto{
 	  padding:15px;
+}
+
+.boto_enviar{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 50%;
+}
+
+.service{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 50%;
 }
 
 .serveis{
@@ -123,21 +147,23 @@ h1{
 
 .segonIf{
 	  width: 100%;
+	  padding:5px;
      /* Flexbox */
   display: flex;
   justify-content:space-around;
+  align-items:flex-start;
 }
 
 
 body {
   font-size: x-large;
-  font-family: serif;
+  font-family: sans-serif;
   color: #4d4d4d;
 }
 
 
 .btn {
-    font-family: serif;
+    font-family: sans-serif;
 }
 
 footer {
