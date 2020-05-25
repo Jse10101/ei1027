@@ -60,17 +60,22 @@ public class ElderlyController {
 				return "login";
 			}
 
-			Elderly elderly = new Elderly(elderlyDao.getElderly(login.getUsuario()));
-			session.setAttribute("elderly", elderly);
+			Elderly elderly = (Elderly) session.getAttribute("elderly");
+		    if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
+		    	return "elderly/home";
+		    }
 
-			return "elderly/home";
+		    session.invalidate();
+		    model.addAttribute("login", new Login());
+		    session.setAttribute("nextUrl", "elderly/home");
+		    return "login";
 
 		}
 	   
 
 	   @RequestMapping("/ajuda")
 		public String ajudaElderly(HttpSession session, Model model) {
-		   Login login = (Login) session.getAttribute("login");
+		    Login login = (Login) session.getAttribute("login");
 		   
 			if (login == null) {
 				model.addAttribute("login", new Login());
@@ -78,20 +83,20 @@ public class ElderlyController {
 				return "login";
 			}
 
-		   
-			if(login.getRole().equals("elderly")) {
-				return "elderly/ajuda";
-			}
-			
-			session.invalidate();
-			model.addAttribute("login", new Login());
-			session.setAttribute("nextUrl", "elderly/ajuda");
-			return "login";
+		    Elderly elderly = (Elderly) session.getAttribute("elderly");
+		    if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
+			    return "elderly/ajuda";
+		    }
+
+		    session.invalidate();
+		    model.addAttribute("login", new Login());
+		    session.setAttribute("nextUrl", "elderly/ajuda");
+		    return "login";
 		}
 	   
 	   @RequestMapping("/serveis")
 		public String serveisElderly(HttpSession session, Model model) {
-		   Login login = (Login) session.getAttribute("login");
+		    Login login = (Login) session.getAttribute("login");
 		   
 			if (login == null) {
 				model.addAttribute("login", new Login());
@@ -99,8 +104,8 @@ public class ElderlyController {
 				return "login";
 			}
 
-		   
-			if(login.getRole().equals("elderly")) {
+		    Elderly elderly = (Elderly) session.getAttribute("elderly");
+			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
 				model.addAttribute("requests", requestDao.getRequests());
 				Request requestt = new Request();
 				model.addAttribute("requestt", requestt);
@@ -123,8 +128,10 @@ public class ElderlyController {
 				return "login";
 			}
 
-			if(login.getRole().equals("elderly")) {
+		    Elderly elderly = (Elderly) session.getAttribute("elderly");
+			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
 				model.addAttribute("requests", requestDao.getRequests());
+				/*model.addAttribute("availabilities", elderlyDao.getAvaiabilities(elderly.getDni()));*/
 				return "elderly/profileElderly";
 			}
 			
@@ -139,12 +146,15 @@ public class ElderlyController {
 	       model.addAttribute("elderly", new Elderly());
 	       return "elderly/add";
 	   }
-	   
+
+
 	   @RequestMapping(value="/add", method=RequestMethod.POST)
-	   public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
+	   public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult, HttpSession session) {
+		    ElderlyValidator elderlyValidator = new ElderlyValidator();
+		    elderlyValidator.validate(elderly, bindingResult);
 	        if (bindingResult.hasErrors()) {
-	               return "elderly/add";
-	        }
+				return "elderly/add";
+			}
 
 	        List<Login> listaLogins = loginDao.getLogins();
 	        for(Login log : listaLogins) {
@@ -156,8 +166,49 @@ public class ElderlyController {
 	        Login login = new Login(elderly.getDni(), elderly.getUserpwd(), "elderly");
 			loginDao.addLogin(login);
 	        elderlyDao.addElderlyRegistro(elderly);
-	        return "redirect:../elderly/home";
+		    Elderly new_elderly = elderlyDao.getElderly(login.getUsuario());
+		    session.setAttribute("elderly", new_elderly);
+	        return "redirect:/elderly/home";
 	    }
+
+		///////////CREADO NUEVO para que el ELDERLY edite sus cosas:
+		@RequestMapping(value="/updateElderly")
+		public String updateElderly(HttpSession session, Model model) {
+			Elderly elderly_update = (Elderly) session.getAttribute("elderly");
+			Login login = (Login) session.getAttribute("login");
+
+			if (login == null) {
+				model.addAttribute("login", new Login());
+				session.setAttribute("nextUrl", "/login");
+				return "login";
+			}
+
+			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly_update.getDni())) {
+				model.addAttribute("elderly_update", elderly_update);
+				return "elderly/update";
+			}
+
+			session.invalidate();
+			model.addAttribute("login", new Login());
+			session.setAttribute("nextUrl", "elderly/updateElderly");
+			return "login";
+		}
+
+		@RequestMapping(value="/updateElderly", method = RequestMethod.POST)
+		public String processUpdateSubmitElderly(HttpSession session, @ModelAttribute("elderly_update") Elderly elderly, Model model, BindingResult bindingResult) {
+			ElderlyValidator elderlyValidator = new ElderlyValidator();
+			elderlyValidator.validate(elderly, bindingResult);
+			if (bindingResult.hasErrors()) {
+				return "/elderly/update";
+			}
+
+			elderlyDao.updateParaElderly(elderly);
+			session.setAttribute("elderly", elderly);
+			List<Request> listaRequests = requestDao.getRequests();
+			model.addAttribute("requests",listaRequests);
+			return "redirect:/elderly/profileElderly";
+		}
+		//////////////////////////
 	   
 	   @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)
 	   public String editaElderly(HttpSession session, Model model, @PathVariable String dni) {
@@ -180,33 +231,7 @@ public class ElderlyController {
 	        elderlyDao.updateElderly(elderly);
 	        return "redirect:list"; 
 	   }
-	   
-	   ///////////CREADO NUEVO para que el ELDERLY edite sus cosas:
-	   @RequestMapping(value="/updateElderly")
-	   public String updateElderly(HttpSession session, Model model) {
-		   Login login = (Login) session.getAttribute("login");
 
-		   if (login == null) {
-			   model.addAttribute("login", new Login());
-			   session.setAttribute("nextUrl", "/login");
-			   return "login";
-		   }
-		   Elderly elderly_update = (Elderly) session.getAttribute("elderly") ;
-		   model.addAttribute("elderly_update", elderly_update);
-		   return "elderly/update";
-	   }
-
-	   @RequestMapping(value="/updateElderly", method = RequestMethod.POST) 
-	   public String processUpdateSubmitElderly(HttpSession session, @ModelAttribute("elderly_update") Elderly elderly, Model model) {
-		   elderlyDao.updateParaElderly(elderly);
-		   session.setAttribute("elderly", elderly);
-		   List<Request> listaRequests = requestDao.getRequests();
-		   model.addAttribute("requests",listaRequests);
-		   return "redirect:/elderly/profileElderly";
-	   }
-	   //////////////////////////
-	   
-	   
 	   @RequestMapping(value="/delete/{dni}")
 	   public String processDelete(HttpSession session, Model model, @PathVariable String dni) {
 		   Login login = (Login) session.getAttribute("user");
@@ -218,7 +243,4 @@ public class ElderlyController {
 		   elderlyDao.deleteElderly(dni);
 	          return "redirect:../list"; 
 	   }
-
-	   
-	
 }

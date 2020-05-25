@@ -97,6 +97,20 @@ h1{
 		text-align:center;
 }
 
+.primera_dada{
+	border-radius: 25px 0px 0px 25px;
+	background: #fff;
+	width: 125px;
+	text-align:center;
+}
+
+.ultima_dada{
+	border-radius: 0 25px 25px 0;
+	background: #fff;
+	width: 450px;
+	text-align:center;
+}
+
 .nom{
 	text-decoration: underline #EB6864;
 }

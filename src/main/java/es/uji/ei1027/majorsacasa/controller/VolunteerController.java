@@ -86,15 +86,17 @@ public class VolunteerController {
             return "login";
         }
 
-        Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
-        session.setAttribute("volunteer", volunteer);
-        //model.addAttribute("volunteer", volunteer);
-        if ( volunteer.getAccepted() == false){
-            return "volunteer/enEspera";
+        Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
+        if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+            if (volunteer.getAccepted() == false){
+                return "volunteer/enEspera";
+            }
+            return "volunteer/home";
         }
-
-        return "volunteer/home";
-
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "volunteer/home");
+        return "login";
     }
 
     @RequestMapping("/horaris")

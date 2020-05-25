@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.dao;
 
+import es.uji.ei1027.majorsacasa.model.Availability;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,4 +91,13 @@ public class ElderlyDao {
             return new ArrayList<Elderly>();
         }
     }
+/*
+    public List<Availability> getAvaiabilities(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Availability WHERE dni_volunteer=?",
+                    new AvailabilityRowMapper(), dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Availability>();
+        }
+    }*/
 }

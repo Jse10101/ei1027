@@ -2,6 +2,10 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import javax.servlet.http.HttpSession;
 
+import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
+import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Elderly;
+import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +45,12 @@ public class LoginController {
 	
 	@Autowired
 	private LoginDao loginDao;
+
+	@Autowired
+	private ElderlyDao elderlyDao;
+
+	@Autowired
+	private VolunteerDao volunteerDao;
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
@@ -65,13 +75,17 @@ public class LoginController {
 		}
 
 		session.setAttribute("login", login);
-		
-		
+
 		//Switch per a saber qui entra en la web
 		switch (login.getRole()) {
 			case "elderly":
+				Elderly elderly = new Elderly(elderlyDao.getElderly(login.getUsuario()));
+				session.setAttribute("elderly", elderly);
 				return "redirect:/elderly/home";
+
 			case "volunteer":
+				Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
+				session.setAttribute("volunteer", volunteer);
 				return "redirect:/volunteer/home";
 			case "company":
 				return "redirect:/company/home";
@@ -95,7 +109,7 @@ public class LoginController {
 	
 	@RequestMapping("/logout") 
 	public String logout(HttpSession session) {
-		session.invalidate(); 
-		return "redirect:/";
+		session.invalidate();
+		return "redirect:/login";
 	}
 }

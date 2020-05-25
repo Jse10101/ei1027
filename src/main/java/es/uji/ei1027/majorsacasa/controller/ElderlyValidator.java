@@ -21,7 +21,7 @@ public class ElderlyValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         Elderly elderly = (Elderly) obj;
-        ElderlyDao elderlyDao = new ElderlyDao();
+        /*ElderlyDao elderlyDao = new ElderlyDao();
         List<Elderly> listaSeñores = elderlyDao.getElderlys();
 
         for (Elderly señor : listaSeñores) {
@@ -29,7 +29,7 @@ public class ElderlyValidator implements Validator {
                 errors.rejectValue("dni", "obligatori",
                         "Aquest DNI ja existeix");
 
-        }
+        }*/
         if (elderly.getName().equals(""))
             errors.rejectValue("name", "obligatori",
                     "Cal introduir un valor");
@@ -64,9 +64,6 @@ public class ElderlyValidator implements Validator {
         if (elderly.getPhoneNumber().equals("") || elderly.getPhoneNumber().length() != 9)
             errors.rejectValue("phoneNumber", "obligatori",
                     "Cal introduir un telefon de 9 cifres");
-        if (elderly.getDateCreation() == null)
-            errors.rejectValue("dateCreation", "obligatori",
-                    "Cal introduir un valor");
 
         if (elderly.getBirthDate() == null)
             errors.rejectValue("birthDate", "obligatori",
