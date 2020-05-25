@@ -194,7 +194,6 @@ public class CompanyController {
         if(login.getRole().equals("company")) {
             model.addAttribute("requests", requestDao.getRequests());
             model.addAttribute("contracts", contractDao.getContracts());
-            System.out.println(requestDao.getRequest("4").toString());
             return "company/serveis";
         }
 
