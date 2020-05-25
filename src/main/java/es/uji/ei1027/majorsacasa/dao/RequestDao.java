@@ -19,9 +19,6 @@ public class RequestDao {
     private int id = 1;
     private ContractDao contractDao;
 
-
-
-
     @Autowired
     public void setDateSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
