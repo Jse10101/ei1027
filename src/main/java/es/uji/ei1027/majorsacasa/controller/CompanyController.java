@@ -147,5 +147,26 @@ public class CompanyController {
         return "login";
     }
 
+    @RequestMapping("/ajuda")
+    public String ajudaCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+
+        if(login.getRole().equals("company")) {
+            return "company/ajuda";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/ajuda");
+        return "login";
+    }
+
 
 }
