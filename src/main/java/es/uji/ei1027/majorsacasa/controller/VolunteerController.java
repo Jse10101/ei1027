@@ -55,7 +55,7 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+        if(login.getUsuario().equals(volunteer.getDni())) {
             if (volunteer.getAccepted() == false){
                 return "volunteer/enEspera";
             }
@@ -79,7 +79,7 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+        if(login.getUsuario().equals(volunteer.getDni())) {
             model.addAttribute("availability", new Availability());
             model.addAttribute("availabilities", availabilityDao.getAvailabilitiesVolunteer(volunteer));
             return "volunteer/horaris";
@@ -102,7 +102,7 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+        if(login.getUsuario().equals(volunteer.getDni())) {
             return "volunteer/profileVolunteer";
         }
 
@@ -124,7 +124,7 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+        if(login.getUsuario().equals(volunteer.getDni())) {
             return "volunteer/ajuda";
         }
 
@@ -176,7 +176,7 @@ public class VolunteerController {
         }
 
         Volunteer volunteer = (Volunteer) session.getAttribute("volunteer");
-        if(login.getRole().equals("volunteer") && login.getUsuario().equals(volunteer.getDni())) {
+        if(login.getUsuario().equals(volunteer.getDni())) {
             model.addAttribute("volunteer_update", volunteer);
             return "volunteer/update";
         }

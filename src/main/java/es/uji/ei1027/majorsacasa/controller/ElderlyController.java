@@ -62,7 +62,7 @@ public class ElderlyController {
 			}
 
 			Elderly elderly = (Elderly) session.getAttribute("elderly");
-		    if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
+		    if(login.getUsuario().equals(elderly.getDni())) {
 		    	return "elderly/home";
 		    }
 
@@ -85,7 +85,7 @@ public class ElderlyController {
 			}
 
 		    Elderly elderly = (Elderly) session.getAttribute("elderly");
-		    if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
+		    if(login.getUsuario().equals(elderly.getDni())) {
 			    return "elderly/ajuda";
 		    }
 
@@ -106,7 +106,7 @@ public class ElderlyController {
 			}
 
 		    Elderly elderly = (Elderly) session.getAttribute("elderly");
-			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
+			if(login.getUsuario().equals(elderly.getDni())) {
 				model.addAttribute("requests", requestDao.getRequests());
 				Request requestt = new Request();
 				model.addAttribute("requestt", requestt);
@@ -130,7 +130,7 @@ public class ElderlyController {
 			}
 
 		    Elderly elderly = (Elderly) session.getAttribute("elderly");
-			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly.getDni())) {
+			if(login.getUsuario().equals(elderly.getDni())) {
 				model.addAttribute("requests", requestDao.getRequests());
 				return "elderly/profileElderly";
 			}
@@ -184,7 +184,7 @@ public class ElderlyController {
 				return "login";
 			}
 
-			if(login.getRole().equals("elderly") && login.getUsuario().equals(elderly_update.getDni())) {
+			if(login.getUsuario().equals(elderly_update.getDni())) {
 				model.addAttribute("elderly_update", elderly_update);
 				return "elderly/update";
 			}

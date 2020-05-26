@@ -46,6 +46,173 @@ public class SocialWorkerController {
     @Autowired
     public void setVolunteerDao(VolunteerDao volunteerDao) { this.volunteerDao = volunteerDao; }
 
+
+    @RequestMapping("/home")
+    public String homeSocialworker(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/socialworker/home");
+            return "login";
+        }
+
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if(login.getUsuario().equals(socialWorker.getUserCAS())) {
+            return "socialworker/home";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/home");
+        return "login";
+    }
+
+    @RequestMapping("/menuElderly")
+    public String menuElderly(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if (login.getUsuario().equals(socialWorker.getUserCAS())) {
+            model.addAttribute("requests", requestDao.getRequests());
+            model.addAttribute("elderlys", elderlyDao.getElderlys());
+            return "socialworker/menuElderly";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuElderly");
+        return "login";
+    }
+
+    @RequestMapping("/approveRequest/{idNumber}")
+    public String approveRequest(HttpSession session, Model model, @PathVariable String idNumber){
+        Login login = (Login) session.getAttribute("login");
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if(login.getUsuario().equals(socialWorker.getUserCAS())){
+            requestDao.approveRequest(idNumber);
+            return "redirect:socialworker/menuElderly";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuElderly");
+        return "login";
+    }
+
+    @RequestMapping("/rejectRequest/{idNumber}")
+    public String rejectRequest(HttpSession session, Model model, @PathVariable String idNumber){
+        Login login = (Login) session.getAttribute("login");
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if(login.getUsuario().equals(socialWorker.getUserCAS())){
+            requestDao.rejectRequest(idNumber);
+            return "redirect:../menuElderly";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuElderly");
+        return "login";
+    }
+
+    @RequestMapping("/menuCompany")
+    public String menuCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if (login.getUsuario().equals(socialWorker.getUserCAS())) {
+            model.addAttribute("companies", companyDao.getCompanies());
+            Company companyy = new Company();
+            model.addAttribute("companyy", companyy);
+            return "socialworker/menuCompany";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuCompany");
+        return "login";
+    }
+
+    @RequestMapping("/menuVolunteer")
+    public String menuVolunteer(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if (login.getUsuario().equals(socialWorker.getUserCAS())) {
+            model.addAttribute("volunteers", volunteerDao.getVolunteers());
+            return "socialworker/menuVolunteer";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuVolunteer");
+        return "login";
+    }
+
+    @RequestMapping("/approveVolunteer/{dni}")
+    public String approveVolunteer(HttpSession session, Model model, @PathVariable String dni){
+        Login login = (Login) session.getAttribute("login");
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if(login.getUsuario().equals(socialWorker.getUserCAS())){
+            volunteerDao.approveVolunteer(dni);
+            return "redirect:../menuVolunteer";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuVolunteer");
+        return "login";
+    }
+
+    @RequestMapping("/rejectVolunteer/{dni}")
+    public String rejectVolunteer(HttpSession session, Model model, @PathVariable String dni){
+        Login login = (Login) session.getAttribute("login");
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+        if(login.getUsuario().equals(socialWorker.getUserCAS())){
+            volunteerDao.rejectVolunteer(dni);
+            return "redirect:../menuVolunteer";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "socialworker/menuVolunteer");
+        return "login";
+    }
+
     // Operacions: Crear, llistar, actualitzar, esborrar
     // ...
     @RequestMapping("/list")
@@ -94,169 +261,6 @@ public class SocialWorkerController {
         socialWorkerDao.deleteSocialWorker(userCAS);
         return "redirect:../list";
     }
-
-    @RequestMapping("/home")
-    public String homeSocialworker(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/socialworker/home");
-            return "login";
-        }
-
-        SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
-        session.setAttribute("socialworker", socialWorker);
-        return "socialworker/home";
-
-    }
-
-    @RequestMapping("/menuElderly")
-    public String menuElderly(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if (login.getRole().equals("socialWorker")) {
-            model.addAttribute("requests", requestDao.getRequests());
-            model.addAttribute("elderlys", elderlyDao.getElderlys());
-            return "socialworker/menuElderly";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuElderly");
-        return "login";
-    }
-
-    @RequestMapping("/approveRequest/{idNumber}")
-    public String approveRequest(HttpSession session, Model model, @PathVariable String idNumber){
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-        if(login.getRole().equals("socialWorker")){
-            requestDao.approveRequest(idNumber);
-            return "redirect:../menuElderly";
-        }
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuElderly");
-        return "login";
-    }
-
-    @RequestMapping("/rejectRequest/{idNumber}")
-    public String rejectRequest(HttpSession session, Model model, @PathVariable String idNumber){
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-        if(login.getRole().equals("socialWorker")){
-            requestDao.rejectRequest(idNumber);
-            return "redirect:../menuElderly";
-        }
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuElderly");
-        return "login";
-    }
-
-    @RequestMapping("/menuCompany")
-    public String menuCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if (login.getRole().equals("socialWorker")) {
-            model.addAttribute("companies", companyDao.getCompanies());
-            Company companyy = new Company();
-            model.addAttribute("companyy", companyy);
-            return "socialworker/menuCompany";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuCompany");
-        return "login";
-    }
-
-    @RequestMapping("/menuVolunteer")
-    public String menuVolunteer(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if (login.getRole().equals("socialWorker")) {
-            model.addAttribute("volunteers", volunteerDao.getVolunteers());
-            return "socialworker/menuVolunteer";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuVolunteer");
-        return "login";
-    }
-
-    @RequestMapping("/approveVolunteer/{dni}")
-    public String approveVolunteer(HttpSession session, Model model, @PathVariable String dni){
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-        if(login.getRole().equals("socialWorker")){
-            volunteerDao.approveVolunteer(dni);
-            return "redirect:../menuVolunteer";
-        }
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuVolunteer");
-        return "login";
-    }
-
-    @RequestMapping("/rejectVolunteer/{dni}")
-    public String rejectVolunteer(HttpSession session, Model model, @PathVariable String dni){
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-        if(login.getRole().equals("socialWorker")){
-            volunteerDao.rejectVolunteer(dni);
-            return "redirect:../menuVolunteer";
-        }
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "socialworker/menuVolunteer");
-        return "login";
-    }
-
-
 }
 
 

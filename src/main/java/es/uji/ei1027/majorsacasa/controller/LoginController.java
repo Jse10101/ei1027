@@ -2,12 +2,8 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import javax.servlet.http.HttpSession;
 
-import es.uji.ei1027.majorsacasa.dao.CompanyDao;
-import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
-import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
-import es.uji.ei1027.majorsacasa.model.Company;
-import es.uji.ei1027.majorsacasa.model.Elderly;
-import es.uji.ei1027.majorsacasa.model.Volunteer;
+import es.uji.ei1027.majorsacasa.dao.*;
+import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import es.uji.ei1027.majorsacasa.model.Login;
-import es.uji.ei1027.majorsacasa.dao.LoginDao;
 
 
 class LoginValidator implements Validator { 
@@ -56,6 +49,9 @@ public class LoginController {
 
 	@Autowired
 	private CompanyDao companyDao;
+
+	@Autowired
+	private SocialWorkerDao socialWorkerDao;
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
@@ -107,6 +103,11 @@ public class LoginController {
 				}
 				return "redirect:/company/home";
 			case "socialWorker":
+				SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
+				session.setAttribute("socialWorker", socialWorker);
+				if (url != null){
+					return "redirect/" + url;
+				}
 				return "redirect:/socialworker/home";
 
 			//Si es ADMIN entra desde index - REFER -

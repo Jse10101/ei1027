@@ -44,7 +44,116 @@ public class CompanyController {
     public void setContractDao(ContractDao contractDao) {
         this.contractDao = contractDao;
     }
+
+
+    @RequestMapping(value = "/afegirCompany", method = RequestMethod.POST)
+    public String afegirCompany(@ModelAttribute("companyy") Company companyy,
+                                   BindingResult bindingResult, Model model) {
+        CompanyValidator companyValidador = new CompanyValidator();
+        companyValidador.validate(companyy, bindingResult);
+        if (bindingResult.hasErrors()) {
+        	model.addAttribute("companies", companyDao.getCompanies());
+            return "/socialworker/menuCompany";
+        }
+
+        List<Login> listaLogins = loginDao.getLogins();
+        for(Login log : listaLogins) {
+            if(log.getUsuario().equals(companyy.getCif())) {
+                //El DNI ya está registrado
+            	bindingResult.rejectValue("dni", "obligatori", "Ja existeix una empresa amb aquest DNI");
+                return "redirect:../socialworker/menuCompany";
+            }
+        }
+        Login login = new Login(companyy.getCif(), companyy.getPwd(), "company");
+        loginDao.addLogin(login);
+
+        companyDao.addCompany(companyy);
+        return "redirect:../socialworker/menuCompany";
+    }
+
+
+    @RequestMapping("/home")
+    public String homeCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/company/home");
+            return "login";
+        }
+
+        Company company = (Company) session.getAttribute("company");
+        if(login.getUsuario().equals(company.getCif())) {
+            return "company/home";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/home");
+        return "login";
+    }
+
+
+    @RequestMapping("/profileCompany")
+    public String profileCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        Company company = (Company) session.getAttribute("company");
+        if(login.getUsuario().equals(company.getCif())) {
+            return "company/profileCompany";
+        }
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/profileCompany");
+        return "login";
+    }
+
+    @RequestMapping("/ajuda")
+    public String ajudaCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+
+        Company company = (Company) session.getAttribute("company");
+        if(login.getUsuario().equals(company.getCif())) {
+            return "company/ajuda";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/ajuda");
+        return "login";
+    }
     
+    @RequestMapping("/serveis")
+    public String serveisCompany(HttpSession session, Model model) {
+        Login login = (Login) session.getAttribute("login");
+
+        if (login == null) {
+            model.addAttribute("login", new Login());
+            session.setAttribute("nextUrl", "/login");
+            return "login";
+        }
+        Company company = (Company) session.getAttribute("company");
+        if(login.getUsuario().equals(company.getCif())) {
+            model.addAttribute("requests", requestDao.getRequests());
+            model.addAttribute("contracts", contractDao.getContracts());
+            return "company/serveis";
+        }
+
+        session.invalidate();
+        model.addAttribute("login", new Login());
+        session.setAttribute("nextUrl", "company/serveis");
+        return "login";
+    }
 
     // Operacions: Crear, llistar, actualitzar, esborrar
     // ...
@@ -97,112 +206,5 @@ public class CompanyController {
     public String processDelete(@PathVariable String CIF) {
         companyDao.deleteCompany(CIF);
         return "redirect:../list";
-    }
-
-
-    @RequestMapping(value = "/afegirCompany", method = RequestMethod.POST)
-    public String afegirCompany(@ModelAttribute("companyy") Company companyy,
-                                   BindingResult bindingResult, Model model) {
-        CompanyValidator companyValidador = new CompanyValidator();
-        companyValidador.validate(companyy, bindingResult);
-        if (bindingResult.hasErrors()) {
-        	model.addAttribute("companies", companyDao.getCompanies());
-            return "/socialworker/menuCompany";
-        }
-
-        List<Login> listaLogins = loginDao.getLogins();
-        for(Login log : listaLogins) {
-            if(log.getUsuario().equals(companyy.getCif())) {
-                //El DNI ya está registrado
-            	bindingResult.rejectValue("dni", "obligatori", "Ja existeix una empresa amb aquest DNI");
-                return "redirect:../socialworker/menuCompany";
-            }
-        }
-        Login login = new Login(companyy.getCif(), companyy.getPwd(), "company");
-        loginDao.addLogin(login);
-
-        companyDao.addCompany(companyy);
-        return "redirect:../socialworker/menuCompany";
-    }
-
-
-    @RequestMapping("/home")
-    public String homeCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/company/home");
-            return "login";
-        }
-
-
-        Company company = new Company(companyDao.getCompany(login.getUsuario()));
-        session.setAttribute("company", company);
-
-        return "company/home";
-
-    }
-
-
-    @RequestMapping("/profileCompany")
-    public String profileCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-        if(login.getRole().equals("company")) {
-            return "company/profileCompany";
-        }
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "company/profileCompany");
-        return "login";
-    }
-
-    @RequestMapping("/ajuda")
-    public String ajudaCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if(login.getRole().equals("company")) {
-            return "company/ajuda";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "company/ajuda");
-        return "login";
-    }
-    
-    @RequestMapping("/serveis")
-    public String serveisCompany(HttpSession session, Model model) {
-        Login login = (Login) session.getAttribute("login");
-
-        if (login == null) {
-            model.addAttribute("login", new Login());
-            session.setAttribute("nextUrl", "/login");
-            return "login";
-        }
-
-
-        if(login.getRole().equals("company")) {
-            model.addAttribute("requests", requestDao.getRequests());
-            model.addAttribute("contracts", contractDao.getContracts());
-            return "company/serveis";
-        }
-
-        session.invalidate();
-        model.addAttribute("login", new Login());
-        session.setAttribute("nextUrl", "company/serveis");
-        return "login";
     }
 }
