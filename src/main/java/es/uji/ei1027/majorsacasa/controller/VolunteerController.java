@@ -153,6 +153,7 @@ public class VolunteerController {
         for(Login log : listaLogins) {
             if(log.getUsuario().equals(volunteer.getDni())) {
                 //DNI ya registrado
+            	bindingResult.rejectValue("dni", "obligatori", "Ja existeix un compte amb aquest DNI");
                 return "volunteer/add";
             }
         }
@@ -188,12 +189,18 @@ public class VolunteerController {
 
     @RequestMapping(value="/updateVolunteer", method = RequestMethod.POST)
     public String processUpdateSubmitVolunteer(HttpSession session, @ModelAttribute("volunteer_update") Volunteer volunteer, BindingResult bindingResult) {
+    	//pasamos datos de la sesion al modelo
+    	Volunteer datosVolunteer = (Volunteer) session.getAttribute("volunteer");
+    	volunteer.setAcceptationDate(datosVolunteer.getAcceptationDate());
+    	volunteer.setApplicationDate(datosVolunteer.getApplicationDate());
+    	volunteer.setAccepted(datosVolunteer.getAccepted());
+    	//datos 
+    	
         VolunteerValidator volunteerValidator = new VolunteerValidator();
         volunteerValidator.validate(volunteer, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/volunteer/update";
         }
-
         // Si no hay nada mal, funcionara
         volunteerDao.updateParaVolunteer(volunteer);
         session.setAttribute("volunteer", volunteer);

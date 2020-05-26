@@ -4,15 +4,15 @@
 <meta charset="UTF-8" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/updateUsuarios.css"
-	th:href="@{/css/updateUsuarios.css}" />
+<link rel="stylesheet" type="text/css" href="/css/volunteer/updateVolunteer.css"
+	th:href="@{/css/volunteer/updateVolunteer.css}" />
 <title>Majors a casa</title>
 </head>
 <body>
 	<div class="contenedor">
 	    <header>
 	    	<div class="loggeduser" th:object="${session}">
-	    		<div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-outline-primary">PÀGINA PRINCIPAL</a></div>
+	    		<div class="boton_atras"><a th:href="@{/volunteer/home}" class="btn btn-primary">PÀGINA PRINCIPAL</a></div>
 				<p th:if="*{volunteer.name == null}">
 					No autentificat &nbsp;<a href="/login" th:href="@{/login}">ACCEDIR</a>
 				</p>
@@ -21,7 +21,7 @@
 					<a href="/logout" th:href="@{/logout}">EIXIR</a>
 				</p>
 			</div>
-			<div class="bienvenida" th:object="${session}"><h1>Editant perfil de&nbsp;<span class="nom" th:text="*{volunteer.name}"></span>, estàs editant les teues dades</span></h1></div>
+			<div class="bienvenida" th:object="${session}"><h1>Editant perfil de&nbsp;<span class="nom" th:text="*{volunteer.name}"></span></h1></div>
 	    </header>
 		<main class="main_major_add">
 			<form action="#" th:action="@{/volunteer/updateVolunteer} " th:object="${volunteer_update}" method="post">
@@ -30,7 +30,7 @@
 					<div>
 						<input class="form-control" maxlength="9" required type="text"
 							th:field="*{dni}" readonly/>
-						<div th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+						<div class="error_dato" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
 					</div>
 				</div>
 
@@ -39,7 +39,7 @@
 					<div>
 						<input class="form-control" type="text" required maxlength="50"
 							th:field="*{name}" />
-						<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+						<div class="error_dato" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 					</div>
 				</div>
 
@@ -48,7 +48,7 @@
 					<div>
 						<input class="form-control" type="password" required
 							maxlength="20" th:field="*{pwd}" />
-						<div th:if="${#fields.hasErrors('pwd')}"
+						<div class="error_dato" th:if="${#fields.hasErrors('pwd')}"
 							th:errors="*{pwd}"></div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 					<div>
 						<input class="form-control" type="email" required
 							th:field="*{email}" />
-						<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+						<div class="error_dato" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 					</div>
 				</div>
 
@@ -67,7 +67,7 @@
 					<div>
 						<input class="form-control" type="text" required maxlength="9"
 							th:field="*{phoneNumber}" />
-						<div th:if="${#fields.hasErrors('phoneNumber')}"
+						<div class="error_dato" th:if="${#fields.hasErrors('phoneNumber')}"
 							th:errors="*{phoneNumber}"></div>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 					<div>
 						<input class="form-control" type="date" required
 							th:field="*{birthDate}" />
-						<div th:if="${#fields.hasErrors('birthDate')}"
+						<div class="error_dato" th:if="${#fields.hasErrors('birthDate')}"
 							th:errors="*{birthDate}"></div>
 					</div>
 				</div>

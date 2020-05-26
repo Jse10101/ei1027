@@ -53,24 +53,24 @@ public class RequestValidator implements Validator {
         if (request.getAprovedDate() != null)
             if (!request.getAprovedDate().isAfter(request.getCreationDate()))
                 errors.rejectValue("aprovedDate", "posterior",
-                        "La fecha d'aprobació te que ser posterior a la de creació");
+                        "La data d'aprobació te que ser posterior a la de creació");
         if (request.getRejectedDate() != null)
             if (!request.getRejectedDate().isAfter(request.getCreationDate()))
                 errors.rejectValue("rejectedDate", "posterior",
-                        "La fecha de rebuig te que ser posterior a la de creació");
+                        "La data de rebuig te que ser posterior a la de creació");
         if (request.getFinishDate() != null)
             if (!request.getFinishDate().isAfter(request.getCreationDate()))
                 errors.rejectValue("finishDate", "posterior",
-                        "La fecha finalització te que ser posterior a la de creació");
+                        "La data finalització te que ser posterior a la de creació");
 
         if (request.getAprovedDate() != null && request.getRejectedDate() != null) {
             errors.rejectValue("rejectedDate", "posterior",
-                    "No pot haver-hi fecha de rebuig si hi ha d'aprobació");
+                    "No pot haver-hi data de rebuig si hi ha d'aprobació");
         }
 
         if (request.getFinishDate() != null && request.getRejectedDate() != null) {
             errors.rejectValue("finishDate", "posterior",
-                    "No pot haver-hi fecha de finalització si hi ha de rebuig");
+                    "No pot haver-hi data de finalització si hi ha de rebuig");
         }
     }
 }

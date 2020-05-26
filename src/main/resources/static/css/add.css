@@ -68,6 +68,12 @@ h3{
 	align-items:center;
 }
 
+.error_dato{
+	width: 250px;
+	color:#EB6864;
+	font-size: 15px;
+}
+
 
 form{
 	width: 100%;

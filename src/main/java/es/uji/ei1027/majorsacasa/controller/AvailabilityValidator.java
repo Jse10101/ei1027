@@ -38,7 +38,7 @@ public class AvailabilityValidator implements Validator {
 
         LocalDate today = LocalDate.now();
         if(availability.getFecha().isBefore(today)){
-            errors.rejectValue("fecha", "fecha", "Tiene que ser una fecha futura");
+            errors.rejectValue("fecha", "fecha", "Ha de ser una data futura");
         }
 
         if (availability.getBeginingHour()==null)
@@ -50,7 +50,7 @@ public class AvailabilityValidator implements Validator {
                     "Cal introduir una hora de fi");
 
         if(!availability.getEndingHour().isAfter(availability.getBeginingHour())){
-            errors.rejectValue("endingHour", "horas", "Te que ser una hora posterior a la d'inici");
+            errors.rejectValue("endingHour", "horas", "Ha de ser una hora posterior a la d'inici");
         }
     }
 }

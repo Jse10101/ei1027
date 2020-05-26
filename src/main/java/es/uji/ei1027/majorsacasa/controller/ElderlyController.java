@@ -16,6 +16,7 @@ import es.uji.ei1027.majorsacasa.dao.ElderlyDao;
 import es.uji.ei1027.majorsacasa.model.Elderly;
 import es.uji.ei1027.majorsacasa.model.Login;
 import es.uji.ei1027.majorsacasa.model.Request;
+import es.uji.ei1027.majorsacasa.model.Volunteer;
 import es.uji.ei1027.majorsacasa.dao.LoginDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 
@@ -159,6 +160,7 @@ public class ElderlyController {
 	        for(Login log : listaLogins) {
 	        	if(log.getUsuario().equals(elderly.getDni())) {
 	        		//El DNI ya está registrado
+	        		bindingResult.rejectValue("dni", "obligatori", "Ja existeix un compte amb aquest DNI");
 	        		return "elderly/add";
 	        	}
 	        }
@@ -195,6 +197,13 @@ public class ElderlyController {
 
 		@RequestMapping(value="/updateElderly", method = RequestMethod.POST)
 		public String processUpdateSubmitElderly(HttpSession session, @ModelAttribute("elderly_update") Elderly elderly, Model model, BindingResult bindingResult) {
+			
+	    	//pasamos datos de la sesion al modelo
+			Elderly datosElderly = (Elderly) session.getAttribute("elderly");
+			elderly.setUserCAS_socialWorker(datosElderly.getUserCAS_socialWorker());
+			elderly.setDateCreation(datosElderly.getDateCreation());
+	    	//datos 
+			
 			ElderlyValidator elderlyValidator = new ElderlyValidator();
 			elderlyValidator.validate(elderly, bindingResult);
 			if (bindingResult.hasErrors()) {
