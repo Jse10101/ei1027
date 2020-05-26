@@ -104,7 +104,7 @@ public class LoginController {
 				return "redirect:/company/home";
 			case "socialWorker":
 				SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
-				session.setAttribute("socialWorker", socialWorker);
+				session.setAttribute("socialworker", socialWorker);
 				if (url != null){
 					return "redirect/" + url;
 				}

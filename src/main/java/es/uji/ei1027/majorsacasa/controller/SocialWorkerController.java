@@ -102,7 +102,7 @@ public class SocialWorkerController {
         SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
         if(login.getUsuario().equals(socialWorker.getUserCAS())){
             requestDao.approveRequest(idNumber);
-            return "redirect:socialworker/menuElderly";
+            return "redirect:../menuElderly";
         }
         session.invalidate();
         model.addAttribute("login", new Login());
