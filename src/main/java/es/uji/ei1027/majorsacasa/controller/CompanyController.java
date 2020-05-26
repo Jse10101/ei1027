@@ -102,11 +102,13 @@ public class CompanyController {
 
     @RequestMapping(value = "/afegirCompany", method = RequestMethod.POST)
     public String afegirCompany(@ModelAttribute("companyy") Company companyy,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, Model model) {
         CompanyValidator companyValidador = new CompanyValidator();
         companyValidador.validate(companyy, bindingResult);
-        if (bindingResult.hasErrors())
-            return "redirect:../socialworker/menuCompany";
+        if (bindingResult.hasErrors()) {
+        	model.addAttribute("companies", companyDao.getCompanies());
+            return "/socialworker/menuCompany";
+        }
 
         List<Login> listaLogins = loginDao.getLogins();
         for(Login log : listaLogins) {

@@ -28,7 +28,7 @@
 				<div class="pack_camp_form">
 					<div class="nom_dades">DNI:</div>
 					<div>
-						<input class="form-control" maxlength="9" required type="text"
+						<input class="form-control" maxlength="9" required readonly type="text"
 							th:field="*{dni}" />
 						<div class="error_dato" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
 					</div>
