@@ -59,7 +59,7 @@ public class VolunteerValidator implements Validator {
         //Solucion rapida para fallo edad menor de 18 y numero que no es longitud = 0
         LocalDate today = LocalDate.now();
         long years = ChronoUnit.YEARS.between(voluntario.getBirthDate(), today);
-        if(years < 18 || voluntario.getPhoneNumber().length() != 9) {
+        if(years < 18) {
             errors.rejectValue("birthDate", "obligatori",
                     "Has de ser major de edat");
         }

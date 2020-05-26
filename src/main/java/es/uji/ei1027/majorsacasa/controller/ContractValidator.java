@@ -52,7 +52,7 @@ public class ContractValidator implements Validator {
                     "Cal introduir un valor");
 
         if (!contract.getDateEnding().isAfter(contract.getDateBegining())) {
-            errors.rejectValue("dateEnding", "fecha", "La fecha de fi te que ser posterior a la d'inici");
+            errors.rejectValue("dateEnding", "fecha", "La data de fi te que ser posterior a la d'inici");
         }
     }
 }

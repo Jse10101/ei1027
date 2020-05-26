@@ -47,6 +47,12 @@ header {
 	text-decoration: underline #EB6864;
 }
 
+.error_dato{
+	width: 250px;
+	color:#EB6864;
+	font-size: 15px;
+}
+
 h1{
 	width: 100%;
 	font-weight:bold;

@@ -34,6 +34,12 @@ header {
           flex-direction: column;
 }
 
+.error_dato{
+	width: 250px;
+	color:#EB6864;
+	font-size: 15px;
+}
+
 .pack_formulario{
     width: 100%;
     padding:5px;

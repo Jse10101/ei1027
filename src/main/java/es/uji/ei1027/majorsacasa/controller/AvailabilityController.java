@@ -67,7 +67,7 @@ public class AvailabilityController {
         for(Availability horario : horarios){
             //Compruebo si las claves primarias de la nueva disponibilidad(dni_vol, fecha y hora_inicio) coinciden con alguna ya creada.
             if(horario.getDni_volunteer().equals(availability.getDni_volunteer()) && horario.getFecha().equals(availability.getFecha()) && horario.getBeginingHour().equals(availability.getBeginingHour())){
-                bindingResult.rejectValue("beginingHour", "obligatori", "Les dades introduides coincideixen amb un horari ya creat (fecha y hora inici)");
+                bindingResult.rejectValue("beginingHour", "obligatori", "Ja existeix una disponibilitat amb aquestes dades");
             }
         }
         if (bindingResult.hasErrors()) {

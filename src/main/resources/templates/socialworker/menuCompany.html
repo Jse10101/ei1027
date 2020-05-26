@@ -34,7 +34,7 @@
             <div>
                 <input class="form-control" maxlength="9" required type="text"
                        th:field="*{cif}"/>
-                <div th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></div>
+                <div class="error_dato" th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></div>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
             <div class="">
                 <input class="form-control" type="text" required maxlength="50"
                        th:field="*{name}"/>
-                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                <div class="error_dato" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
             <div>
                 <input class="form-control" type="password" required maxlength="50"
                        th:field="*{pwd}"/>
-                <div th:if="${#fields.hasErrors('pwd')}"
+                <div class="error_dato" th:if="${#fields.hasErrors('pwd')}"
                      th:errors="*{pwd}"></div>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div>
                 <input class="form-control" type="text" required maxlength="50"
                        th:field="*{address}"/>
-                <div th:if="${#fields.hasErrors('address')}"
+                <div class="error_dato" th:if="${#fields.hasErrors('address')}"
                      th:errors="*{address}"></div>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <div>
                 <input class="form-control" maxlength="50" required type="text"
                        th:field="*{contactName}"/>
-                <div th:if="${#fields.hasErrors('contactName')}"
+                <div class="error_dato" th:if="${#fields.hasErrors('contactName')}"
                      th:errors="*{contactName}"></div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             <div>
                 <input class="form-control" required
                        maxlength="9" type="text" th:field="*{contactPhoneNumber}"/>
-                <div th:if="${#fields.hasErrors('contactPhoneNumber')}"
+                <div class="error_dato" th:if="${#fields.hasErrors('contactPhoneNumber')}"
                      th:errors="*{contactPhoneNumber}"></div>
             </div>
         </div>
@@ -92,7 +92,7 @@
             <div>
                 <input class="form-control" type="text" required
                        th:field="*{contactEmail}"/>
-                <div th:if="${#fields.hasErrors('contactEmail')}" th:errors="*{contactEmail}"></div>
+                <div class="error_dato" th:if="${#fields.hasErrors('contactEmail')}" th:errors="*{contactEmail}"></div>
             </div>
         </div>
 

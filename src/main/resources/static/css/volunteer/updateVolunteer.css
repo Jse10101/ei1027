@@ -11,15 +11,60 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-
 header {
   background: #dcdcdc;
   width: 100%;
-  height:250px;
+  
     /* Flexbox */
   display: flex;
-  justify-content:center;
-  align-items:center;
+  flex-direction: column;
+
+}
+
+.loggeduser{
+	width: 100%;
+	font-size: 15px;
+	  /* Flexbox */
+	display: flex;
+	justify-content:space-between;
+	align-content:center;
+}
+
+.boton_atras{
+	  padding:5px;
+}
+
+.pack_header{
+	width: 100%;
+	font-size: 15px;
+		  /* Flexbox */
+	display: flex;
+	 flex-direction: row;
+	 justify-content:space-between;
+}
+
+.nom{
+	text-decoration: underline #EB6864;
+}
+
+.error_dato{
+	width: 250px;
+	color:#EB6864;
+	font-size: 15px;
+}
+
+
+h1{
+	width: 100%;
+	font-weight:bold;
+	font-size: 60px;
+	font-family: sans-serif;
+	height:150px;
+	
+	/* Flexbox */
+	display: flex;
+	justify-content:center;
+	align-items:center;
 }
 
 .cognom{
@@ -31,11 +76,6 @@ header {
 	color: #fff;
 }
 
-h1{
-	font-weight:bold;
-	font-size: 60px;
-	font-family: sans-serif;
-}
 
 h3{
 	font-weight:bold;
@@ -52,26 +92,8 @@ h3{
   width:100%;
   /* Flexbox */
   display: flex;
-  flex: 1 1 40%;
+  flex: 1 1 100%;
   font-weight:bold;
-}
-
-.text{
-	width:100%;
-	font-weight:bold;
-	font-size: 30px;
-	text-decoration: underline #EB6864;
-	/* Flexbox */
-	display: flex;
-	flex: 1 1 60%;
-	justify-content:center;
-	align-items:center;
-}
-
-.error_dato{
-	width: 250px;
-	color:#EB6864;
-	font-size: 15px;
 }
 
 

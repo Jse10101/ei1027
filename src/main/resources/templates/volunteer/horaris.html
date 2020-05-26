@@ -34,14 +34,14 @@
                     <div class="formulario_nombre">DATA</div>
                     <div class="formulario_dato">
                         <div class="casilla"><input type="date" required class="form-control" id="fecha" th:field="*{fecha}"/></div>
-                        <div th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+                        <div class="error_dato" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
                     </div>
                 </div>
                 <div class="pack_formulario">
                     <div class="formulario_nombre">HORA D'INICI</div>
                     <div class="formulario_dato">
                         <div class="casilla"><input type="time" required class="form-control" id="beginingHour" th:field="*{beginingHour}"/></div>
-                        <div th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>
+                        <div class="error_dato" th:if="${#fields.hasErrors('beginingHour')}" th:errors="*{beginingHour}"></div>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                     <div class="formulario_nombre">HORA DE FI</div>
                     <div class="formulario_dato">
                         <div class="casilla"><input type="time" required class="form-control" id="endingHour" th:field="*{endingHour}"/></div>
-                        <div th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>
+                        <div class="error_dato" th:if="${#fields.hasErrors('endingHour')}" th:errors="*{endingHour}"></div>
                     </div>
                 </div>
 
