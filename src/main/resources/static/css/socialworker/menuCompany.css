@@ -31,6 +31,12 @@ header {
 	align-content:center;
 }
 
+.error_dato{
+	width: 250px;
+	color:#EB6864;
+	font-size: 15px;
+}
+
 .boton_atras{
 	  padding:5px;
 }

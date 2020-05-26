@@ -112,6 +112,7 @@ public class CompanyController {
         for(Login log : listaLogins) {
             if(log.getUsuario().equals(companyy.getCif())) {
                 //El DNI ya está registrado
+            	bindingResult.rejectValue("dni", "obligatori", "Ja existeix una empresa amb aquest DNI");
                 return "redirect:../socialworker/menuCompany";
             }
         }
