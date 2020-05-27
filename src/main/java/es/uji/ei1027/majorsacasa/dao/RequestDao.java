@@ -113,7 +113,7 @@ public class RequestDao {
 
         jdbcTemplate.update("UPDATE Request SET state=?, aprovedDate=? WHERE idNumber=?", true, today, idNumber);
         Request request = getRequest(idNumber);
-        contractDao.nouContract(request);
+        contractDao.contractRequest(request);
 
     }
 

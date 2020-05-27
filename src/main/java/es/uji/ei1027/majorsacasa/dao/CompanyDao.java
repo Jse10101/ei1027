@@ -1,12 +1,14 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +16,46 @@ import java.util.List;
 public class CompanyDao {
 
     private JdbcTemplate jdbcTemplate;
+    private int id = 0;
+    //private ContractDao contractDao;
 
     @Autowired
     public void setDateSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    //@Autowired
+    //public void setContractDao(ContractDao contractDao) {
+    //this.contractDao = contractDao;
+    //}
+
     /* Afegeix al Company a la base de dades */
-    public void addCompany(Company company) {
+    public void addCompany(Company company, List<Contract> listaContracts) {
+        LocalDate today = LocalDate.now();
         jdbcTemplate.update("INSERT INTO Company VALUES(?, ?, ?, ?, ?, ?, ?, ?)", company.getName(), company.getCif(), company.getPwd(), company.getAddress(),
                 company.getContactName(), company.getContactPhoneNumber(), company.getContactEmail(), company.getServiceType());
+
+        for (Contract con : listaContracts) {
+            if (Integer.valueOf(con.getIdNumber()) > id) {
+                id = Integer.valueOf(con.getIdNumber());
+            }
+        }
+        id++;
+
+        int precio = 0;
+        String serviceType = company.getServiceType();
+        switch (serviceType) {
+            case "Neteja":
+                precio = 10;
+                break;
+            case "Menjar a domicili":
+                precio = 4;
+                break;
+            case "Servei sanitari":
+                precio = 25;
+                break;
+        }
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?)", Integer.toString(id), today, today.plusYears(1), serviceType, precio, company.getCif());
     }
 
     /* Esborra el Company de la base de dades */

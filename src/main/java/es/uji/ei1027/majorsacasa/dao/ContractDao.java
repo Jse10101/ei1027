@@ -76,40 +76,20 @@ public class ContractDao {
         }
     }
 
-    /*Actualitza els atributs dels Contrats
-  (excepte la clau primària) */
-    public void nouContract(Request request) {
+    /*Afegeix a les request recientment aprovades un contracte) */
+    public void contractRequest(Request request) {
         LocalDate today = LocalDate.now();
 
-        //Creamos un requestDao, hacemos una lista de Requests y la recorremos para comprobar el valor de id
-        List<Contract> listaContracts = this.getContracts();
-        for (Contract con : listaContracts) {
-            if (Integer.valueOf(con.getIdNumber()) > id) {
-                id = Integer.valueOf(con.getIdNumber());
+        //hacemos una lista de Contracts que proporcionen el servici desitjat
+        List<Contract> listaContractsServici = new LinkedList<>();
+        for (Contract con : this.getContracts()) {
+            if (request.getServiceType().equals(con.getServiceType())) {
+                listaContractsServici.add(con);
             }
         }
-        id++;
-        List<Company> listaCompaniesServici = new LinkedList<>();
-        for (Company com : companyDao.getCompanies()) {
-            if (request.getServiceType().equals(com.getServiceType()))
-                listaCompaniesServici.add(com);
-        }
         Random rand = new Random();
-        Company company = listaCompaniesServici.get(rand.nextInt(listaCompaniesServici.size()));
-        int precio = 0;
-        String serviceType = request.getServiceType();
-        switch (serviceType) {
-            case "Neteja":
-                precio = 10;
-                break;
-            case "Menjar a domicili":
-                precio = 4;
-                break;
-            case "Servei sanitari":
-                precio = 25;
-                break;
-        }
-        jdbcTemplate.update("INSERT INTO Contract VALUES(?, ?, ?, ?, ?, ?)", Integer.toString(id), request.getAprovedDate(), request.getAprovedDate().plusDays(7), serviceType, precio, company.getCif());
-        jdbcTemplate.update("UPDATE Request SET idNumber_contract=? WHERE idNumber=?", Integer.toString(id), request.getIdNumber());
+        Contract contract = listaContractsServici.get(rand.nextInt(listaContractsServici.size()));
+
+        jdbcTemplate.update("UPDATE Request SET idNumber_contract=? WHERE idNumber=?", contract.getIdNumber(), request.getIdNumber());
     }
 }

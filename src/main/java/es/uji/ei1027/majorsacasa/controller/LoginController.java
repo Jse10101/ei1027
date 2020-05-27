@@ -92,21 +92,21 @@ public class LoginController {
 				Volunteer volunteer = new Volunteer(volunteerDao.getVolunteer(login.getUsuario()));
 				session.setAttribute("volunteer", volunteer);
 				if (url != null){
-					return "redirect/" + url;
+					return "redirect:/" + url;
 				}
 				return "redirect:/volunteer/home";
 			case "company":
 				Company company = new Company(companyDao.getCompany(login.getUsuario()));
 				session.setAttribute("company", company);
 				if (url != null){
-					return "redirect/" + url;
+					return "redirect:/" + url;
 				}
 				return "redirect:/company/home";
 			case "socialWorker":
 				SocialWorker socialWorker = new SocialWorker(socialWorkerDao.getSocialWorker(login.getUsuario()));
 				session.setAttribute("socialworker", socialWorker);
 				if (url != null){
-					return "redirect/" + url;
+					return "redirect:/" + url;
 				}
 				return "redirect:/socialworker/home";
 

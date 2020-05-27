@@ -67,7 +67,7 @@ public class CompanyController {
         Login login = new Login(companyy.getCif(), companyy.getPwd(), "company");
         loginDao.addLogin(login);
 
-        companyDao.addCompany(companyy);
+        companyDao.addCompany(companyy, contractDao.getContracts());
         return "redirect:../socialworker/menuCompany";
     }
 
@@ -179,7 +179,7 @@ public class CompanyController {
         companyValidador.validate(company, bindingResult);
         if (bindingResult.hasErrors())
             return "company/add";
-        companyDao.addCompany(company);
+        companyDao.addCompany(company, contractDao.getContracts());
         return "redirect:list";
     }
 
