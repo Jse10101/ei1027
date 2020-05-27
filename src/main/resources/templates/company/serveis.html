@@ -43,8 +43,8 @@
 				<div class="nom_dada_llarga">COMENTARI</div>
 				<div class="nom_dada_petita">ESTAT</div>
 			</div>
-			<div class="bucle1" th:each="request : ${requests}">
-				<div class="bucle2" th:each="contract : ${contracts}">
+			<div class="bucle1" th:each="contract : ${contracts}">
+				<div class="bucle2" th:each="request : ${requests}">
 					<div class="primerIf"th:if="${contract.cif_company} == *{company.cif}">
 						<div class="primerIf" th:if="${request.state}">
 							<div class="ultimoIf"
@@ -61,8 +61,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="bucle1" th:each="request : ${requests}">
-				<div class="bucle2" th:each="contract : ${contracts}">
+			<div class="bucle1" th:each="contract : ${contracts}">
+				<div class="bucle2" th:each="request : ${requests}">
 					<div class="primerIf"
 						th:if="${contract.cif_company} == *{company.cif}">
 						<div class="primerIf" th:if="${request.finishDate != null}">

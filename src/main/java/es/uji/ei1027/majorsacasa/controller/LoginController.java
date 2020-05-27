@@ -117,14 +117,6 @@ public class LoginController {
 		return "redirect:/index";
 	}
 	
-	
-	   @RequestMapping(value="/update/{usuario}", method = RequestMethod.GET)
-	   public String editaElderly(HttpSession session, Model model, @PathVariable String usuario) {
-		   
-	       model.addAttribute("login", loginDao.getLogin(usuario));
-	       return "elderly/update"; 
-	   }
-	
 	@RequestMapping("/logout") 
 	public String logout(HttpSession session) {
 		session.invalidate();
