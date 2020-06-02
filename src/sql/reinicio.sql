@@ -269,7 +269,7 @@ INSERT INTO Elderly VALUES ('48523694L','Victor', 'Cayetano', 'C/ Ejemplo Cinco'
 -- I N S E R T S   C O M P A N Y
 INSERT INTO Company VALUES ('MCarrones','E12345678','mcarrones', 'C/ Empresas Uno', 'Fernando Gil', '678678989', 'mcarrones@gmail.com', 'Menjar a domicili');
 
-INSERT INTO Company VALUES ('Compañias','E12348765','comidassa', 'C/ Empresas Dos', 'Amparo Fernández', '600123456', 'comidassa@gmail.com', 'Acompanyament');
+INSERT INTO Company VALUES ('MClean','E12348765','mclean69', 'C/ Empresas Dos', 'Amparo Fernández', '600123456', 'mclean69@gmail.com', 'Neteja');
 
 INSERT INTO Company VALUES ('DonLimpio','E12342897','donlimpio', 'C/ Empresas Tres', 'Calvo Anuncio', '789667564', 'dlimpio@gmail.com', 'Neteja');
 
@@ -292,28 +292,28 @@ INSERT INTO Availability VALUES ('2020-05-02','19:30:00.00','21:30:00.00', FALSE
 
 
 -- I N S E R T S   I N V O I C E
-INSERT INTO Invoice VALUES ('2016-03-13','28800',3, NULL, '48273019S' );
+INSERT INTO Invoice VALUES ('2016-03-13','1',3, NULL, '48273019S' );
 
-INSERT INTO Invoice VALUES ('2018-07-01','26000',1,NULL, '58274356Y' );
+INSERT INTO Invoice VALUES ('2018-07-01','2',1,NULL, '58274356Y' );
 
-INSERT INTO Invoice VALUES ('2019-12-04','15500',2,NULL, '98561723I' );
+INSERT INTO Invoice VALUES ('2019-12-04','3',2,NULL, '98561723I' );
 
-INSERT INTO Invoice VALUES ('2019-06-13','10100',1,NULL,   '58761324E' );
+INSERT INTO Invoice VALUES ('2019-06-13','4',1,NULL,   '58761324E' );
 
-INSERT INTO Invoice VALUES ('2017-05-16','90000',1,NULL, '48523694L' );
+INSERT INTO Invoice VALUES ('2017-05-16','5',1,NULL, '48523694L' );
 
 
 
 -- I N S E R T S   C O N T R A C T
-INSERT INTO Contract VALUES ('10000','2016-01-01','2017-01-01','Acompanyament',20.0,'E12348765');
+INSERT INTO Contract VALUES ('1','2016-01-01','2017-01-01','Acompanyament',20.0,'E12348765');
 
-INSERT INTO Contract VALUES ('10100','2017-04-03','2025-04-03','Neteja',25.0,'E12342897');
+INSERT INTO Contract VALUES ('2','2017-04-03','2025-04-03','Neteja',25.0,'E12342897');
 
-INSERT INTO Contract VALUES ('10200','2018-02-01','2019-02-01','Neteja',25.0,'E12342897');
+INSERT INTO Contract VALUES ('3','2018-02-01','2019-02-01','Neteja',25.0,'E12342897');
 
-INSERT INTO Contract VALUES ('10300','2018-11-09','2022-11-09','Menjar a domicili',9.99,'E12345678');
+INSERT INTO Contract VALUES ('4','2018-11-09','2022-11-09','Menjar a domicili',9.99,'E12345678');
 
-INSERT INTO Contract VALUES ('10400','2016-03-01','2019-03-01','Servei sanitari',25.0,'E12344560');
+INSERT INTO Contract VALUES ('5','2016-03-01','2019-03-01','Servei sanitari',25.0,'E12344560');
 
 
 

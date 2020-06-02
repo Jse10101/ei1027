@@ -132,7 +132,7 @@ public class CompanyController {
         session.setAttribute("nextUrl", "company/ajuda");
         return "login";
     }
-    
+
     @RequestMapping("/serveis")
     public String serveisCompany(HttpSession session, Model model) {
         Login login = (Login) session.getAttribute("login");
@@ -174,7 +174,7 @@ public class CompanyController {
     //afegir
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
-                                   BindingResult bindingResult) {
+                                BindingResult bindingResult) {
         CompanyValidator companyValidador = new CompanyValidator();
         companyValidador.validate(company, bindingResult);
         if (bindingResult.hasErrors())
